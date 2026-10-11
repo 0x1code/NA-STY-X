@@ -6,11 +6,14 @@
 
 use std::sync::OnceLock;
 
+/// Cipher revision. Version 0.2 is incompatible with the historical v0.1 S-box.
+pub const ALGORITHM_VERSION: &str = "0.2";
+
 /// Block size, in bytes.
 pub const BLOCK_SIZE: usize = 16;
 /// Master-key size, in bytes.
 pub const KEY_SIZE: usize = 32;
-/// Number of Feistel rounds in the v0.1 reference construction.
+/// Number of Feistel rounds in the v0.2 reference construction.
 pub const ROUNDS: usize = 16;
 /// Largest round count supported by the research variants.
 pub const MAX_ROUNDS: usize = 24;
@@ -117,7 +120,7 @@ fn expand_key(key: &[u8; KEY_SIZE]) -> [u64; MAX_ROUNDS] {
 
 fn round_function(input: u64, round_key: u64) -> u64 {
     let mixed = (input ^ round_key).to_le_bytes();
-    let sbox = aes_sbox();
+    let sbox = nastyx_sbox();
     let mut permuted = [0_u8; 8];
     for (i, source_index) in BYTE_PERMUTATION.iter().enumerate() {
         permuted[i] = sbox[mixed[*source_index] as usize];
@@ -126,50 +129,31 @@ fn round_function(input: u64, round_key: u64) -> u64 {
     x.wrapping_add(x.rotate_left(17)) ^ x.rotate_left(41) ^ round_key
 }
 
-fn aes_sbox() -> &'static [u8; 256] {
+fn nastyx_sbox() -> &'static [u8; 256] {
     static SBOX: OnceLock<[u8; 256]> = OnceLock::new();
     SBOX.get_or_init(|| {
-        let mut table = [0_u8; 256];
-        for (i, value) in table.iter_mut().enumerate() {
-            let x = i as u8;
-            let inverse = if x == 0 { 0 } else { gf_pow(x, 254) };
-            *value = inverse
-                ^ inverse.rotate_left(1)
-                ^ inverse.rotate_left(2)
-                ^ inverse.rotate_left(3)
-                ^ inverse.rotate_left(4)
-                ^ 0x63;
+        let mut state = 0x4E41_5859_u32.wrapping_add(18_u32.wrapping_mul(0x9E37_79B9));
+        let mut rounds = [[0_u8; 16]; 12];
+        for table in &mut rounds {
+            for (index, value) in table.iter_mut().enumerate() {
+                *value = index as u8;
+            }
+            for j in (1..16).rev() {
+                state = state.wrapping_mul(1_664_525).wrapping_add(1_013_904_223);
+                let index = ((state >> 16) as usize) % (j + 1);
+                table.swap(j, index);
+            }
         }
-        table
+        let mut result = [0_u8; 256];
+        for (input, output) in result.iter_mut().enumerate() {
+            let (mut left, mut right) = ((input >> 4) as u8, (input & 15) as u8);
+            for table in &rounds {
+                (left, right) = (right, left ^ table[right as usize]);
+            }
+            *output = (left << 4) | right;
+        }
+        result
     })
-}
-
-fn gf_pow(mut base: u8, mut exponent: u16) -> u8 {
-    let mut result = 1_u8;
-    while exponent > 0 {
-        if exponent & 1 != 0 {
-            result = gf_mul(result, base);
-        }
-        base = gf_mul(base, base);
-        exponent >>= 1;
-    }
-    result
-}
-
-fn gf_mul(mut a: u8, mut b: u8) -> u8 {
-    let mut result = 0_u8;
-    for _ in 0..8 {
-        if b & 1 != 0 {
-            result ^= a;
-        }
-        let high = a & 0x80;
-        a <<= 1;
-        if high != 0 {
-            a ^= 0x1b;
-        }
-        b >>= 1;
-    }
-    result
 }
 
 #[cfg(test)]
@@ -185,10 +169,22 @@ mod tests {
     }
 
     #[test]
-    fn aes_sbox_reference_points() {
-        assert_eq!(aes_sbox()[0x00], 0x63);
-        assert_eq!(aes_sbox()[0x53], 0xed);
-        assert_eq!(aes_sbox()[0xff], 0x16);
+    fn nastyx_sbox_reference_points() {
+        assert_eq!(nastyx_sbox()[0x00], 0xbe);
+        assert_eq!(nastyx_sbox()[0x53], 0x15);
+        assert_eq!(nastyx_sbox()[0xff], 0xbb);
+    }
+
+    #[test]
+    fn custom_sbox_matches_entire_python_table() {
+        let expected =
+            decode_hex::<256>(include_str!("../../../tests/vectors/sbox-v0.2.hex").trim());
+        assert_eq!(*nastyx_sbox(), expected);
+        let mut seen = [false; 256];
+        for value in nastyx_sbox() {
+            assert!(!seen[*value as usize]);
+            seen[*value as usize] = true;
+        }
     }
 
     #[test]
@@ -197,7 +193,7 @@ mod tests {
             "000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f",
         );
         let block = decode_hex::<BLOCK_SIZE>("00112233445566778899aabbccddeeff");
-        let expected = decode_hex::<BLOCK_SIZE>("f7d36b9993d7af9ae115d2c7458b6118");
+        let expected = decode_hex::<BLOCK_SIZE>("e1e45eb0d6d559f54f1c932d8ec53879");
         let cipher = Nastyx::new(&key);
         assert_eq!(cipher.encrypt_block(&block), expected);
         assert_eq!(cipher.decrypt_block(&expected), block);

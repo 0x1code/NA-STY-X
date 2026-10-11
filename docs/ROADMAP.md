@@ -16,10 +16,16 @@ Implemented: labelled round variants, shared fixtures, exact S-box DDT/Walsh/non
 5. Add reproducible Rust benchmarks and compare AES-256/ChaCha20 only with documented libraries, modes/interfaces, hardware, versions, and methodology. Do not infer security from speed or statistical appearance.
 6. Seek external cryptanalysis and record negative results without tuning metrics as a substitute for a security argument.
 
-## Phase 3 — Secure protocol prototype
+## Phase 3 — Original protocol research prototype
 
-1. Write a separate threat model and compare adopting an existing reviewed E2EE protocol with a narrowly scoped prototype.
-2. Select maintained libraries for authenticated key establishment, HKDF, and AEAD. Review dependency health, supported platforms, and current API guidance.
-3. Specify canonical serialization, identities and key binding, per-direction keys, nonce uniqueness, replay handling, error behavior, and key update boundaries.
-4. Implement only a small two-party prototype with test vectors and interoperability tests. Keep NA&STY-X Research out of every secure path.
-5. Treat Double Ratchet, multi-device, groups/MLS, and hybrid post-quantum exchange as later separately reviewed milestones.
+The direction was revised on 2026-10-11 to use the original NA&STY-X construction. See `PROTOCOL_DESIGN.md` for the current design boundary.
+
+1. Improve and analyze the custom S-box, full round function and key schedule; record weaknesses without claiming security from statistics.
+2. Specify and analyze message encryption, authentication and key separation individually before implementing them.
+3. Specify canonical serialization, pre-established secret-key assumptions, per-direction states, uniqueness across restarts, replay handling and errors.
+4. Implement a small research two-party prototype with negative tests and interoperability vectors. It is not approved for real secrets.
+5. Key establishment, forward secrecy, multiple devices, groups and post-quantum properties remain separate open problems requiring explicit analysis.
+
+## Current v0.2 milestone
+
+AES substitution was removed from the active cipher. A public 12-round nibble-Feistel generator and exhaustive screening of 256 candidates produce the selected table. Candidate 18 has DU 10 and minimum component nonlinearity 96: weaker than the prior S-box. Its initial screening target was not met. Research continues; full-network attack bounds and independent cryptanalysis remain missing.

@@ -1,5 +1,7 @@
 # Threat model (Phase 1)
 
+Current code is cipher revision v0.2 with a custom substitution table. Historical v0.1 measurements do not describe the current table. The original protocol's design assumptions and missing mechanisms are recorded in `PROTOCOL_DESIGN.md`; no secure channel is implemented.
+
 The cipher is a mathematical research target, not an application security boundary. Researchers can test fixed-key block behavior and implementation correctness. The implementation does not claim to resist a computationally capable attacker.
 
 In scope for future investigation: chosen-plaintext and chosen-ciphertext distinguishers, differential and linear trails, key-schedule relations, implementation inconsistencies, and basic statistical artifacts.

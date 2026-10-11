@@ -9,15 +9,29 @@ sys.path.insert(0, str(ROOT/'research'))
 sys.path.insert(0, str(ROOT/'research/reference_cipher'))
 from lab import bic, ddt, sbox_report, walsh
 from reference import SUPPORTED_ROUNDS, decrypt_block, encrypt_block, expand_key
+from sbox import NASTYX_SBOX, SELECTED_CANDIDATE, make_sbox
 
 
 class LabTests(unittest.TestCase):
+    def test_custom_sbox_reproducibility(self):
+        design = json.loads((ROOT/'research/results/sbox-v0.2-design.json').read_text(encoding='utf-8'))
+        self.assertEqual(design['selected_candidate'], SELECTED_CANDIDATE)
+        self.assertEqual(tuple(design['table']), NASTYX_SBOX)
+        self.assertEqual(make_sbox(SELECTED_CANDIDATE), NASTYX_SBOX)
+        self.assertEqual(len(set(NASTYX_SBOX)), 256)
+        expected = min(design['attempts'], key=lambda r: (r['max_abs_walsh'], r['differential_uniformity'], r['candidate']))
+        self.assertEqual(expected['candidate'], SELECTED_CANDIDATE)
+        self.assertFalse(design['initial_target_met'])
+        for candidate in (-1, 256, True, 0.5):
+            with self.assertRaises(ValueError):
+                make_sbox(candidate)
+
     def test_exact_sbox_metrics(self):
         result = sbox_report()
         self.assertTrue(result['bijective'])
-        self.assertEqual(result['differential_uniformity'], 4)
-        self.assertEqual(result['max_abs_walsh_nonzero_output_mask'], 32)
-        self.assertEqual(result['minimum_component_nonlinearity'], 112)
+        self.assertEqual(result['differential_uniformity'], 10)
+        self.assertEqual(result['max_abs_walsh_nonzero_output_mask'], 64)
+        self.assertEqual(result['minimum_component_nonlinearity'], 96)
         self.assertTrue(all(sum(row) == 256 for row in result['ddt']))
         self.assertTrue(all(sum(value*value for value in row) == 65536 for row in result['walsh']))
 

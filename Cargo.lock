@@ -4,11 +4,11 @@ version = 3
 
 [[package]]
 name = "nastyx-cli"
-version = "0.1.0-alpha"
+version = "0.2.0-alpha"
 dependencies = [
  "nastyx-core",
 ]
 
 [[package]]
 name = "nastyx-core"
-version = "0.1.0-alpha"
+version = "0.2.0-alpha"

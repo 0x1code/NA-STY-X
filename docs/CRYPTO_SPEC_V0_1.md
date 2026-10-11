@@ -1,6 +1,6 @@
 # NA&STY-X Research Cipher v0.1 (draft specification)
 
-**Status:** research draft; not a standard and not approved for security use. All integer arithmetic is explicitly modulo `2^64` where stated.
+**Status:** historical v0.1 specification; active code uses v0.2. Research draft; not a standard and not approved for security use. All integer arithmetic is explicitly modulo `2^64` where stated.
 
 ## Parameters and encoding
 

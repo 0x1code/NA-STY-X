@@ -1,26 +1,30 @@
 # NA&STY-X
 
-**Version:** 0.1.0-alpha  
+**Version:** 0.2.0-alpha
 **Status:** experimental cryptography research
 
 NA&STY-X is a research project exploring a reversible hybrid construction that combines a Feistel network, byte substitution and permutation, and ARX operations. This first iteration contains a block-cipher experiment and small reproducible research tools.
 
-> **Security warning:** The cipher in `nastyx-core` is newly designed, unaudited, and unsuitable for protecting real data. It has no secure mode of operation, authentication, nonce handling, side-channel review, or security proof. Do not use it for passwords, files, network traffic, or any other secrets. The future `nastyx-secure` work will use established cryptographic libraries and remain separate from this cipher.
+> **Security warning:** The cipher in `nastyx-core` is newly designed, unaudited, and unsuitable for protecting real data. It has no secure mode of operation, authentication, nonce handling, side-channel review, or security proof. Do not use it for passwords, files, network traffic, or any other secrets. The current direction is an original cipher and protocol. Authentication, message encryption mode and key establishment are not implemented; see [`docs/PROTOCOL_DESIGN.md`](docs/PROTOCOL_DESIGN.md).
 
-## Phase 1 contents
+## Version 0.2
+
+The AES S-box was replaced by a separately generated NA&STY-X table. Rust and Python reproduce it independently. Its measured differential and linear properties are weaker than the previous table: see [`docs/SBOX_V0_2.md`](docs/SBOX_V0_2.md). This revision is a research candidate, not a security improvement. Historical v0.1 documents and results remain for comparison; the active implementation is v0.2.
+
+## Foundation contents
 
 - Rust workspace with `nastyx-core` and the warning-labeled `nastyx-demo` CLI.
 - Python reference implementation and deterministic avalanche probe.
-- A 128-bit block / 256-bit key, 16-round Feistel construction described in [`docs/CRYPTO_SPEC_V0_1.md`](docs/CRYPTO_SPEC_V0_1.md).
-- A cross-language test vector in [`tests/vectors/v0.1.json`](tests/vectors/v0.1.json).
+- A 128-bit block / 256-bit key, 16-round Feistel construction described in [`docs/CRYPTO_SPEC_V0_2.md`](docs/CRYPTO_SPEC_V0_2.md).
+- A cross-language test vector in [`tests/vectors/v0.2.json`](tests/vectors/v0.2.json).
 - Threat model, architecture, security notes, and roadmap under `docs/`.
 
 ## Phase 2 laboratory
 
-- Explicit research variants with 8, 12, 16, 20 and 24 rounds; the original default and vector are unchanged.
+- Explicit research variants with 8, 12, 16, 20 and 24 rounds; 16 rounds remains the default; v0.2 has a new S-box and incompatible vectors.
 - 185 shared vectors checked independently by Rust and Python.
 - Exact S-box differential and Walsh tables, component nonlinearity, block/key avalanche, SAC counts, conditional bit-pair correlations, and round dependency measurements.
-- Public raw results and methodology in [`docs/CRYPTOANALYSIS.md`](docs/CRYPTOANALYSIS.md). These measurements are not security proofs.
+- Public raw results and methodology in [`docs/CRYPTOANALYSIS_V0_2.md`](docs/CRYPTOANALYSIS_V0_2.md). These measurements are not security proofs.
 
 ## Run the Python checks
 
@@ -30,7 +34,7 @@ Python 3.10 or newer is required. The test suite uses only the standard library:
 py -3 -m unittest discover -s tests -v
 py -3 research/avalanche.py --samples 4 --seed 20261011
 py -3 research/generate_vectors.py --check
-py -3 research/lab.py --samples 32 --seed 20261011 --output research/results/phase2-smoke.json
+py -3 research/lab.py --samples 32 --seed 20261011 --output research/results/v0.2-phase2-smoke.json
 ```
 
 ## Run the Rust checks and demo

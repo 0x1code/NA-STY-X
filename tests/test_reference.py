@@ -3,14 +3,14 @@ import unittest
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "research" / "reference_cipher"))
-from reference import AES_SBOX, decrypt_block, encrypt_block  # noqa: E402
+from reference import NASTYX_SBOX, decrypt_block, encrypt_block  # noqa: E402
 
 
 class ReferenceCipherTests(unittest.TestCase):
-    def test_aes_sbox_reference_points(self):
-        self.assertEqual(AES_SBOX[0x00], 0x63)
-        self.assertEqual(AES_SBOX[0x53], 0xED)
-        self.assertEqual(AES_SBOX[0xFF], 0x16)
+    def test_nastyx_sbox_reference_points(self):
+        self.assertEqual(NASTYX_SBOX[0x00], 0xBE)
+        self.assertEqual(NASTYX_SBOX[0x53], 0x15)
+        self.assertEqual(NASTYX_SBOX[0xFF], 0xBB)
 
     def test_round_trip_deterministic_blocks(self):
         key = bytes([0x5A] * 32)
@@ -23,7 +23,7 @@ class ReferenceCipherTests(unittest.TestCase):
         block = bytes.fromhex("00112233445566778899aabbccddeeff")
         self.assertEqual(
             encrypt_block(key, block).hex(),
-            "f7d36b9993d7af9ae115d2c7458b6118",
+            "e1e45eb0d6d559f54f1c932d8ec53879",
         )
 
     def test_rejects_wrong_lengths(self):

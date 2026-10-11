@@ -1,0 +1,1550 @@
+{
+  "format": "nastyx-sbox-design-v1",
+  "algorithm_version": "0.2",
+  "seed": 1312905305,
+  "nibble_feistel_rounds": 12,
+  "rule": "all 256 candidates; minimize (max_abs_walsh, differential_uniformity, candidate)",
+  "initial_target": "DU <= 10 and component NL >= 100",
+  "initial_target_met": false,
+  "warning": "Screening criteria are not security proofs; generator is public, not a cryptographic RNG.",
+  "selected_candidate": 18,
+  "attempts": [
+    {
+      "candidate": 0,
+      "differential_uniformity": 12,
+      "max_abs_walsh": 72,
+      "minimum_component_nonlinearity": 92
+    },
+    {
+      "candidate": 1,
+      "differential_uniformity": 10,
+      "max_abs_walsh": 68,
+      "minimum_component_nonlinearity": 94
+    },
+    {
+      "candidate": 2,
+      "differential_uniformity": 12,
+      "max_abs_walsh": 72,
+      "minimum_component_nonlinearity": 92
+    },
+    {
+      "candidate": 3,
+      "differential_uniformity": 10,
+      "max_abs_walsh": 68,
+      "minimum_component_nonlinearity": 94
+    },
+    {
+      "candidate": 4,
+      "differential_uniformity": 12,
+      "max_abs_walsh": 76,
+      "minimum_component_nonlinearity": 90
+    },
+    {
+      "candidate": 5,
+      "differential_uniformity": 12,
+      "max_abs_walsh": 68,
+      "minimum_component_nonlinearity": 94
+    },
+    {
+      "candidate": 6,
+      "differential_uniformity": 12,
+      "max_abs_walsh": 68,
+      "minimum_component_nonlinearity": 94
+    },
+    {
+      "candidate": 7,
+      "differential_uniformity": 10,
+      "max_abs_walsh": 72,
+      "minimum_component_nonlinearity": 92
+    },
+    {
+      "candidate": 8,
+      "differential_uniformity": 12,
+      "max_abs_walsh": 80,
+      "minimum_component_nonlinearity": 88
+    },
+    {
+      "candidate": 9,
+      "differential_uniformity": 12,
+      "max_abs_walsh": 72,
+      "minimum_component_nonlinearity": 92
+    },
+    {
+      "candidate": 10,
+      "differential_uniformity": 12,
+      "max_abs_walsh": 72,
+      "minimum_component_nonlinearity": 92
+    },
+    {
+      "candidate": 11,
+      "differential_uniformity": 12,
+      "max_abs_walsh": 76,
+      "minimum_component_nonlinearity": 90
+    },
+    {
+      "candidate": 12,
+      "differential_uniformity": 10,
+      "max_abs_walsh": 72,
+      "minimum_component_nonlinearity": 92
+    },
+    {
+      "candidate": 13,
+      "differential_uniformity": 10,
+      "max_abs_walsh": 68,
+      "minimum_component_nonlinearity": 94
+    },
+    {
+      "candidate": 14,
+      "differential_uniformity": 12,
+      "max_abs_walsh": 72,
+      "minimum_component_nonlinearity": 92
+    },
+    {
+      "candidate": 15,
+      "differential_uniformity": 10,
+      "max_abs_walsh": 72,
+      "minimum_component_nonlinearity": 92
+    },
+    {
+      "candidate": 16,
+      "differential_uniformity": 14,
+      "max_abs_walsh": 68,
+      "minimum_component_nonlinearity": 94
+    },
+    {
+      "candidate": 17,
+      "differential_uniformity": 10,
+      "max_abs_walsh": 76,
+      "minimum_component_nonlinearity": 90
+    },
+    {
+      "candidate": 18,
+      "differential_uniformity": 10,
+      "max_abs_walsh": 64,
+      "minimum_component_nonlinearity": 96
+    },
+    {
+      "candidate": 19,
+      "differential_uniformity": 12,
+      "max_abs_walsh": 68,
+      "minimum_component_nonlinearity": 94
+    },
+    {
+      "candidate": 20,
+      "differential_uniformity": 10,
+      "max_abs_walsh": 64,
+      "minimum_component_nonlinearity": 96
+    },
+    {
+      "candidate": 21,
+      "differential_uniformity": 12,
+      "max_abs_walsh": 68,
+      "minimum_component_nonlinearity": 94
+    },
+    {
+      "candidate": 22,
+      "differential_uniformity": 12,
+      "max_abs_walsh": 80,
+      "minimum_component_nonlinearity": 88
+    },
+    {
+      "candidate": 23,
+      "differential_uniformity": 10,
+      "max_abs_walsh": 72,
+      "minimum_component_nonlinearity": 92
+    },
+    {
+      "candidate": 24,
+      "differential_uniformity": 12,
+      "max_abs_walsh": 68,
+      "minimum_component_nonlinearity": 94
+    },
+    {
+      "candidate": 25,
+      "differential_uniformity": 12,
+      "max_abs_walsh": 72,
+      "minimum_component_nonlinearity": 92
+    },
+    {
+      "candidate": 26,
+      "differential_uniformity": 10,
+      "max_abs_walsh": 76,
+      "minimum_component_nonlinearity": 90
+    },
+    {
+      "candidate": 27,
+      "differential_uniformity": 10,
+      "max_abs_walsh": 68,
+      "minimum_component_nonlinearity": 94
+    },
+    {
+      "candidate": 28,
+      "differential_uniformity": 10,
+      "max_abs_walsh": 76,
+      "minimum_component_nonlinearity": 90
+    },
+    {
+      "candidate": 29,
+      "differential_uniformity": 12,
+      "max_abs_walsh": 72,
+      "minimum_component_nonlinearity": 92
+    },
+    {
+      "candidate": 30,
+      "differential_uniformity": 12,
+      "max_abs_walsh": 68,
+      "minimum_component_nonlinearity": 94
+    },
+    {
+      "candidate": 31,
+      "differential_uniformity": 12,
+      "max_abs_walsh": 76,
+      "minimum_component_nonlinearity": 90
+    },
+    {
+      "candidate": 32,
+      "differential_uniformity": 12,
+      "max_abs_walsh": 72,
+      "minimum_component_nonlinearity": 92
+    },
+    {
+      "candidate": 33,
+      "differential_uniformity": 10,
+      "max_abs_walsh": 64,
+      "minimum_component_nonlinearity": 96
+    },
+    {
+      "candidate": 34,
+      "differential_uniformity": 12,
+      "max_abs_walsh": 68,
+      "minimum_component_nonlinearity": 94
+    },
+    {
+      "candidate": 35,
+      "differential_uniformity": 10,
+      "max_abs_walsh": 68,
+      "minimum_component_nonlinearity": 94
+    },
+    {
+      "candidate": 36,
+      "differential_uniformity": 12,
+      "max_abs_walsh": 68,
+      "minimum_component_nonlinearity": 94
+    },
+    {
+      "candidate": 37,
+      "differential_uniformity": 10,
+      "max_abs_walsh": 72,
+      "minimum_component_nonlinearity": 92
+    },
+    {
+      "candidate": 38,
+      "differential_uniformity": 12,
+      "max_abs_walsh": 72,
+      "minimum_component_nonlinearity": 92
+    },
+    {
+      "candidate": 39,
+      "differential_uniformity": 14,
+      "max_abs_walsh": 68,
+      "minimum_component_nonlinearity": 94
+    },
+    {
+      "candidate": 40,
+      "differential_uniformity": 10,
+      "max_abs_walsh": 72,
+      "minimum_component_nonlinearity": 92
+    },
+    {
+      "candidate": 41,
+      "differential_uniformity": 12,
+      "max_abs_walsh": 76,
+      "minimum_component_nonlinearity": 90
+    },
+    {
+      "candidate": 42,
+      "differential_uniformity": 12,
+      "max_abs_walsh": 68,
+      "minimum_component_nonlinearity": 94
+    },
+    {
+      "candidate": 43,
+      "differential_uniformity": 10,
+      "max_abs_walsh": 68,
+      "minimum_component_nonlinearity": 94
+    },
+    {
+      "candidate": 44,
+      "differential_uniformity": 12,
+      "max_abs_walsh": 68,
+      "minimum_component_nonlinearity": 94
+    },
+    {
+      "candidate": 45,
+      "differential_uniformity": 12,
+      "max_abs_walsh": 68,
+      "minimum_component_nonlinearity": 94
+    },
+    {
+      "candidate": 46,
+      "differential_uniformity": 12,
+      "max_abs_walsh": 76,
+      "minimum_component_nonlinearity": 90
+    },
+    {
+      "candidate": 47,
+      "differential_uniformity": 10,
+      "max_abs_walsh": 72,
+      "minimum_component_nonlinearity": 92
+    },
+    {
+      "candidate": 48,
+      "differential_uniformity": 12,
+      "max_abs_walsh": 72,
+      "minimum_component_nonlinearity": 92
+    },
+    {
+      "candidate": 49,
+      "differential_uniformity": 12,
+      "max_abs_walsh": 76,
+      "minimum_component_nonlinearity": 90
+    },
+    {
+      "candidate": 50,
+      "differential_uniformity": 10,
+      "max_abs_walsh": 68,
+      "minimum_component_nonlinearity": 94
+    },
+    {
+      "candidate": 51,
+      "differential_uniformity": 10,
+      "max_abs_walsh": 72,
+      "minimum_component_nonlinearity": 92
+    },
+    {
+      "candidate": 52,
+      "differential_uniformity": 14,
+      "max_abs_walsh": 68,
+      "minimum_component_nonlinearity": 94
+    },
+    {
+      "candidate": 53,
+      "differential_uniformity": 10,
+      "max_abs_walsh": 68,
+      "minimum_component_nonlinearity": 94
+    },
+    {
+      "candidate": 54,
+      "differential_uniformity": 12,
+      "max_abs_walsh": 72,
+      "minimum_component_nonlinearity": 92
+    },
+    {
+      "candidate": 55,
+      "differential_uniformity": 12,
+      "max_abs_walsh": 72,
+      "minimum_component_nonlinearity": 92
+    },
+    {
+      "candidate": 56,
+      "differential_uniformity": 12,
+      "max_abs_walsh": 68,
+      "minimum_component_nonlinearity": 94
+    },
+    {
+      "candidate": 57,
+      "differential_uniformity": 12,
+      "max_abs_walsh": 76,
+      "minimum_component_nonlinearity": 90
+    },
+    {
+      "candidate": 58,
+      "differential_uniformity": 12,
+      "max_abs_walsh": 76,
+      "minimum_component_nonlinearity": 90
+    },
+    {
+      "candidate": 59,
+      "differential_uniformity": 12,
+      "max_abs_walsh": 72,
+      "minimum_component_nonlinearity": 92
+    },
+    {
+      "candidate": 60,
+      "differential_uniformity": 10,
+      "max_abs_walsh": 72,
+      "minimum_component_nonlinearity": 92
+    },
+    {
+      "candidate": 61,
+      "differential_uniformity": 12,
+      "max_abs_walsh": 72,
+      "minimum_component_nonlinearity": 92
+    },
+    {
+      "candidate": 62,
+      "differential_uniformity": 12,
+      "max_abs_walsh": 80,
+      "minimum_component_nonlinearity": 88
+    },
+    {
+      "candidate": 63,
+      "differential_uniformity": 10,
+      "max_abs_walsh": 64,
+      "minimum_component_nonlinearity": 96
+    },
+    {
+      "candidate": 64,
+      "differential_uniformity": 10,
+      "max_abs_walsh": 68,
+      "minimum_component_nonlinearity": 94
+    },
+    {
+      "candidate": 65,
+      "differential_uniformity": 14,
+      "max_abs_walsh": 72,
+      "minimum_component_nonlinearity": 92
+    },
+    {
+      "candidate": 66,
+      "differential_uniformity": 12,
+      "max_abs_walsh": 72,
+      "minimum_component_nonlinearity": 92
+    },
+    {
+      "candidate": 67,
+      "differential_uniformity": 14,
+      "max_abs_walsh": 72,
+      "minimum_component_nonlinearity": 92
+    },
+    {
+      "candidate": 68,
+      "differential_uniformity": 12,
+      "max_abs_walsh": 68,
+      "minimum_component_nonlinearity": 94
+    },
+    {
+      "candidate": 69,
+      "differential_uniformity": 10,
+      "max_abs_walsh": 72,
+      "minimum_component_nonlinearity": 92
+    },
+    {
+      "candidate": 70,
+      "differential_uniformity": 10,
+      "max_abs_walsh": 64,
+      "minimum_component_nonlinearity": 96
+    },
+    {
+      "candidate": 71,
+      "differential_uniformity": 12,
+      "max_abs_walsh": 68,
+      "minimum_component_nonlinearity": 94
+    },
+    {
+      "candidate": 72,
+      "differential_uniformity": 10,
+      "max_abs_walsh": 72,
+      "minimum_component_nonlinearity": 92
+    },
+    {
+      "candidate": 73,
+      "differential_uniformity": 12,
+      "max_abs_walsh": 72,
+      "minimum_component_nonlinearity": 92
+    },
+    {
+      "candidate": 74,
+      "differential_uniformity": 10,
+      "max_abs_walsh": 72,
+      "minimum_component_nonlinearity": 92
+    },
+    {
+      "candidate": 75,
+      "differential_uniformity": 10,
+      "max_abs_walsh": 72,
+      "minimum_component_nonlinearity": 92
+    },
+    {
+      "candidate": 76,
+      "differential_uniformity": 10,
+      "max_abs_walsh": 72,
+      "minimum_component_nonlinearity": 92
+    },
+    {
+      "candidate": 77,
+      "differential_uniformity": 10,
+      "max_abs_walsh": 64,
+      "minimum_component_nonlinearity": 96
+    },
+    {
+      "candidate": 78,
+      "differential_uniformity": 12,
+      "max_abs_walsh": 68,
+      "minimum_component_nonlinearity": 94
+    },
+    {
+      "candidate": 79,
+      "differential_uniformity": 12,
+      "max_abs_walsh": 88,
+      "minimum_component_nonlinearity": 84
+    },
+    {
+      "candidate": 80,
+      "differential_uniformity": 12,
+      "max_abs_walsh": 72,
+      "minimum_component_nonlinearity": 92
+    },
+    {
+      "candidate": 81,
+      "differential_uniformity": 12,
+      "max_abs_walsh": 76,
+      "minimum_component_nonlinearity": 90
+    },
+    {
+      "candidate": 82,
+      "differential_uniformity": 10,
+      "max_abs_walsh": 68,
+      "minimum_component_nonlinearity": 94
+    },
+    {
+      "candidate": 83,
+      "differential_uniformity": 12,
+      "max_abs_walsh": 76,
+      "minimum_component_nonlinearity": 90
+    },
+    {
+      "candidate": 84,
+      "differential_uniformity": 10,
+      "max_abs_walsh": 72,
+      "minimum_component_nonlinearity": 92
+    },
+    {
+      "candidate": 85,
+      "differential_uniformity": 12,
+      "max_abs_walsh": 92,
+      "minimum_component_nonlinearity": 82
+    },
+    {
+      "candidate": 86,
+      "differential_uniformity": 10,
+      "max_abs_walsh": 68,
+      "minimum_component_nonlinearity": 94
+    },
+    {
+      "candidate": 87,
+      "differential_uniformity": 10,
+      "max_abs_walsh": 68,
+      "minimum_component_nonlinearity": 94
+    },
+    {
+      "candidate": 88,
+      "differential_uniformity": 12,
+      "max_abs_walsh": 68,
+      "minimum_component_nonlinearity": 94
+    },
+    {
+      "candidate": 89,
+      "differential_uniformity": 12,
+      "max_abs_walsh": 68,
+      "minimum_component_nonlinearity": 94
+    },
+    {
+      "candidate": 90,
+      "differential_uniformity": 10,
+      "max_abs_walsh": 72,
+      "minimum_component_nonlinearity": 92
+    },
+    {
+      "candidate": 91,
+      "differential_uniformity": 12,
+      "max_abs_walsh": 68,
+      "minimum_component_nonlinearity": 94
+    },
+    {
+      "candidate": 92,
+      "differential_uniformity": 10,
+      "max_abs_walsh": 72,
+      "minimum_component_nonlinearity": 92
+    },
+    {
+      "candidate": 93,
+      "differential_uniformity": 12,
+      "max_abs_walsh": 72,
+      "minimum_component_nonlinearity": 92
+    },
+    {
+      "candidate": 94,
+      "differential_uniformity": 10,
+      "max_abs_walsh": 72,
+      "minimum_component_nonlinearity": 92
+    },
+    {
+      "candidate": 95,
+      "differential_uniformity": 10,
+      "max_abs_walsh": 64,
+      "minimum_component_nonlinearity": 96
+    },
+    {
+      "candidate": 96,
+      "differential_uniformity": 10,
+      "max_abs_walsh": 68,
+      "minimum_component_nonlinearity": 94
+    },
+    {
+      "candidate": 97,
+      "differential_uniformity": 12,
+      "max_abs_walsh": 68,
+      "minimum_component_nonlinearity": 94
+    },
+    {
+      "candidate": 98,
+      "differential_uniformity": 12,
+      "max_abs_walsh": 68,
+      "minimum_component_nonlinearity": 94
+    },
+    {
+      "candidate": 99,
+      "differential_uniformity": 12,
+      "max_abs_walsh": 72,
+      "minimum_component_nonlinearity": 92
+    },
+    {
+      "candidate": 100,
+      "differential_uniformity": 12,
+      "max_abs_walsh": 68,
+      "minimum_component_nonlinearity": 94
+    },
+    {
+      "candidate": 101,
+      "differential_uniformity": 10,
+      "max_abs_walsh": 80,
+      "minimum_component_nonlinearity": 88
+    },
+    {
+      "candidate": 102,
+      "differential_uniformity": 12,
+      "max_abs_walsh": 72,
+      "minimum_component_nonlinearity": 92
+    },
+    {
+      "candidate": 103,
+      "differential_uniformity": 12,
+      "max_abs_walsh": 64,
+      "minimum_component_nonlinearity": 96
+    },
+    {
+      "candidate": 104,
+      "differential_uniformity": 10,
+      "max_abs_walsh": 64,
+      "minimum_component_nonlinearity": 96
+    },
+    {
+      "candidate": 105,
+      "differential_uniformity": 10,
+      "max_abs_walsh": 64,
+      "minimum_component_nonlinearity": 96
+    },
+    {
+      "candidate": 106,
+      "differential_uniformity": 10,
+      "max_abs_walsh": 76,
+      "minimum_component_nonlinearity": 90
+    },
+    {
+      "candidate": 107,
+      "differential_uniformity": 12,
+      "max_abs_walsh": 72,
+      "minimum_component_nonlinearity": 92
+    },
+    {
+      "candidate": 108,
+      "differential_uniformity": 12,
+      "max_abs_walsh": 68,
+      "minimum_component_nonlinearity": 94
+    },
+    {
+      "candidate": 109,
+      "differential_uniformity": 12,
+      "max_abs_walsh": 68,
+      "minimum_component_nonlinearity": 94
+    },
+    {
+      "candidate": 110,
+      "differential_uniformity": 10,
+      "max_abs_walsh": 72,
+      "minimum_component_nonlinearity": 92
+    },
+    {
+      "candidate": 111,
+      "differential_uniformity": 10,
+      "max_abs_walsh": 76,
+      "minimum_component_nonlinearity": 90
+    },
+    {
+      "candidate": 112,
+      "differential_uniformity": 10,
+      "max_abs_walsh": 68,
+      "minimum_component_nonlinearity": 94
+    },
+    {
+      "candidate": 113,
+      "differential_uniformity": 10,
+      "max_abs_walsh": 68,
+      "minimum_component_nonlinearity": 94
+    },
+    {
+      "candidate": 114,
+      "differential_uniformity": 10,
+      "max_abs_walsh": 68,
+      "minimum_component_nonlinearity": 94
+    },
+    {
+      "candidate": 115,
+      "differential_uniformity": 12,
+      "max_abs_walsh": 76,
+      "minimum_component_nonlinearity": 90
+    },
+    {
+      "candidate": 116,
+      "differential_uniformity": 12,
+      "max_abs_walsh": 64,
+      "minimum_component_nonlinearity": 96
+    },
+    {
+      "candidate": 117,
+      "differential_uniformity": 12,
+      "max_abs_walsh": 64,
+      "minimum_component_nonlinearity": 96
+    },
+    {
+      "candidate": 118,
+      "differential_uniformity": 10,
+      "max_abs_walsh": 72,
+      "minimum_component_nonlinearity": 92
+    },
+    {
+      "candidate": 119,
+      "differential_uniformity": 12,
+      "max_abs_walsh": 72,
+      "minimum_component_nonlinearity": 92
+    },
+    {
+      "candidate": 120,
+      "differential_uniformity": 10,
+      "max_abs_walsh": 72,
+      "minimum_component_nonlinearity": 92
+    },
+    {
+      "candidate": 121,
+      "differential_uniformity": 10,
+      "max_abs_walsh": 68,
+      "minimum_component_nonlinearity": 94
+    },
+    {
+      "candidate": 122,
+      "differential_uniformity": 12,
+      "max_abs_walsh": 72,
+      "minimum_component_nonlinearity": 92
+    },
+    {
+      "candidate": 123,
+      "differential_uniformity": 10,
+      "max_abs_walsh": 68,
+      "minimum_component_nonlinearity": 94
+    },
+    {
+      "candidate": 124,
+      "differential_uniformity": 12,
+      "max_abs_walsh": 68,
+      "minimum_component_nonlinearity": 94
+    },
+    {
+      "candidate": 125,
+      "differential_uniformity": 12,
+      "max_abs_walsh": 68,
+      "minimum_component_nonlinearity": 94
+    },
+    {
+      "candidate": 126,
+      "differential_uniformity": 10,
+      "max_abs_walsh": 68,
+      "minimum_component_nonlinearity": 94
+    },
+    {
+      "candidate": 127,
+      "differential_uniformity": 10,
+      "max_abs_walsh": 68,
+      "minimum_component_nonlinearity": 94
+    },
+    {
+      "candidate": 128,
+      "differential_uniformity": 10,
+      "max_abs_walsh": 72,
+      "minimum_component_nonlinearity": 92
+    },
+    {
+      "candidate": 129,
+      "differential_uniformity": 12,
+      "max_abs_walsh": 72,
+      "minimum_component_nonlinearity": 92
+    },
+    {
+      "candidate": 130,
+      "differential_uniformity": 10,
+      "max_abs_walsh": 68,
+      "minimum_component_nonlinearity": 94
+    },
+    {
+      "candidate": 131,
+      "differential_uniformity": 14,
+      "max_abs_walsh": 76,
+      "minimum_component_nonlinearity": 90
+    },
+    {
+      "candidate": 132,
+      "differential_uniformity": 10,
+      "max_abs_walsh": 68,
+      "minimum_component_nonlinearity": 94
+    },
+    {
+      "candidate": 133,
+      "differential_uniformity": 12,
+      "max_abs_walsh": 68,
+      "minimum_component_nonlinearity": 94
+    },
+    {
+      "candidate": 134,
+      "differential_uniformity": 10,
+      "max_abs_walsh": 68,
+      "minimum_component_nonlinearity": 94
+    },
+    {
+      "candidate": 135,
+      "differential_uniformity": 12,
+      "max_abs_walsh": 76,
+      "minimum_component_nonlinearity": 90
+    },
+    {
+      "candidate": 136,
+      "differential_uniformity": 10,
+      "max_abs_walsh": 68,
+      "minimum_component_nonlinearity": 94
+    },
+    {
+      "candidate": 137,
+      "differential_uniformity": 12,
+      "max_abs_walsh": 72,
+      "minimum_component_nonlinearity": 92
+    },
+    {
+      "candidate": 138,
+      "differential_uniformity": 12,
+      "max_abs_walsh": 76,
+      "minimum_component_nonlinearity": 90
+    },
+    {
+      "candidate": 139,
+      "differential_uniformity": 12,
+      "max_abs_walsh": 68,
+      "minimum_component_nonlinearity": 94
+    },
+    {
+      "candidate": 140,
+      "differential_uniformity": 12,
+      "max_abs_walsh": 76,
+      "minimum_component_nonlinearity": 90
+    },
+    {
+      "candidate": 141,
+      "differential_uniformity": 12,
+      "max_abs_walsh": 64,
+      "minimum_component_nonlinearity": 96
+    },
+    {
+      "candidate": 142,
+      "differential_uniformity": 12,
+      "max_abs_walsh": 72,
+      "minimum_component_nonlinearity": 92
+    },
+    {
+      "candidate": 143,
+      "differential_uniformity": 12,
+      "max_abs_walsh": 72,
+      "minimum_component_nonlinearity": 92
+    },
+    {
+      "candidate": 144,
+      "differential_uniformity": 12,
+      "max_abs_walsh": 68,
+      "minimum_component_nonlinearity": 94
+    },
+    {
+      "candidate": 145,
+      "differential_uniformity": 10,
+      "max_abs_walsh": 72,
+      "minimum_component_nonlinearity": 92
+    },
+    {
+      "candidate": 146,
+      "differential_uniformity": 12,
+      "max_abs_walsh": 76,
+      "minimum_component_nonlinearity": 90
+    },
+    {
+      "candidate": 147,
+      "differential_uniformity": 12,
+      "max_abs_walsh": 68,
+      "minimum_component_nonlinearity": 94
+    },
+    {
+      "candidate": 148,
+      "differential_uniformity": 10,
+      "max_abs_walsh": 72,
+      "minimum_component_nonlinearity": 92
+    },
+    {
+      "candidate": 149,
+      "differential_uniformity": 12,
+      "max_abs_walsh": 68,
+      "minimum_component_nonlinearity": 94
+    },
+    {
+      "candidate": 150,
+      "differential_uniformity": 10,
+      "max_abs_walsh": 68,
+      "minimum_component_nonlinearity": 94
+    },
+    {
+      "candidate": 151,
+      "differential_uniformity": 12,
+      "max_abs_walsh": 72,
+      "minimum_component_nonlinearity": 92
+    },
+    {
+      "candidate": 152,
+      "differential_uniformity": 10,
+      "max_abs_walsh": 64,
+      "minimum_component_nonlinearity": 96
+    },
+    {
+      "candidate": 153,
+      "differential_uniformity": 10,
+      "max_abs_walsh": 68,
+      "minimum_component_nonlinearity": 94
+    },
+    {
+      "candidate": 154,
+      "differential_uniformity": 12,
+      "max_abs_walsh": 64,
+      "minimum_component_nonlinearity": 96
+    },
+    {
+      "candidate": 155,
+      "differential_uniformity": 12,
+      "max_abs_walsh": 64,
+      "minimum_component_nonlinearity": 96
+    },
+    {
+      "candidate": 156,
+      "differential_uniformity": 10,
+      "max_abs_walsh": 72,
+      "minimum_component_nonlinearity": 92
+    },
+    {
+      "candidate": 157,
+      "differential_uniformity": 10,
+      "max_abs_walsh": 68,
+      "minimum_component_nonlinearity": 94
+    },
+    {
+      "candidate": 158,
+      "differential_uniformity": 14,
+      "max_abs_walsh": 72,
+      "minimum_component_nonlinearity": 92
+    },
+    {
+      "candidate": 159,
+      "differential_uniformity": 10,
+      "max_abs_walsh": 68,
+      "minimum_component_nonlinearity": 94
+    },
+    {
+      "candidate": 160,
+      "differential_uniformity": 12,
+      "max_abs_walsh": 72,
+      "minimum_component_nonlinearity": 92
+    },
+    {
+      "candidate": 161,
+      "differential_uniformity": 10,
+      "max_abs_walsh": 68,
+      "minimum_component_nonlinearity": 94
+    },
+    {
+      "candidate": 162,
+      "differential_uniformity": 10,
+      "max_abs_walsh": 64,
+      "minimum_component_nonlinearity": 96
+    },
+    {
+      "candidate": 163,
+      "differential_uniformity": 14,
+      "max_abs_walsh": 72,
+      "minimum_component_nonlinearity": 92
+    },
+    {
+      "candidate": 164,
+      "differential_uniformity": 10,
+      "max_abs_walsh": 64,
+      "minimum_component_nonlinearity": 96
+    },
+    {
+      "candidate": 165,
+      "differential_uniformity": 10,
+      "max_abs_walsh": 72,
+      "minimum_component_nonlinearity": 92
+    },
+    {
+      "candidate": 166,
+      "differential_uniformity": 10,
+      "max_abs_walsh": 68,
+      "minimum_component_nonlinearity": 94
+    },
+    {
+      "candidate": 167,
+      "differential_uniformity": 10,
+      "max_abs_walsh": 72,
+      "minimum_component_nonlinearity": 92
+    },
+    {
+      "candidate": 168,
+      "differential_uniformity": 12,
+      "max_abs_walsh": 68,
+      "minimum_component_nonlinearity": 94
+    },
+    {
+      "candidate": 169,
+      "differential_uniformity": 10,
+      "max_abs_walsh": 76,
+      "minimum_component_nonlinearity": 90
+    },
+    {
+      "candidate": 170,
+      "differential_uniformity": 12,
+      "max_abs_walsh": 76,
+      "minimum_component_nonlinearity": 90
+    },
+    {
+      "candidate": 171,
+      "differential_uniformity": 10,
+      "max_abs_walsh": 64,
+      "minimum_component_nonlinearity": 96
+    },
+    {
+      "candidate": 172,
+      "differential_uniformity": 12,
+      "max_abs_walsh": 64,
+      "minimum_component_nonlinearity": 96
+    },
+    {
+      "candidate": 173,
+      "differential_uniformity": 10,
+      "max_abs_walsh": 68,
+      "minimum_component_nonlinearity": 94
+    },
+    {
+      "candidate": 174,
+      "differential_uniformity": 12,
+      "max_abs_walsh": 68,
+      "minimum_component_nonlinearity": 94
+    },
+    {
+      "candidate": 175,
+      "differential_uniformity": 12,
+      "max_abs_walsh": 68,
+      "minimum_component_nonlinearity": 94
+    },
+    {
+      "candidate": 176,
+      "differential_uniformity": 10,
+      "max_abs_walsh": 64,
+      "minimum_component_nonlinearity": 96
+    },
+    {
+      "candidate": 177,
+      "differential_uniformity": 10,
+      "max_abs_walsh": 68,
+      "minimum_component_nonlinearity": 94
+    },
+    {
+      "candidate": 178,
+      "differential_uniformity": 12,
+      "max_abs_walsh": 72,
+      "minimum_component_nonlinearity": 92
+    },
+    {
+      "candidate": 179,
+      "differential_uniformity": 10,
+      "max_abs_walsh": 76,
+      "minimum_component_nonlinearity": 90
+    },
+    {
+      "candidate": 180,
+      "differential_uniformity": 10,
+      "max_abs_walsh": 68,
+      "minimum_component_nonlinearity": 94
+    },
+    {
+      "candidate": 181,
+      "differential_uniformity": 12,
+      "max_abs_walsh": 80,
+      "minimum_component_nonlinearity": 88
+    },
+    {
+      "candidate": 182,
+      "differential_uniformity": 10,
+      "max_abs_walsh": 76,
+      "minimum_component_nonlinearity": 90
+    },
+    {
+      "candidate": 183,
+      "differential_uniformity": 12,
+      "max_abs_walsh": 68,
+      "minimum_component_nonlinearity": 94
+    },
+    {
+      "candidate": 184,
+      "differential_uniformity": 10,
+      "max_abs_walsh": 68,
+      "minimum_component_nonlinearity": 94
+    },
+    {
+      "candidate": 185,
+      "differential_uniformity": 10,
+      "max_abs_walsh": 68,
+      "minimum_component_nonlinearity": 94
+    },
+    {
+      "candidate": 186,
+      "differential_uniformity": 10,
+      "max_abs_walsh": 72,
+      "minimum_component_nonlinearity": 92
+    },
+    {
+      "candidate": 187,
+      "differential_uniformity": 10,
+      "max_abs_walsh": 72,
+      "minimum_component_nonlinearity": 92
+    },
+    {
+      "candidate": 188,
+      "differential_uniformity": 12,
+      "max_abs_walsh": 76,
+      "minimum_component_nonlinearity": 90
+    },
+    {
+      "candidate": 189,
+      "differential_uniformity": 12,
+      "max_abs_walsh": 64,
+      "minimum_component_nonlinearity": 96
+    },
+    {
+      "candidate": 190,
+      "differential_uniformity": 10,
+      "max_abs_walsh": 68,
+      "minimum_component_nonlinearity": 94
+    },
+    {
+      "candidate": 191,
+      "differential_uniformity": 10,
+      "max_abs_walsh": 72,
+      "minimum_component_nonlinearity": 92
+    },
+    {
+      "candidate": 192,
+      "differential_uniformity": 10,
+      "max_abs_walsh": 72,
+      "minimum_component_nonlinearity": 92
+    },
+    {
+      "candidate": 193,
+      "differential_uniformity": 10,
+      "max_abs_walsh": 76,
+      "minimum_component_nonlinearity": 90
+    },
+    {
+      "candidate": 194,
+      "differential_uniformity": 10,
+      "max_abs_walsh": 88,
+      "minimum_component_nonlinearity": 84
+    },
+    {
+      "candidate": 195,
+      "differential_uniformity": 10,
+      "max_abs_walsh": 68,
+      "minimum_component_nonlinearity": 94
+    },
+    {
+      "candidate": 196,
+      "differential_uniformity": 10,
+      "max_abs_walsh": 72,
+      "minimum_component_nonlinearity": 92
+    },
+    {
+      "candidate": 197,
+      "differential_uniformity": 12,
+      "max_abs_walsh": 76,
+      "minimum_component_nonlinearity": 90
+    },
+    {
+      "candidate": 198,
+      "differential_uniformity": 10,
+      "max_abs_walsh": 68,
+      "minimum_component_nonlinearity": 94
+    },
+    {
+      "candidate": 199,
+      "differential_uniformity": 10,
+      "max_abs_walsh": 68,
+      "minimum_component_nonlinearity": 94
+    },
+    {
+      "candidate": 200,
+      "differential_uniformity": 10,
+      "max_abs_walsh": 72,
+      "minimum_component_nonlinearity": 92
+    },
+    {
+      "candidate": 201,
+      "differential_uniformity": 10,
+      "max_abs_walsh": 76,
+      "minimum_component_nonlinearity": 90
+    },
+    {
+      "candidate": 202,
+      "differential_uniformity": 14,
+      "max_abs_walsh": 64,
+      "minimum_component_nonlinearity": 96
+    },
+    {
+      "candidate": 203,
+      "differential_uniformity": 10,
+      "max_abs_walsh": 76,
+      "minimum_component_nonlinearity": 90
+    },
+    {
+      "candidate": 204,
+      "differential_uniformity": 10,
+      "max_abs_walsh": 64,
+      "minimum_component_nonlinearity": 96
+    },
+    {
+      "candidate": 205,
+      "differential_uniformity": 10,
+      "max_abs_walsh": 68,
+      "minimum_component_nonlinearity": 94
+    },
+    {
+      "candidate": 206,
+      "differential_uniformity": 12,
+      "max_abs_walsh": 76,
+      "minimum_component_nonlinearity": 90
+    },
+    {
+      "candidate": 207,
+      "differential_uniformity": 10,
+      "max_abs_walsh": 68,
+      "minimum_component_nonlinearity": 94
+    },
+    {
+      "candidate": 208,
+      "differential_uniformity": 12,
+      "max_abs_walsh": 64,
+      "minimum_component_nonlinearity": 96
+    },
+    {
+      "candidate": 209,
+      "differential_uniformity": 10,
+      "max_abs_walsh": 68,
+      "minimum_component_nonlinearity": 94
+    },
+    {
+      "candidate": 210,
+      "differential_uniformity": 12,
+      "max_abs_walsh": 68,
+      "minimum_component_nonlinearity": 94
+    },
+    {
+      "candidate": 211,
+      "differential_uniformity": 12,
+      "max_abs_walsh": 68,
+      "minimum_component_nonlinearity": 94
+    },
+    {
+      "candidate": 212,
+      "differential_uniformity": 10,
+      "max_abs_walsh": 72,
+      "minimum_component_nonlinearity": 92
+    },
+    {
+      "candidate": 213,
+      "differential_uniformity": 14,
+      "max_abs_walsh": 68,
+      "minimum_component_nonlinearity": 94
+    },
+    {
+      "candidate": 214,
+      "differential_uniformity": 12,
+      "max_abs_walsh": 80,
+      "minimum_component_nonlinearity": 88
+    },
+    {
+      "candidate": 215,
+      "differential_uniformity": 12,
+      "max_abs_walsh": 68,
+      "minimum_component_nonlinearity": 94
+    },
+    {
+      "candidate": 216,
+      "differential_uniformity": 12,
+      "max_abs_walsh": 72,
+      "minimum_component_nonlinearity": 92
+    },
+    {
+      "candidate": 217,
+      "differential_uniformity": 12,
+      "max_abs_walsh": 68,
+      "minimum_component_nonlinearity": 94
+    },
+    {
+      "candidate": 218,
+      "differential_uniformity": 10,
+      "max_abs_walsh": 76,
+      "minimum_component_nonlinearity": 90
+    },
+    {
+      "candidate": 219,
+      "differential_uniformity": 12,
+      "max_abs_walsh": 72,
+      "minimum_component_nonlinearity": 92
+    },
+    {
+      "candidate": 220,
+      "differential_uniformity": 12,
+      "max_abs_walsh": 68,
+      "minimum_component_nonlinearity": 94
+    },
+    {
+      "candidate": 221,
+      "differential_uniformity": 10,
+      "max_abs_walsh": 68,
+      "minimum_component_nonlinearity": 94
+    },
+    {
+      "candidate": 222,
+      "differential_uniformity": 12,
+      "max_abs_walsh": 72,
+      "minimum_component_nonlinearity": 92
+    },
+    {
+      "candidate": 223,
+      "differential_uniformity": 10,
+      "max_abs_walsh": 68,
+      "minimum_component_nonlinearity": 94
+    },
+    {
+      "candidate": 224,
+      "differential_uniformity": 10,
+      "max_abs_walsh": 72,
+      "minimum_component_nonlinearity": 92
+    },
+    {
+      "candidate": 225,
+      "differential_uniformity": 12,
+      "max_abs_walsh": 72,
+      "minimum_component_nonlinearity": 92
+    },
+    {
+      "candidate": 226,
+      "differential_uniformity": 12,
+      "max_abs_walsh": 76,
+      "minimum_component_nonlinearity": 90
+    },
+    {
+      "candidate": 227,
+      "differential_uniformity": 10,
+      "max_abs_walsh": 68,
+      "minimum_component_nonlinearity": 94
+    },
+    {
+      "candidate": 228,
+      "differential_uniformity": 12,
+      "max_abs_walsh": 68,
+      "minimum_component_nonlinearity": 94
+    },
+    {
+      "candidate": 229,
+      "differential_uniformity": 12,
+      "max_abs_walsh": 72,
+      "minimum_component_nonlinearity": 92
+    },
+    {
+      "candidate": 230,
+      "differential_uniformity": 10,
+      "max_abs_walsh": 76,
+      "minimum_component_nonlinearity": 90
+    },
+    {
+      "candidate": 231,
+      "differential_uniformity": 12,
+      "max_abs_walsh": 64,
+      "minimum_component_nonlinearity": 96
+    },
+    {
+      "candidate": 232,
+      "differential_uniformity": 10,
+      "max_abs_walsh": 68,
+      "minimum_component_nonlinearity": 94
+    },
+    {
+      "candidate": 233,
+      "differential_uniformity": 12,
+      "max_abs_walsh": 68,
+      "minimum_component_nonlinearity": 94
+    },
+    {
+      "candidate": 234,
+      "differential_uniformity": 12,
+      "max_abs_walsh": 72,
+      "minimum_component_nonlinearity": 92
+    },
+    {
+      "candidate": 235,
+      "differential_uniformity": 10,
+      "max_abs_walsh": 68,
+      "minimum_component_nonlinearity": 94
+    },
+    {
+      "candidate": 236,
+      "differential_uniformity": 10,
+      "max_abs_walsh": 68,
+      "minimum_component_nonlinearity": 94
+    },
+    {
+      "candidate": 237,
+      "differential_uniformity": 12,
+      "max_abs_walsh": 72,
+      "minimum_component_nonlinearity": 92
+    },
+    {
+      "candidate": 238,
+      "differential_uniformity": 12,
+      "max_abs_walsh": 76,
+      "minimum_component_nonlinearity": 90
+    },
+    {
+      "candidate": 239,
+      "differential_uniformity": 10,
+      "max_abs_walsh": 76,
+      "minimum_component_nonlinearity": 90
+    },
+    {
+      "candidate": 240,
+      "differential_uniformity": 12,
+      "max_abs_walsh": 76,
+      "minimum_component_nonlinearity": 90
+    },
+    {
+      "candidate": 241,
+      "differential_uniformity": 12,
+      "max_abs_walsh": 68,
+      "minimum_component_nonlinearity": 94
+    },
+    {
+      "candidate": 242,
+      "differential_uniformity": 10,
+      "max_abs_walsh": 68,
+      "minimum_component_nonlinearity": 94
+    },
+    {
+      "candidate": 243,
+      "differential_uniformity": 10,
+      "max_abs_walsh": 68,
+      "minimum_component_nonlinearity": 94
+    },
+    {
+      "candidate": 244,
+      "differential_uniformity": 10,
+      "max_abs_walsh": 72,
+      "minimum_component_nonlinearity": 92
+    },
+    {
+      "candidate": 245,
+      "differential_uniformity": 12,
+      "max_abs_walsh": 68,
+      "minimum_component_nonlinearity": 94
+    },
+    {
+      "candidate": 246,
+      "differential_uniformity": 12,
+      "max_abs_walsh": 72,
+      "minimum_component_nonlinearity": 92
+    },
+    {
+      "candidate": 247,
+      "differential_uniformity": 10,
+      "max_abs_walsh": 68,
+      "minimum_component_nonlinearity": 94
+    },
+    {
+      "candidate": 248,
+      "differential_uniformity": 12,
+      "max_abs_walsh": 72,
+      "minimum_component_nonlinearity": 92
+    },
+    {
+      "candidate": 249,
+      "differential_uniformity": 12,
+      "max_abs_walsh": 80,
+      "minimum_component_nonlinearity": 88
+    },
+    {
+      "candidate": 250,
+      "differential_uniformity": 10,
+      "max_abs_walsh": 72,
+      "minimum_component_nonlinearity": 92
+    },
+    {
+      "candidate": 251,
+      "differential_uniformity": 12,
+      "max_abs_walsh": 72,
+      "minimum_component_nonlinearity": 92
+    },
+    {
+      "candidate": 252,
+      "differential_uniformity": 12,
+      "max_abs_walsh": 80,
+      "minimum_component_nonlinearity": 88
+    },
+    {
+      "candidate": 253,
+      "differential_uniformity": 10,
+      "max_abs_walsh": 68,
+      "minimum_component_nonlinearity": 94
+    },
+    {
+      "candidate": 254,
+      "differential_uniformity": 12,
+      "max_abs_walsh": 72,
+      "minimum_component_nonlinearity": 92
+    },
+    {
+      "candidate": 255,
+      "differential_uniformity": 10,
+      "max_abs_walsh": 68,
+      "minimum_component_nonlinearity": 94
+    }
+  ],
+  "table": [190, 249, 15, 213, 149, 251, 17, 103, 202, 132, 95, 218, 231, 64, 230, 148, 84, 70, 163, 175, 170, 207, 219, 0, 42, 217, 76, 55, 223, 1, 242, 88, 157, 160, 147, 101, 115, 250, 75, 112, 254, 243, 239, 35, 91, 108, 195, 168, 130, 33, 48, 31, 80, 123, 252, 119, 150, 52, 97, 141, 45, 131, 18, 159, 221, 40, 180, 182, 8, 227, 158, 93, 174, 183, 162, 68, 253, 133, 232, 22, 128, 198, 197, 21, 102, 58, 145, 248, 127, 212, 104, 90, 225, 77, 56, 82, 66, 236, 247, 151, 114, 193, 53, 86, 89, 154, 140, 92, 29, 50, 138, 23, 41, 245, 178, 184, 94, 210, 139, 74, 79, 226, 63, 3, 192, 51, 37, 69, 73, 196, 237, 26, 244, 87, 206, 60, 215, 6, 203, 14, 61, 36, 105, 144, 185, 188, 5, 161, 96, 83, 46, 169, 11, 222, 200, 71, 179, 106, 117, 135, 10, 7, 28, 109, 116, 167, 234, 137, 125, 155, 25, 194, 44, 122, 181, 34, 57, 2, 224, 171, 4, 12, 246, 13, 121, 9, 39, 199, 189, 211, 65, 176, 186, 146, 49, 27, 54, 110, 233, 124, 173, 20, 118, 241, 235, 19, 134, 100, 240, 216, 156, 208, 229, 136, 43, 129, 24, 47, 59, 99, 153, 120, 220, 255, 78, 228, 205, 111, 201, 165, 81, 166, 32, 72, 204, 143, 238, 152, 142, 172, 209, 214, 30, 62, 38, 177, 98, 16, 164, 67, 85, 107, 113, 126, 191, 187]
+}

@@ -6,7 +6,7 @@ import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent / "reference_cipher"))
-from reference import SUPPORTED_ROUNDS, encrypt_block
+from reference import SUPPORTED_ROUNDS, NASTYX_SBOX, encrypt_block
 
 
 def vectors(seed=20261011):
@@ -27,9 +27,10 @@ if __name__ == '__main__':
     args = parser.parse_args()
     root = Path(__file__).resolve().parents[1]/'tests/vectors'
     cases = vectors()
-    document = {"format": "nastyx-multi-round-v1", "seed": 20261011,
+    document = {"format": "nastyx-multi-round-v1", "algorithm_version": "0.2", "seed": 20261011,
                 "warning": "Public deterministic test inputs only; not secret keys.", "vectors": cases}
-    outputs = {root/'research-rounds.json': json.dumps(document, indent=2)+'\n',
+    outputs = {root/'sbox-v0.2.hex': bytes(NASTYX_SBOX).hex()+'\n',
+               root/'research-rounds.json': json.dumps(document, indent=2)+'\n',
                root/'research-rounds.tsv': '# rounds\tkey\tplaintext\tciphertext\n'+''.join(
                    '\t'.join(str(case[k]) for k in ['rounds', 'key_hex', 'plaintext_hex', 'ciphertext_hex'])+'\n'
                    for case in cases)}

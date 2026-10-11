@@ -4,7 +4,7 @@
 
 `nastyx-core` is dependency-free Rust code for the experimental block permutation. `nastyx-cli` is a narrow hex-in/hex-out demonstration with a warning on each run. `research/reference_cipher/reference.py` is the executable reference used for research and vector generation. The Python scripts are not imported by the Rust library.
 
-The cipher and future secure messaging work have separate namespaces, crates, specifications, and threat models. The experimental cipher is not a default or fallback for any secure protocol component.
+The block primitive and future messaging layer have separate specifications and threat models. No secure messaging component is implemented. Protocol decisions must be made explicitly and receive analysis; a working block primitive alone does not provide a secure channel.
 
 ## Phase 2 laboratory
 
@@ -12,8 +12,8 @@ The cipher and future secure messaging work have separate namespaces, crates, sp
 
 `research/generate_vectors.py` produces public JSON and TSV fixtures. Rust integration tests consume TSV and check encryption and decryption independently. `research/lab.py` uses only the Python standard library to compute exact S-box tables and descriptive experiments. It records sample size, seed, bit order, runtime, platform, Python version and the normalized source hash. Raw measurements live in `research/results/`. A fixed seed makes public experiments repeatable; it must never be used for generating application secrets.
 
-## Proposed Secure separation
+## Current protocol direction
 
-Future crates may include `nastyx-secure` for wrappers around reviewed primitives, and `nastyx-protocol` for message framing and session state. Candidate primitives include X25519, HKDF-SHA-256, and an established AEAD such as ChaCha20-Poly1305, selected from maintained RustCrypto ecosystem crates after reviewing current APIs and platform support. No dependency or protocol choice is implied by Phase 1. A ratchet and post-quantum hybrid are future design work, not implemented behavior.
+The direction was revised on 2026-10-11 to develop an original cipher and protocol without integrating ready-made encryption algorithms. `nastyx-core` v0.2 uses its own public S-box generator. No new cryptographic dependencies were added. Earlier proposals to wrap established AEAD and key-exchange libraries are not the current implementation plan.
 
-Before a protocol prototype, specify identity binding, authenticated key establishment, key separation, nonce ownership, replay policy, serialization, session recovery, and failure handling. Prefer adopting an existing reviewed protocol implementation when practical instead of assembling a new protocol from primitive APIs.
+The protocol design is documented in `PROTOCOL_DESIGN.md`. It is a draft with explicit gaps, including authentication, message mode and key establishment. It must not be presented as a secure messaging implementation. Historical v0.1 results are kept separately from active v0.2 vectors and measurements.

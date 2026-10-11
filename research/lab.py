@@ -11,7 +11,7 @@ import time
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent / "reference_cipher"))
-from reference import AES_SBOX, SUPPORTED_ROUNDS, encrypt_block, expand_key, _round_function
+from reference import NASTYX_SBOX, SUPPORTED_ROUNDS, encrypt_block, expand_key, _round_function
 
 
 def ddt(sbox):
@@ -46,9 +46,9 @@ def walsh(sbox):
 
 
 def sbox_report():
-    differential, linear = ddt(AES_SBOX), walsh(AES_SBOX)
+    differential, linear = ddt(NASTYX_SBOX), walsh(NASTYX_SBOX)
     components = [128-max(abs(linear[a][b]) for a in range(256))//2 for b in range(1, 256)]
-    return {"name": "AES S-box (standard component)", "bijective": len(set(AES_SBOX)) == 256,
+    return {"name": "NA&STY-X S-box v0.2, candidate 18", "bijective": len(set(NASTYX_SBOX)) == 256,
             "differential_uniformity": max(max(row) for row in differential[1:]),
             "max_nonzero_input_differential_probability": max(max(row) for row in differential[1:])/256,
             "max_abs_walsh_nonzero_output_mask": max(abs(row[b]) for row in linear for b in range(1, 256)),
@@ -139,11 +139,12 @@ def run(samples, seed, variants=SUPPORTED_ROUNDS):
     if type(samples) is not int or samples < 2:
         raise ValueError("samples must be an integer >= 2")
     started = time.perf_counter()
-    result = {"format": "nastyx-lab-v1", "warning": "Unaudited research only; metrics are not security proofs.",
+    result = {"format": "nastyx-lab-v1", "algorithm_version": "0.2", "warning": "Unaudited research only; metrics are not security proofs.",
               "seed": seed, "samples": samples, "rng": "Python random.Random; reproducible experiment inputs only",
               "bit_order": "byte zero first, least significant bit first within each byte",
               "python": platform.python_version(), "platform": platform.platform(),
               "reference_sha256": hashlib.sha256((Path(__file__).parent/'reference_cipher/reference.py').read_text(encoding='utf-8').encode('utf-8')).hexdigest(),
+              "sbox_source_sha256": hashlib.sha256((Path(__file__).parent/'reference_cipher/sbox.py').read_text(encoding='utf-8').encode('utf-8')).hexdigest(),
               "hash_convention": "SHA-256 of UTF-8 source with universal newlines normalized to LF",
               "sbox": sbox_report(), "diffusion": [], "round_dependencies": round_dependencies(samples, seed),
               "key_schedule": key_schedule_probe()}
