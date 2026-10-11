@@ -1,6 +1,6 @@
 {
   "category": "logo-reveal",
-  "duration_s": 9.366666666666667,
+  "duration_s": 6.166666666666667,
   "fps": 60,
   "canvas": {
     "w": 1254,
@@ -12,7 +12,7 @@
     "#57F4B4",
     "#F8F7F5"
   ],
-  "revision": "Full original N silhouette forms first. Pen writes NAXI, follows half orbit, pauses at the top and enters the N before finding its final circular home.",
+  "revision": "Five N design concepts await approval. Wordmark finishes as NAXi: I shortens and pen remains as its green dot, without orbital flight.",
   "scenes": [
     {
       "id": "tornado",
@@ -20,7 +20,7 @@
       "end": 1.3
     },
     {
-      "id": "complete-N",
+      "id": "form-N-placeholder",
       "start": 1.0833333333333333,
       "end": 1.8333333333333333
     },
@@ -30,44 +30,14 @@
       "end": 5.066666666666666
     },
     {
-      "id": "approach-half-orbit",
+      "id": "I-becomes-lowercase-i",
       "start": 5.066666666666666,
-      "end": 5.3
+      "end": 5.566666666666666
     },
     {
-      "id": "half-orbit",
-      "start": 5.3,
-      "end": 5.866666666666666
-    },
-    {
-      "id": "stop-at-top",
-      "start": 5.866666666666666,
-      "end": 6.1
-    },
-    {
-      "id": "approach-entry",
-      "start": 6.1,
-      "end": 6.7
-    },
-    {
-      "id": "entry",
-      "start": 6.7,
-      "end": 7.2
-    },
-    {
-      "id": "counter-finds-home",
-      "start": 7.2,
-      "end": 8.166666666666666
-    },
-    {
-      "id": "elastic-settle",
-      "start": 7.566666666666666,
-      "end": 8.766666666666667
-    },
-    {
-      "id": "hold",
-      "start": 8.766666666666667,
-      "end": 9.366666666666667
+      "id": "hold-NAXi",
+      "start": 5.566666666666666,
+      "end": 6.166666666666667
     }
   ],
   "constraints": [

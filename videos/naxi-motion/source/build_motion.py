@@ -6,7 +6,7 @@ import math
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-FPS, END = 60, 562
+FPS, END = 60, 370
 MINT, WHITE, DARK = '#57F4B4', '#F8F7F5', '#202222'
 GEOMETRY = json.loads((ROOT / 'source/geometry.json').read_text())
 
@@ -154,11 +154,7 @@ def main_mark():
     layer = vector_layer('Mark - growing N', [
         {'ty': 'sh', 'nm': 'Body - complete N silhouette',
          'ks': fixed(final_body)}, fill(MINT)],
-        anchor=(627.5, 543), ip=65,
-        scale=animated([(0, [100, 100, 100]), (454, [100, 100, 100]),
-                        (476, [112, 90, 100]), (494, [94, 106, 100]),
-                        (511, [103, 97, 100]), (521, [99, 101, 100]), (526, [100, 100, 100])]),
-        rotation=animated([(0, 0), (454, 0), (476, -2.4), (494, 1.4), (511, -.4), (526, 0)]))
+        anchor=(627.5, 543), ip=65)
     layer['hasMask'] = True
     layer['masksProperties'] = [
         mask('Reveal - left round cap grows downward', 'a', animated([
@@ -170,38 +166,12 @@ def main_mark():
         mask('Reveal - diagonal joins the caps', 'a', animated([
             (75, capsule([511, 434], [511.01, 434.01], .01)),
             (82, capsule([511, 434], [564, 483], 66)),
-            (110, capsule([511, 434], [746, 653], 70))])),
-        mask('Counter - entry, carved trail and final home', 's', animated(
-            [(0, circle(686, 454, 34))]+[(f, circle(*return_position(f), 34)) for f in range(402, 491)], True))]
-    layer['masksProperties'][-1]['o'] = animated([(0, 0), (402, 0), (410, 100)])
+            (110, capsule([511, 434], [746, 653], 70))]))]
     return layer
 
 
 def cubic(a, b, c, d, u):
     return [(1-u)**3*a[i]+3*(1-u)**2*u*b[i]+3*(1-u)*u*u*c[i]+u**3*d[i] for i in range(2)]
-
-
-def return_position(frame):
-    if frame < 318:
-        return cubic([845.5, 781.5], [825, 742], [715, 725], [627.5, 740], smooth((frame-304)/14))
-    if frame <= 352:
-        angle = math.pi/2+math.pi*smooth((frame-318)/34)
-        return [627.5+300*math.cos(angle), 543+197*math.sin(angle)]
-    if frame <= 366:
-        return [627.5, 346]
-    if frame < 402:
-        return cubic([627.5, 346], [700, 325], [768, 411], [686, 454], smooth((frame-366)/36))
-    if frame < 420:
-        return cubic([686, 454], [686, 494], [750, 519], [750, 578], smooth((frame-402)/18))
-    if frame < 432:
-        return cubic([750, 578], [746, 613], [685, 637], [708, 588], smooth((frame-420)/12))
-    if frame < 452:
-        return mix([708, 588], [653, 542], smooth((frame-432)/20))
-    if frame < 472:
-        return mix([653, 542], [519, 423], smooth((frame-452)/20))
-    if frame < 482:
-        return mix([519, 423], [531, 433], smooth((frame-472)/10))
-    return mix([531, 433], [528, 431], smooth((frame-482)/8))
 
 
 def sampled_path(data):
@@ -251,8 +221,21 @@ def writing_layers():
              'e': animated([(start, 0), (end, 100)]), 'o': fixed(0), 'm': 1}],
             ip=start, op=finish+1))
     for element in GEOMETRY[1:]:
-        layers.append(artwork(element, ip=exact_starts[element['name'][-1]]))
+        layer = artwork(element, ip=exact_starts[element['name'][-1]])
+        if element['name'].endswith('I'):
+            layer['nm'] = 'Wordmark - I shrinks into lowercase i'
+            layer['shapes'][0]['it'][0]['ks'] = animated([
+                (304, shape(element['paths'][0])), (330, lowercase_i_shape())])
+        layers.append(layer)
     return layers
+
+
+def lowercase_i_shape():
+    result = shape(copy.deepcopy(GEOMETRY[-1]['paths'][0]))
+    for index in (0, 4):
+        result['v'][index][1] = 826
+    result['v'][5][1] = 814.5
+    return result
 
 
 def writer():
@@ -272,19 +255,22 @@ def writer():
                 xy = mix(line['v'][-1], nxt[1]['v'][0], smooth(u))
                 xy[1] -= 60*math.sin(math.pi*u)
                 return xy
-        return return_position(frame)
-    pos = animated([(f, [*location(f), 0]) for f in range(117, 411)], True)
+        if frame < 312:
+            return mix([845.5, 781.5], [845.5, 770], smooth((frame-304)/8))
+        if frame < 326:
+            return mix([845.5, 770], [845.5, 789], smooth((frame-312)/14))
+        return mix([845.5, 789], [845.5, 787], smooth((frame-326)/8))
+    pos = animated([(f, [*location(f), 0]) for f in range(117, 335)], True)
     scale_keys = [(101, [150, 150, 100]), (107, [75, 130, 100]), (114, [125, 72, 100]), (118, [100, 100, 100])]
     for start in [164, 211, 241, 272]:
         scale_keys += [(start-5, [78, 128, 100]), (start, [125, 72, 100]), (start+4, [100, 100, 100])]
     scale_keys = [(f+16, value) for f, value in scale_keys]
-    scale_keys += [(304, [100, 100, 100]), (386, [100, 100, 100]), (402, [283.33, 283.33, 100])]
+    scale_keys += [(304, [100, 100, 100]), (312, [90, 110, 100]), (326, [110, 90, 100]), (334, [100, 100, 100])]
     ink = fill(MINT)
-    ink['c'] = animated([(117, color(MINT)), (392, color(MINT)), (402, color(WHITE))])
-    return vector_layer('Dot - writes, orbits and enters the N', [
+    return vector_layer('Dot - writes and becomes the lowercase i dot', [
         {'ty': 'el', 'nm': 'Stylus dot', 'p': fixed([0, 0]), 's': fixed([24, 24])}, ink],
-        ip=117, op=411, position=pos, scale=animated(scale_keys),
-        opacity=animated([(117, 0), (123, 100), (402, 100), (410, 0)], True))
+        ip=117, op=END, position=pos, scale=animated(scale_keys),
+        opacity=animated([(117, 0), (123, 100)], True))
 
 
 def document(layers, duration=END, name='NAXI - Intro'):
@@ -295,10 +281,8 @@ def document(layers, duration=END, name='NAXI - Intro'):
             'markers': [{'tm': 0, 'cm': 'Tornado forms the N', 'dr': 110},
                         {'tm': 65, 'cm': 'Build N', 'dr': 49},
                         {'tm': 117, 'cm': 'Independent dot writes NAXI', 'dr': 187},
-                        {'tm': 304, 'cm': 'Dot orbits completed N', 'dr': 98},
-                        {'tm': 402, 'cm': 'Dot enters and carves its trail', 'dr': 88},
-                        {'tm': 454, 'cm': 'Elastic settle', 'dr': 72},
-                        {'tm': 526, 'cm': 'Final hold', 'dr': 36}] if duration == END else []}
+                        {'tm': 304, 'cm': 'I shrinks and dot settles into lowercase i', 'dr': 30},
+                        {'tm': 334, 'cm': 'Final NAXi hold', 'dr': 36}] if duration == END else []}
 
 
 def with_background(data):
@@ -317,7 +301,11 @@ def build():
     intro = document([writer(), *writing_layers(), main_mark(),
                       *[orb(i) for i in range(4)], *[vortex_trail(i) for i in range(4)]])
     idle_layers = [artwork(element, op=144) for element in GEOMETRY]
-    idle_layers[0]['ks']['s'] = animated([(0, [100, 100, 100]), (36, [102, 98.5, 100]),
+    idle_layers[0]['shapes'][0]['it'].pop(1)
+    idle_layers[-1]['shapes'][0]['it'][0]['ks'] = fixed(lowercase_i_shape())
+    idle_layers.insert(0, vector_layer('Wordmark - green i dot', [
+        {'ty': 'el', 'nm': 'Dot', 'p': fixed([845.5, 787]), 's': fixed([24, 24])}, fill(MINT)], op=144))
+    idle_layers[1]['ks']['s'] = animated([(0, [100, 100, 100]), (36, [102, 98.5, 100]),
                                         (72, [100, 100, 100]), (108, [98.5, 102, 100]),
                                         (144, [100, 100, 100])])
     idle = document(idle_layers, 144, 'NAXI - Idle loop')

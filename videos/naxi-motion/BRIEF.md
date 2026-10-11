@@ -37,3 +37,7 @@ Four-dot spiral tornado replaces approaching circles. Independent dot writes NAX
 ## Revision — complete silhouette and half orbit
 
 Draw the full original N silhouette before the circular dot enters. Remove the sealed bridge intermediate body. After writing, the dot follows a half orbit from below around the left side, stops at the top for 14 frames, then enters the N.
+
+## Revision — five N concepts and lowercase i ending
+
+Explore five alternative N styles for approval. Keep the old mark only as a temporary placeholder. After writing, uppercase I shortens and the green pen dot settles above it to form lowercase i. Stop drawing there. No orbit, entry or moving counter. Intro: 370 frames at 60 fps. Idle starts with the same NAXi lockup.
