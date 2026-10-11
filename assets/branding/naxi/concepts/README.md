@@ -33,3 +33,9 @@
 Сохранены две диагональные ленты и просвет между ними. Левая стойка шире, начинается ниже и заканчивается ниже правой. Правая стойка тоньше и выше. Острые торцы заменены компактными скруглёнными окончаниями, внутренние соединения смягчены. Диагональные просветы выровнены для читаемости в размере иконки. Подпись варианта убрана.
 
 Design specification: refine the supplied split-diagonal N, preserve its readable architecture, introduce unequal stem proportions and optical channel spacing, taper diagonal ribbons, soften terminals and sculpt inside junctions. Flat mint on graphite, one centered mark without text or extra symbols. The PNG remains a concept pending vector construction.
+
+## 03 — Vector, shifted v3
+
+`03-vector-shifted-v3.png` — сдвиг двух частей по направлениям разметки. Верхняя диагональ вместе с правой стойкой смещена вниз и вправо; нижняя диагональ вместе с левой стойкой — вверх и влево. Сохранены параллельные диагонали, мятный цвет и мягкие торцы. Красные стрелки убраны.
+
+Edit specification: translate the two complete disconnected components in opposite directions along the diagonal ribbons, upper/right component down-right and lower/left component up-left. Preserve component shapes, corner radii and the separating channel. One centered mint mark on graphite without annotations or text.
