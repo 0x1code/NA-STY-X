@@ -1,0 +1,68 @@
+{
+  "category": "logo-reveal",
+  "duration_s": 7.666666666666667,
+  "fps": 60,
+  "canvas": {
+    "w": 1254,
+    "h": 1254
+  },
+  "implementation": "native Lottie vector paths, trim paths and animated masks",
+  "palette": [
+    "#202222",
+    "#57F4B4",
+    "#F8F7F5"
+  ],
+  "revision": "The right inner opening appears at the end of N formation, releasing the flying dot.",
+  "scenes": [
+    {
+      "id": "counter-orbits",
+      "start": 0,
+      "end": 1.1
+    },
+    {
+      "id": "form-mark",
+      "start": 1.0833333333333333,
+      "end": 1.8333333333333333
+    },
+    {
+      "id": "open-inner-cutout",
+      "start": 1.6666666666666667,
+      "end": 1.9
+    },
+    {
+      "id": "flying-dot-and-writing",
+      "start": 1.95,
+      "end": 5.066666666666666
+    },
+    {
+      "id": "return-and-counter-travel",
+      "start": 5.066666666666666,
+      "end": 6.0
+    },
+    {
+      "id": "elastic-settle",
+      "start": 5.6,
+      "end": 7.066666666666666
+    },
+    {
+      "id": "hold",
+      "start": 7.066666666666666,
+      "end": 7.666666666666667
+    }
+  ],
+  "constraints": [
+    "Outlined letters",
+    "True transparent counter",
+    "No raster assets or expressions",
+    "Native SVG player preview",
+    "Separate seamless idle loop"
+  ],
+  "catalog_review": {
+    "candidates": [
+      "logo-outro",
+      "whiteboard-ink",
+      "menu-morph"
+    ],
+    "decision": "Custom native Lottie is required to preserve the supplied logo geometry and exact choreography."
+  }
+}

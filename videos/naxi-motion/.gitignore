@@ -1,0 +1,11 @@
+node_modules/
+.hyperframes/
+*.log
+AGENTS.md
+CLAUDE.md
+source/*status.txt
+qa/frames/
+qa/*.log
+.thumbnails/
+snapshots/
+after-effects/*status.txt

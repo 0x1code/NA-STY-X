@@ -1,0 +1,15 @@
+{
+  "name": "naxi-motion",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "npx --yes hyperframes@0.8.148 preview",
+    "check": "npx --yes hyperframes@0.8.148 check",
+    "render": "npx --yes hyperframes@0.8.148 render",
+    "publish": "npx --yes hyperframes@0.8.148 publish"
+  },
+  "dependencies": {
+    "gsap": "3.14.2",
+    "lottie-web": "5.13.0"
+  }
+}
