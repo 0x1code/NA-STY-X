@@ -1,6 +1,6 @@
 {
   "category": "logo-reveal",
-  "duration_s": 7.666666666666667,
+  "duration_s": 9.366666666666667,
   "fps": 60,
   "canvas": {
     "w": 1254,
@@ -12,42 +12,47 @@
     "#57F4B4",
     "#F8F7F5"
   ],
-  "revision": "The right inner opening appears at the end of N formation, releasing the flying dot.",
+  "revision": "Tornado forms N; independent dot writes, orbits, enters and carves its trace before settling.",
   "scenes": [
     {
-      "id": "counter-orbits",
-      "start": 0,
-      "end": 1.1
+      "id": "tornado",
+      "start": 0.0,
+      "end": 1.3
     },
     {
-      "id": "form-mark",
+      "id": "form-N",
       "start": 1.0833333333333333,
       "end": 1.8333333333333333
     },
     {
-      "id": "open-inner-cutout",
-      "start": 1.6666666666666667,
-      "end": 1.9
-    },
-    {
-      "id": "flying-dot-and-writing",
+      "id": "dot-writes",
       "start": 1.95,
       "end": 5.066666666666666
     },
     {
-      "id": "return-and-counter-travel",
+      "id": "orbit",
       "start": 5.066666666666666,
-      "end": 6.0
+      "end": 6.7
+    },
+    {
+      "id": "entry-carves",
+      "start": 6.7,
+      "end": 7.2
+    },
+    {
+      "id": "counter-finds-home",
+      "start": 7.2,
+      "end": 8.166666666666666
     },
     {
       "id": "elastic-settle",
-      "start": 5.6,
-      "end": 7.066666666666666
+      "start": 7.566666666666666,
+      "end": 8.766666666666667
     },
     {
       "id": "hold",
-      "start": 7.066666666666666,
-      "end": 7.666666666666667
+      "start": 8.766666666666667,
+      "end": 9.366666666666667
     }
   ],
   "constraints": [
