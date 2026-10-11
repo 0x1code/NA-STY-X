@@ -6,7 +6,7 @@ import math
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-FPS, END = 60, 460
+FPS, END = 60, 562
 MINT, WHITE, DARK = '#57F4B4', '#F8F7F5', '#202222'
 GEOMETRY = json.loads((ROOT / 'source/geometry.json').read_text())
 
@@ -109,33 +109,49 @@ def mix(a, b, u):
     return [x+(y-x)*u for x, y in zip(a, b)]
 
 
-def orbit_position(frame, second=False):
-    u = max(0, min(1, frame/54))
-    angle = (0.08 if second else math.pi) + (-1 if second else 1)*math.tau*u
-    tilt = .27 if second else -.27
-    px, py = 180*math.cos(angle), 115*math.sin(angle)
-    position = [627.5+px*math.cos(tilt)-py*math.sin(tilt),
-                543+px*math.sin(tilt)+py*math.cos(tilt)]
-    if frame >= 44:
-        position = mix(position, [746, 653] if second else [511, 434], smooth((frame-44)/22))
+def orbit_position(frame, index=0):
+    u = min(1, frame/78)
+    angle = index*math.pi/2 + math.tau*2.1*u
+    radius = (100+index*40)*(1-.30*u)
+    position = [627.5+radius*math.cos(angle),
+                543+(1.5-index)*74+35*math.sin(angle)]
+    if frame >= 52:
+        targets = [[507, 654], [746, 653], [511, 434], [745, 434]]
+        position = mix(position, targets[index], smooth((frame-52)/26))
     return [*position, 0]
 
 
-def orb(second=False):
-    positions = [(f, orbit_position(min(f, 66), second)) for f in range(0, 85)]
-    return vector_layer('Orbit - clockwise' if not second else 'Orbit - counterclockwise',
+def orb(index=0):
+    positions = [(f, orbit_position(min(f, 78), index)) for f in range(0, 95)]
+    return vector_layer('Vortex - spiral '+str(index+1),
                         [{'ty': 'el', 'nm': 'Circle', 'p': fixed([0, 0]), 's': fixed([68, 68])}, fill(MINT)],
-                        ip=0, op=85, position=animated(positions, True),
-                        opacity=animated([(0, 100), (66, 100), (84, 0)]),
-                        scale=animated([(0, [25, 25, 100]), (9, [108, 108, 100]),
-                                        (15, [100, 100, 100]), (44, [100, 100, 100]),
-                                        (66, [174, 174, 100])]))
+                        ip=0, op=95, position=animated(positions, True),
+                        opacity=animated([(0, 100), (78, 100), (94, 0)]),
+                        scale=animated([(0, [8, 8, 100]), (9, [70, 70, 100]),
+                                        (16, [55, 55, 100]), (52, [65, 65, 100]),
+                                        (78, [174, 174, 100])]))
+
+
+def vortex_trail(index):
+    points = [orbit_position(f, index)[:2] for f in range(79)]
+    lengths = [0]
+    for a, b in zip(points, points[1:]):
+        lengths.append(lengths[-1]+math.dist(a, b))
+    percent = [100*x/lengths[-1] for x in lengths]
+    return vector_layer('Vortex - curved tail '+str(index+1), [
+        {'ty': 'sh', 'nm': 'Spiral flight', 'ks': fixed(path(points))},
+        {'ty': 'st', 'nm': 'Mint motion tail', 'c': fixed(color(MINT)), 'o': fixed(28),
+         'w': fixed(4), 'lc': 2, 'lj': 2, 'ml': 4},
+        {'ty': 'tm', 'nm': 'Short trailing arc',
+         's': animated([(f, percent[max(0, f-9)]) for f in range(79)], True),
+         'e': animated(list(enumerate(percent)), True), 'o': fixed(0), 'm': 1}],
+        ip=0, op=83, opacity=animated([(0, 100), (60, 100), (82, 0)]))
 
 
 def main_mark():
     final_body = shape(GEOMETRY[0]['paths'][0])
     sealed_body = copy.deepcopy(final_body)
-    # The right inner opening is cut only after the N has grown together.
+    # The opening stays sealed until the pen returns after writing and orbiting.
     for index in range(3, 11):
         sealed_body['v'][index] = mix([559, 396], [686, 434], (index-2)/9)
         sealed_body['i'][index] = [0, 0]
@@ -143,17 +159,13 @@ def main_mark():
     sealed_body['o'][2] = [0, 0]
     sealed_body['i'][11] = [0, 0]
     layer = vector_layer('Mark - growing N', [
-        {'ty': 'sh', 'nm': 'Body - opening releases the flying dot',
-         'ks': animated([(65, sealed_body), (100, sealed_body), (114, final_body)])}, fill(MINT)],
+        {'ty': 'sh', 'nm': 'Body - incoming dot carves its permanent trail',
+         'ks': animated([(65, sealed_body), (402, sealed_body), (432, final_body)])}, fill(MINT)],
         anchor=(627.5, 543), ip=65,
-        scale=animated([(0, [100, 100, 100]), (320, [100, 100, 100]),
-                        (342, [112, 90, 100]), (360, [94, 106, 100]),
-                        (377, [103, 97, 100]), (393, [99, 101, 100]), (408, [100, 100, 100])]),
-        rotation=animated([(0, 0), (320, 0), (342, -2.4), (360, 1.4), (377, -.4), (408, 0)]))
-    for prop in ('s', 'r'):
-        for key in layer['ks'][prop]['k']:
-            if key['t'] >= 295:
-                key['t'] += 16
+        scale=animated([(0, [100, 100, 100]), (454, [100, 100, 100]),
+                        (476, [112, 90, 100]), (494, [94, 106, 100]),
+                        (511, [103, 97, 100]), (521, [99, 101, 100]), (526, [100, 100, 100])]),
+        rotation=animated([(0, 0), (454, 0), (476, -2.4), (494, 1.4), (511, -.4), (526, 0)]))
     layer['hasMask'] = True
     layer['masksProperties'] = [
         mask('Reveal - left round cap grows downward', 'a', animated([
@@ -166,16 +178,39 @@ def main_mark():
             (75, capsule([511, 434], [511.01, 434.01], .01)),
             (82, capsule([511, 434], [564, 483], 66)),
             (110, capsule([511, 434], [746, 653], 70))])),
-        mask('Counter - travels from lower notch to upper circle', 's', animated([
-            (0, circle(708, 588, 34)), (311, circle(708, 588, 34)),
-            (325, circle(653, 542, 34)), (342, circle(519, 423, 34)),
-            (351, circle(531, 433, 34)), (360, circle(528, 431, 34))]))]
-    layer['masksProperties'][-1]['o'] = animated([(0, 0), (100, 0), (114, 100)])
+        mask('Reveal - complete sealed bridge', 'a', animated([
+            (99, path([[560, 397], [560, 397], [560, 397], [560, 397]], True)),
+            (110, path([[535, 380], [705, 400], [765, 610], [570, 540]], True))])),
+        mask('Counter - entry, carved trail and final home', 's', animated(
+            [(0, circle(686, 454, 34))]+[(f, circle(*return_position(f), 34)) for f in range(402, 491)], True))]
+    layer['masksProperties'][-1]['o'] = animated([(0, 0), (402, 0), (410, 100)])
     return layer
 
 
 def cubic(a, b, c, d, u):
     return [(1-u)**3*a[i]+3*(1-u)**2*u*b[i]+3*(1-u)*u*u*c[i]+u**3*d[i] for i in range(2)]
+
+
+def return_position(frame):
+    if frame < 318:
+        return cubic([845.5, 781.5], [930, 725], [975, 605], [927.5, 543], smooth((frame-304)/14))
+    if frame <= 386:
+        angle = -math.tau*1.05*(frame-318)/68
+        return [627.5+300*math.cos(angle), 543+255*math.sin(angle)]
+    orbit_end = [627.5+300*math.cos(-math.tau*1.05), 543+255*math.sin(-math.tau*1.05)]
+    if frame < 402:
+        return cubic(orbit_end, [855, 402], [746, 413], [686, 454], smooth((frame-386)/16))
+    if frame < 420:
+        return cubic([686, 454], [686, 494], [750, 519], [750, 578], smooth((frame-402)/18))
+    if frame < 432:
+        return cubic([750, 578], [746, 613], [685, 637], [708, 588], smooth((frame-420)/12))
+    if frame < 452:
+        return mix([708, 588], [653, 542], smooth((frame-432)/20))
+    if frame < 472:
+        return mix([653, 542], [519, 423], smooth((frame-452)/20))
+    if frame < 482:
+        return mix([519, 423], [531, 433], smooth((frame-472)/10))
+    return mix([531, 433], [528, 431], smooth((frame-482)/8))
 
 
 def sampled_path(data):
@@ -230,12 +265,12 @@ def writing_layers():
 
 
 def writer():
-    ranges = [(name, line, start-16, end-16, sampled_path(line)) for name, line, start, end in STROKES]
+    ranges = [(name, line, start, end, sampled_path(line)) for name, line, start, end in STROKES]
     def location(frame):
-        if frame < 114:
-            u = smooth((frame-101)/13)
-            xy = mix([708, 588], ranges[0][1]['v'][0], u)
-            xy[1] -= 90*math.sin(math.pi*u)
+        if frame < 130:
+            u = smooth((frame-117)/13)
+            xy = mix([340, 965], ranges[0][1]['v'][0], u)
+            xy[1] -= 65*math.sin(math.pi*u)
             return xy
         for index, (name, line, start, end, at) in enumerate(ranges):
             if frame <= end:
@@ -246,19 +281,19 @@ def writer():
                 xy = mix(line['v'][-1], nxt[1]['v'][0], smooth(u))
                 xy[1] -= 60*math.sin(math.pi*u)
                 return xy
-        u = smooth((frame-288)/10)
-        xy = mix(ranges[-1][1]['v'][-1], [708, 588], u)
-        xy[0] += 45*math.sin(math.pi*u)
-        return xy
-    pos = animated([(f+16, [*location(f), 0]) for f in range(101, 299)], True)
+        return return_position(frame)
+    pos = animated([(f, [*location(f), 0]) for f in range(117, 411)], True)
     scale_keys = [(101, [150, 150, 100]), (107, [75, 130, 100]), (114, [125, 72, 100]), (118, [100, 100, 100])]
     for start in [164, 211, 241, 272]:
         scale_keys += [(start-5, [78, 128, 100]), (start, [125, 72, 100]), (start+4, [100, 100, 100])]
-    scale_keys += [(288, [100, 100, 100]), (297, [283.33, 283.33, 100])]
-    return vector_layer('Dot - writes and returns to the notch', [
-        {'ty': 'el', 'nm': 'Stylus dot', 'p': fixed([0, 0]), 's': fixed([24, 24])}, fill(MINT)],
-        ip=117, op=315, position=pos, scale=animated([(f+16, value) for f, value in scale_keys]),
-        opacity=animated([(117, 100), (311, 100), (315, 0)], True))
+    scale_keys = [(f+16, value) for f, value in scale_keys]
+    scale_keys += [(304, [100, 100, 100]), (386, [100, 100, 100]), (402, [283.33, 283.33, 100])]
+    ink = fill(MINT)
+    ink['c'] = animated([(117, color(MINT)), (392, color(MINT)), (402, color(WHITE))])
+    return vector_layer('Dot - writes, orbits and enters the N', [
+        {'ty': 'el', 'nm': 'Stylus dot', 'p': fixed([0, 0]), 's': fixed([24, 24])}, ink],
+        ip=117, op=411, position=pos, scale=animated(scale_keys),
+        opacity=animated([(117, 0), (123, 100), (402, 100), (410, 0)], True))
 
 
 def document(layers, duration=END, name='NAXI - Intro'):
@@ -266,12 +301,13 @@ def document(layers, duration=END, name='NAXI - Intro'):
         layer['ind'] = index
     return {'v': '5.13.0', 'fr': FPS, 'ip': 0, 'op': duration, 'w': 1254, 'h': 1254,
             'nm': name, 'ddd': 0, 'assets': [], 'layers': layers,
-            'markers': [{'tm': 0, 'cm': 'Opposing orbits', 'dr': 65},
+            'markers': [{'tm': 0, 'cm': 'Tornado forms the N', 'dr': 110},
                         {'tm': 65, 'cm': 'Build N', 'dr': 49},
-                        {'tm': 114, 'cm': 'Opening releases the flying dot', 'dr': 16},
-                        {'tm': 130, 'cm': 'Dot writes NAXI', 'dr': 185},
-                        {'tm': 311, 'cm': 'Counter travels and N settles', 'dr': 113},
-                        {'tm': 424, 'cm': 'Final hold', 'dr': 36}] if duration == END else []}
+                        {'tm': 117, 'cm': 'Independent dot writes NAXI', 'dr': 187},
+                        {'tm': 304, 'cm': 'Dot orbits completed N', 'dr': 98},
+                        {'tm': 402, 'cm': 'Dot enters and carves its trail', 'dr': 88},
+                        {'tm': 454, 'cm': 'Elastic settle', 'dr': 72},
+                        {'tm': 526, 'cm': 'Final hold', 'dr': 36}] if duration == END else []}
 
 
 def with_background(data):
@@ -287,7 +323,8 @@ def with_background(data):
 def build():
     for folder in ('assets', 'after-effects', 'qa', 'renders'):
         (ROOT/folder).mkdir(exist_ok=True)
-    intro = document([writer(), *writing_layers(), main_mark(), orb(), orb(True)])
+    intro = document([writer(), *writing_layers(), main_mark(),
+                      *[orb(i) for i in range(4)], *[vortex_trail(i) for i in range(4)]])
     idle_layers = [artwork(element, op=144) for element in GEOMETRY]
     idle_layers[0]['ks']['s'] = animated([(0, [100, 100, 100]), (36, [102, 98.5, 100]),
                                         (72, [100, 100, 100]), (108, [98.5, 102, 100]),
