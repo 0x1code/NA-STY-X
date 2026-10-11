@@ -44,6 +44,12 @@ Use for research/integration experiments with non-secret data.
 
 Specifications: [cipher v0.3](docs/CRYPTO_SPEC_V0_3.md), [message format v0.3](docs/MESSAGE_SPEC_V0_3.md), [iteration report](docs/ITERATION_V0_3.md).
 
+Current Rust substitution uses Boolean ANF of the same original S-box, removing
+secret-indexed S-box loads from this source path. Outputs and wire formats are unchanged;
+this implementation is slower and is not a constant-time certification. Exact round-key
+symmetry, bounded master-key search and MAC/KDF probes are published in
+[construction analysis](docs/CONSTRUCTION_ANALYSIS.md).
+
 ## Run
 
 ```powershell
@@ -52,6 +58,8 @@ cargo run -p nastyx-message --example research_roundtrip
 py -3 -m unittest discover -s tests -v
 py -3 research/generate_v3_vectors.py --check
 py -3 research/generate_session_vectors.py --check
+py -3 research/generate_sbox_circuit.py --check
+py -3 research/construction_analysis.py
 py -3 demos/e2ee_chat.py
 py -3 research/full_width_v3.py
 py -3 research/reduced_model_v3.py --output research/results/reduced-model-v3.json

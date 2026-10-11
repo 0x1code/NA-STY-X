@@ -4,7 +4,10 @@
 //! schedule have not received independent cryptanalysis. This module provides
 //! a fixed 128-bit block and 256-bit master-key permutation for experiments.
 
+mod boolean_substitution;
+#[cfg(test)]
 mod substitution;
+#[cfg(test)]
 use substitution::SBOX;
 
 /// Cipher revision. Version 0.2 is incompatible with the historical previous cipher revisions.
@@ -127,11 +130,10 @@ fn expand_key(key: &[u8; KEY_SIZE]) -> [u64; MAX_ROUNDS] {
 }
 
 fn round_function(input: u64, round_key: u64) -> u64 {
-    let mixed = (input ^ round_key).to_le_bytes();
-    let sbox = &SBOX;
+    let substituted = boolean_substitution::substitute_word(input ^ round_key).to_le_bytes();
     let mut permuted = [0_u8; 8];
     for (i, source_index) in BYTE_PERMUTATION.iter().enumerate() {
-        permuted[i] = sbox[mixed[*source_index] as usize];
+        permuted[i] = substituted[*source_index];
     }
     let x = u64::from_le_bytes(permuted);
     let y = x.wrapping_add(x.rotate_left(17)) ^ x.rotate_left(41);
@@ -142,6 +144,43 @@ fn round_function(input: u64, round_key: u64) -> u64 {
 #[cfg(test)]
 mod tests {
     use super::*;
+    #[test]
+    fn simultaneous_input_round_key_xor_identity_is_recorded() {
+        let mut public_seed = 20261012_u64;
+        for _ in 0..1024 {
+            public_seed = public_seed
+                .wrapping_mul(6364136223846793005)
+                .wrapping_add(1);
+            let input = public_seed;
+            public_seed = public_seed
+                .wrapping_mul(6364136223846793005)
+                .wrapping_add(1);
+            let key = public_seed;
+            public_seed = public_seed
+                .wrapping_mul(6364136223846793005)
+                .wrapping_add(1);
+            let delta = public_seed;
+            assert_eq!(
+                round_function(input ^ delta, key ^ delta),
+                round_function(input, key) ^ delta
+            );
+        }
+        // Structural observation only: it does not prove existence of related master keys.
+    }
+    #[test]
+    fn boolean_substitution_matches_every_value_in_every_lane() {
+        for lane in 0..8 {
+            for value in 0..256 {
+                let mut input = [91; 8];
+                input[lane] = value as u8;
+                let expected = input.map(|byte| SBOX[byte as usize]);
+                assert_eq!(
+                    boolean_substitution::substitute_word(u64::from_le_bytes(input)).to_le_bytes(),
+                    expected
+                );
+            }
+        }
+    }
     #[test]
     fn every_master_key_bit_affects_schedule() {
         let key = [0_u8; 32];

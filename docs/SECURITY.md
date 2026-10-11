@@ -16,10 +16,17 @@ The original cipher, subkey derivation and message tag have no independent crypt
 
 Message encryption and tag verification are implemented; this does not establish confidentiality or forgery resistance. The receiver authenticates before decrypting. Nonces are reserved in one shared persistent registry per key; missing/corrupt metadata fail closed. Never reuse a key after losing or rolling back this state. Windows power-loss durability of directory metadata is not established. Local storage tampering/rollback, network filesystems and multiple registries for the same key are outside the nonce guarantee.
 
-Table access depends on secrets, constant time is unverified, and key memory is not
+Current Rust v0.3 evaluates its S-box through Boolean ANF without secret-indexed loads;
+Python/legacy implementations still use table lookups. A reviewed x86-64 GNU assembly
+fragment is recorded, but general constant-time behavior is unverified. Key memory is not
 guaranteed to be erased. Standalone v0.3 lacks replay/session state; NXS1 adds it with the
 limitations above. Historical examples use public test keys; E2EE demo uses fresh OS
 randomness with non-secret texts. Functional tests do not replace cryptographic review.
+
+Exact related-round-key symmetry and bounded master-key/MAC/KDF probes are documented
+in `CONSTRUCTION_ANALYSIS.md`. No exploitable master-key relation was found in the stated
+one-bit sample; general relations remain open. Symmetric chain compromise predicts future
+keys, as demonstrated, so no automatic PCS claim is made.
 
 ## Historical v0.2 status
 

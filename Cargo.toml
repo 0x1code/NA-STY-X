@@ -13,3 +13,8 @@ unsafe_code = "forbid"
 
 [workspace.lints.clippy]
 all = "warn"
+
+# Fixed-operation Boolean substitution is costly without optimization. Test
+# assertions and overflow checks remain enabled; only optimization is changed.
+[profile.test]
+opt-level = 1

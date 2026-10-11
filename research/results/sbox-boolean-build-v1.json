@@ -1,0 +1,47 @@
+{
+  "format": "nastyx-boolean-build-v1",
+  "date": "2026-10-12",
+  "toolchain": "stable-x86_64-pc-windows-gnu",
+  "cargo_version": "cargo 1.99.0 (5f94df478 2026-08-27)",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "profile": "default Cargo release",
+  "sources_sha256_utf8_lf": {
+    "crates/nastyx-engine/src/lib.rs": "a3cf345f02e6be57488679c55e18f512a1548d13177ff9265d6cdc25fc60ec88",
+    "crates/nastyx-engine/src/boolean_substitution.rs": "e984e7637c3868dfcca75c09ef0b8b9b3e92d0361dbd323d5136d1b8a3414f57",
+    "crates/nastyx-engine/examples/bench.rs": "6b9a2e61e8c8c2f7158017929f0adcd7439bf3cd1bd2a38dfd438e89c2260209",
+    "research/generate_sbox_circuit.py": "e31c26cced2b2986a30f0a19c0cdb6d5a608c1673ced44df5d83a006e6c128eb",
+    "research/record_boolean_build.py": "2538c18e4e31756e013865123b3a637a98065def8f9c6968c8c3061c6c7b125b",
+    "Cargo.toml": "2498adccc8b6908fbe61db1c42a82986d5b8308aca34ecd1761349fd36b706b3"
+  },
+  "assembly_fragment": "research/results/sbox-boolean-x86_64-gnu.s",
+  "assembly_sha256_utf8_lf": "f12db335828401a9e35d0542f2fca7c1b45bcc0712ec14e67380c389e9a914e9",
+  "benchmark_stdout": "cipher_state_bytes=200\nrepetition=0 setups=1000 setup_seconds=0.017350 blocks=100000 encrypt_seconds=0.887670 decrypt_seconds=0.860180\nrepetition=1 setups=1000 setup_seconds=0.017469 blocks=100000 encrypt_seconds=0.875581 decrypt_seconds=1.226939\nrepetition=2 setups=1000 setup_seconds=0.031235 blocks=100000 encrypt_seconds=1.532927 decrypt_seconds=1.411375\n",
+  "repetitions": [
+    {
+      "repetition": 0,
+      "setups": 1000,
+      "setup_seconds": 0.01735,
+      "blocks": 100000,
+      "encrypt_seconds": 0.88767,
+      "decrypt_seconds": 0.86018
+    },
+    {
+      "repetition": 1,
+      "setups": 1000,
+      "setup_seconds": 0.017469,
+      "blocks": 100000,
+      "encrypt_seconds": 0.875581,
+      "decrypt_seconds": 1.226939
+    },
+    {
+      "repetition": 2,
+      "setups": 1000,
+      "setup_seconds": 0.031235,
+      "blocks": 100000,
+      "encrypt_seconds": 1.532927,
+      "decrypt_seconds": 1.411375
+    }
+  ],
+  "cipher_state_bytes": 200,
+  "scope": "Public serial microprobe; no controlled frequency/load or statistical timing test. Assembly for manual review, not certification."
+}
