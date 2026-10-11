@@ -32,5 +32,7 @@ jobs:
       - run: python -m unittest discover -s tests -v
       - run: python research/generate_vectors.py --check
       - run: python research/generate_v3_vectors.py --check
+      - run: python research/generate_session_vectors.py --check
+      - run: python demos/e2ee_chat.py
       - run: python research/sbox_design.py --check
       - run: python research/lab.py --samples 2 --seed 20261011 --output lab-smoke.json

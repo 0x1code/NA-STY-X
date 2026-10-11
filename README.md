@@ -1,11 +1,37 @@
 # NA&STY-X
 
-**Current research revision:** 0.3.0-alpha
+**Current research revision:** 0.4.0-alpha (NXS1 sessions; v0.3 cipher/messages)
 **Status:** experimental cryptography research
 
 NA&STY-X is a research project exploring a reversible hybrid construction that combines a Feistel network, byte substitution and permutation, and ARX operations. This first iteration contains a block-cipher experiment and small reproducible research tools.
 
-> **Security warning:** The cipher in `nastyx-core` is newly designed, unaudited, and unsuitable for protecting real data. The legacy primitive has no message mode or authentication. The v0.3 message construction adds an experimental mode, tag and nonce registry; neither version has independent security analysis or a side-channel guarantee. Do not use it for passwords, files, network traffic, or any other secrets. The current direction is an original cipher and protocol. An experimental message mode and tag exist; secure key establishment and session protection are not implemented; see [`docs/PROTOCOL_DESIGN.md`](docs/PROTOCOL_DESIGN.md).
+> **Security warning:** All cryptographic constructions are original, experimental and unaudited. Do not protect real secrets with this revision. NXS1 implements paired-device sessions with an out-of-band one-time secret, confirmation, separate message-key chains and replay rejection. It does not provide public-key agreement, automatic post-compromise recovery, guaranteed erasure or proven cryptographic security. See [session specification](docs/SESSION_SPEC_V1.md).
+
+## First working E2EE prototype — NXS1
+
+```powershell
+py -3 demos/e2ee_chat.py --interactive
+```
+
+Three separate processes: Alice, Bob and a relay holding only packets. OS-random pairing
+data travels through trusted local pipes, simulating a separate pairing channel. The local
+controller is trusted and displays both endpoints; it is not the relay. Clients use the
+independent Python reference; Rust `nastyx-session` matches all session fixtures byte for byte.
+
+Commands: `alice your text`, `bob your text`, `replay`, `tamper`, `reorder`, `renew`, `restart`, `status`, `quit`.
+The opening scenario checks messages in both directions, tampering, replay, out-of-order
+delivery and fresh pairing. `renew` uses a new secret outside the old session. State is
+volatile: restarting requires fresh pairing. Each additional device pair needs independent
+pairing data and a separate session; no automatic device directory is implemented.
+
+Rust API: `Pairing::initiate/respond`, pending `complete`,
+`UnverifiedSession::verification_code/verify_peer`, `Session::seal/open/close`.
+Peer codes must be compared over a trusted separate channel. Initial PSK/root leave logical
+active state; one-wayness and physical erasure remain unproven.
+
+Use for research/integration experiments with non-secret data.
+[Specification](docs/SESSION_SPEC_V1.md), [demonstration](docs/E2EE_DEMO.md),
+[independent review package](docs/REVIEW_REQUEST.md).
 
 ## Current v0.3 implementation
 
@@ -14,7 +40,7 @@ NA&STY-X is a research project exploring a reversible hybrid construction that c
 - 185 v0.3 block vectors and 10 message vectors checked by independent Rust and Python implementations.
 - Full-width sample probes, exact component analysis, exhaustive 16-bit toy-model experiments and a local serial benchmark.
 
-**This is experimental software, not approved for protecting real secrets.** The cipher, derived keys and tag lack independent cryptanalysis. Nonce registries require correct local storage and must not be deleted or rolled back. Replay protection, session key exchange, forward secrecy, guaranteed key erasure and constant-time implementation are absent.
+**This is experimental software, not approved for protecting real secrets.** The cipher, derived keys and tag lack independent cryptanalysis. The standalone v0.3 receiver is stateless; NXS1 adds replay protection above it. Standalone Sender nonce registries must not be deleted or rolled back. NXS1 consumes fresh message keys and never restores live chains from disk.
 
 Specifications: [cipher v0.3](docs/CRYPTO_SPEC_V0_3.md), [message format v0.3](docs/MESSAGE_SPEC_V0_3.md), [iteration report](docs/ITERATION_V0_3.md).
 
@@ -25,6 +51,8 @@ cargo test --workspace --locked
 cargo run -p nastyx-message --example research_roundtrip
 py -3 -m unittest discover -s tests -v
 py -3 research/generate_v3_vectors.py --check
+py -3 research/generate_session_vectors.py --check
+py -3 demos/e2ee_chat.py
 py -3 research/full_width_v3.py
 py -3 research/reduced_model_v3.py --output research/results/reduced-model-v3.json
 ```
@@ -54,6 +82,8 @@ See [benchmark scope](docs/BENCHMARKS.md) for raw measurements and limitations.
 ```text
 crates/nastyx-engine/       current v0.3 block research engine
 crates/nastyx-message/      current v0.3 message research module
+crates/nastyx-session/      NXS1 paired-device session prototype
+demos/e2ee_chat.py          local three-process interactive chat
 crates/nastyx-core/         historical v0.2 engine
 crates/nastyx-cli/          historical single-block demonstration
 research/reference_cipher/ independent Python references
@@ -62,4 +92,5 @@ research/results/          measurements and provenance
 docs/                      exact specifications, risks and roadmap
 ```
 
-Next: independent analysis of the construction, then the separately scoped session protocol described in [PROTOCOL_DESIGN.md](docs/PROTOCOL_DESIGN.md).
+Next: independent cryptanalysis and implementation hardening. Key establishment without
+an external trusted pairing channel remains separate research. See [review package](docs/REVIEW_REQUEST.md).

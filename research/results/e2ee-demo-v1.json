@@ -1,0 +1,366 @@
+{
+  "scope": "local three-process experimental demo; not security proof",
+  "date": "2026-10-12",
+  "python": "3.12.10",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "source_sha256_utf8_lf": {
+    "demos/e2ee_chat.py": "ff6b5ddcea18550210f515e029612a287673d2178426b4becbe435420131a90b",
+    "research/reference_cipher/session_v1.py": "fdfe520840683637f7a2e812c56fe99e0f0e10640bad66b7d17826fa31531dea",
+    "research/reference_cipher/message_v3.py": "f62207787c0f5c9782920327a995b6293a6778320f34666fdf1f0a2bc9ee57ca",
+    "research/reference_cipher/engine_v3.py": "90759ebdc0a2c479a3d42a7dc419820c08171acc1568de7ed992f7dd17724a26"
+  },
+  "events": [
+    {
+      "event": "ПРОЦЕССЫ",
+      "details": "Сервер 3424; Alice 12184; Bob 5072"
+    },
+    {
+      "event": "СВЯЗЫВАНИЕ",
+      "details": "Коды совпали: 32b8c212e2858b81959c6738b20c62e0; сеанс a00f9746d2ef5e339916b40cd3f12848"
+    },
+    {
+      "event": "СООБЩЕНИЕ",
+      "details": "alice → bob: Привет, Bob! Сервер не получает этот текст."
+    },
+    {
+      "event": "СЕРВЕР",
+      "details": "186 байт; шифротекст: 810de413231b7004ac722459d2e9ee7d9b01274976fa10bac84f94a55eede9d5aeae51ee243cb771…"
+    },
+    {
+      "event": "СООБЩЕНИЕ",
+      "details": "bob → alice: Привет, Alice! Сообщение расшифровано на моей стороне."
+    },
+    {
+      "event": "СЕРВЕР",
+      "details": "206 байт; шифротекст: 630919df1d717ec09a2665af079a7fecdae539a50b0d9c8b150f7053e42ef1978b59157949bf8b04…"
+    },
+    {
+      "event": "ПОВТОР",
+      "details": "Отклонено; открытый текст не выдан"
+    },
+    {
+      "event": "ПОДМЕНА",
+      "details": "Отклонено; открытый текст не выдан"
+    },
+    {
+      "event": "ПОСЛЕ ПОДМЕНЫ",
+      "details": "Проверка целостности"
+    },
+    {
+      "event": "ПЕРЕСТАНОВКА",
+      "details": "Пришёл 2: Порядок 2"
+    },
+    {
+      "event": "ПЕРЕСТАНОВКА",
+      "details": "Пришёл 0: Порядок 0"
+    },
+    {
+      "event": "ПЕРЕСТАНОВКА",
+      "details": "Пришёл 1: Порядок 1"
+    },
+    {
+      "event": "СВЯЗЫВАНИЕ",
+      "details": "Коды совпали: 1084ac0e72e9a9266825797489088ace; сеанс c55c129dbb5b1ce66be23af0e1bf0940"
+    },
+    {
+      "event": "СТАРЫЙ СЕАНС",
+      "details": "Отклонено; открытый текст не выдан"
+    },
+    {
+      "event": "СООБЩЕНИЕ",
+      "details": "alice → bob: Новый сеанс после повторного связывания."
+    },
+    {
+      "event": "СЕРВЕР",
+      "details": "187 байт; шифротекст: 72878682940b72e7db649edd3592560a8314abefdf53f2b9c02bf44a911b368345e0e935a922ee5d…"
+    },
+    {
+      "event": "ПОСЛЕ СБОЯ БЕЗ КЛЮЧЕЙ",
+      "details": "Отклонено; открытый текст не выдан"
+    },
+    {
+      "event": "ПЕРЕЗАПУСК",
+      "details": "Новый процесс Bob 19336; требуется новое связывание"
+    },
+    {
+      "event": "СВЯЗЫВАНИЕ",
+      "details": "Коды совпали: 4784c2f230b2b48891a8ce93d8c4eafe; сеанс e1af1b37d0654d0d0036376626bfbdbd"
+    },
+    {
+      "event": "ПАКЕТ ДО СБОЯ",
+      "details": "Отклонено; открытый текст не выдан"
+    },
+    {
+      "event": "СООБЩЕНИЕ",
+      "details": "alice → bob: Связь восстановлена новым сеансом после сбоя."
+    },
+    {
+      "event": "СЕРВЕР",
+      "details": "196 байт; шифротекст: 518d0e4bbda0ec3dcab052a1971d1da7763279cb593ccf917155166afcfaaba6a21c6faed4890b66…"
+    },
+    {
+      "event": "ИТОГ",
+      "details": "Доставка, ответы, повторы, подмена, перестановка, обновление и перезапуск проверены"
+    },
+    {
+      "event": "СООБЩЕНИЕ",
+      "details": "alice → bob: Проверка"
+    },
+    {
+      "event": "СЕРВЕР",
+      "details": "128 байт; шифротекст: 36034622353f4f808ead74e943a90c5b…"
+    },
+    {
+      "event": "СООБЩЕНИЕ",
+      "details": "bob → alice: Ответ"
+    },
+    {
+      "event": "СЕРВЕР",
+      "details": "122 байт; шифротекст: 1f7205332e6dc69e63ba…"
+    },
+    {
+      "event": "ПОВТОР",
+      "details": "Отклонено; открытый текст не выдан"
+    },
+    {
+      "event": "ПОДМЕНА",
+      "details": "Отклонено; открытый текст не выдан"
+    },
+    {
+      "event": "ПЕРЕСТАНОВКА",
+      "details": "Пришёл 2: Порядок 2"
+    },
+    {
+      "event": "ПЕРЕСТАНОВКА",
+      "details": "Пришёл 0: Порядок 0"
+    },
+    {
+      "event": "ПЕРЕСТАНОВКА",
+      "details": "Пришёл 1: Порядок 1"
+    },
+    {
+      "event": "СВЯЗЫВАНИЕ",
+      "details": "Коды совпали: 71f2ac0d192f372a5c0c70a39589ba10; сеанс 8a9dfad1f8d7be0f50ab6290521967e6"
+    },
+    {
+      "event": "ПОСЛЕ СБОЯ БЕЗ КЛЮЧЕЙ",
+      "details": "Отклонено; открытый текст не выдан"
+    },
+    {
+      "event": "ПЕРЕЗАПУСК",
+      "details": "Новый процесс Bob 26384; требуется новое связывание"
+    },
+    {
+      "event": "СВЯЗЫВАНИЕ",
+      "details": "Коды совпали: 456ffe8726f6a2cdf8317afac4e7c2eb; сеанс bf75c24569aa5799724b7f30120d5861"
+    },
+    {
+      "event": "ПАКЕТ ДО СБОЯ",
+      "details": "Отклонено; открытый текст не выдан"
+    },
+    {
+      "event": "СООБЩЕНИЕ",
+      "details": "alice → bob: Связь восстановлена новым сеансом после сбоя."
+    },
+    {
+      "event": "СЕРВЕР",
+      "details": "196 байт; шифротекст: f4f9ae0870572553a438188cc7813df165aa9427eb9c75f441a3fdc6d0a778e7ca45f91ae6f3600b…"
+    },
+    {
+      "event": "СЕРВЕР",
+      "details": "38 публичных пакетов; URL http://127.0.0.1:4773"
+    }
+  ],
+  "relay_packets": [
+    {
+      "to": "bob",
+      "packet": "4e5848310168384e02aa596f2e0e1df3dc1e115544ee627d6f41fe4d5384640e68ed0cbbc3a00f9746d2ef5e339916b40cd3f12848eb7304e5f4766a848c3bbb19bf7a6469c19cbc39904982da712d4ff8df9903c2",
+      "bytes": 85
+    },
+    {
+      "to": "alice",
+      "packet": "4e5848310268384e02aa596f2e0e1df3dc1e115544ee627d6f41fe4d5384640e68ed0cbbc3a00f9746d2ef5e339916b40cd3f12848eb7304e5f4766a848c3bbb19bf7a64693b61d6108ce9c2f75c50847e1c20b2f4021a53586aa5d35f7cd836cd7702013e",
+      "bytes": 101
+    },
+    {
+      "to": "bob",
+      "packet": "4e5848310368384e02aa596f2e0e1df3dc1e115544ee627d6f41fe4d5384640e68ed0cbbc3a00f9746d2ef5e339916b40cd3f12848eb7304e5f4766a848c3bbb19bf7a64693b61d6108ce9c2f75c50847e1c20b2f413cf54232e4d9b21657a040484b73902",
+      "bytes": 101
+    },
+    {
+      "to": "bob",
+      "packet": "4e58533100000000a00f9746d2ef5e339916b40cd3f1284868384e02aa596f2e0e1df3dc1e115544ee627d6f41fe4d5384640e68ed0cbbc30000000000000000000000764e584d3303010000000000000000000000000000000000440000004a810de413231b7004ac722459d2e9ee7d9b01274976fa10bac84f94a55eede9d5aeae51ee243cb771edf93efec1741fad09b8fcafd3ec124690ffce4bc8df7108bb2623f0190c5e14b2d812061b9dc7c9b1b1d46d60649cb0f2d2",
+      "bytes": 186
+    },
+    {
+      "to": "alice",
+      "packet": "4e58533101000000a00f9746d2ef5e339916b40cd3f12848ee627d6f41fe4d5384640e68ed0cbbc368384e02aa596f2e0e1df3dc1e11554400000000000000000000008a4e584d3303010000000000000000000000000000000000440000005e630919df1d717ec09a2665af079a7fecdae539a50b0d9c8b150f7053e42ef1978b59157949bf8b046b1f59c2c74b59ed976d820d17d9760f903a77ed738d22a804372cb15bb2fb4cff79c6a913cb908974a86153ddbb911e12609dad27a38eac5daf886dd371736aeee9cb79b684",
+      "bytes": 206
+    },
+    {
+      "to": "bob",
+      "packet": "4e58533100000000a00f9746d2ef5e339916b40cd3f1284868384e02aa596f2e0e1df3dc1e115544ee627d6f41fe4d5384640e68ed0cbbc30000000000000000000000764e584d3303010000000000000000000000000000000000440000004a810de413231b7004ac722459d2e9ee7d9b01274976fa10bac84f94a55eede9d5aeae51ee243cb771edf93efec1741fad09b8fcafd3ec124690ffce4bc8df7108bb2623f0190c5e14b2d812061b9dc7c9b1b1d46d60649cb0f2d2",
+      "bytes": 186
+    },
+    {
+      "to": "bob",
+      "packet": "4e58533100000000a00f9746d2ef5e339916b40cd3f1284868384e02aa596f2e0e1df3dc1e115544ee627d6f41fe4d5384640e68ed0cbbc30000000000000001000000534e584d33030100000000000000000000000000000000004400000027c0243397ef2e404b8930022e6696f15f531a71dd7965633c82ba730dcb0a11eaf367a0b316a3847a7ed791ba73d1b77032788c1326e17d",
+      "bytes": 151
+    },
+    {
+      "to": "bob",
+      "packet": "4e58533100000000a00f9746d2ef5e339916b40cd3f1284868384e02aa596f2e0e1df3dc1e115544ee627d6f41fe4d5384640e68ed0cbbc30000000000000001000000534e584d33030100000000000000000000000000000000004400000027c0243397ef2e404b8930022e6696f15f531a71dd7965633c82ba730dcb0a11eaf367a0b316a3847a7ed791ba73d1b77032788c1326e17c",
+      "bytes": 151
+    },
+    {
+      "to": "bob",
+      "packet": "4e58533100000000a00f9746d2ef5e339916b40cd3f1284868384e02aa596f2e0e1df3dc1e115544ee627d6f41fe4d5384640e68ed0cbbc300000000000000040000003c4e584d3303010000000000000000000000000000000000440000001073cf7046ff1c6b1bc0de3d731b7ad13295fc2f5762b0c8141c142d72ba71181a",
+      "bytes": 128
+    },
+    {
+      "to": "bob",
+      "packet": "4e58533100000000a00f9746d2ef5e339916b40cd3f1284868384e02aa596f2e0e1df3dc1e115544ee627d6f41fe4d5384640e68ed0cbbc300000000000000020000003c4e584d33030100000000000000000000000000000000004400000010dac98a82ae38d90a8cdbf8299113fadece2fdad5175312d5d7ae0947bb06fa78",
+      "bytes": 128
+    },
+    {
+      "to": "bob",
+      "packet": "4e58533100000000a00f9746d2ef5e339916b40cd3f1284868384e02aa596f2e0e1df3dc1e115544ee627d6f41fe4d5384640e68ed0cbbc300000000000000030000003c4e584d3303010000000000000000000000000000000000440000001038b67645eeb800bc97b86fbdd8a6d239732c284b3862c81c5382f86a80190e47",
+      "bytes": 128
+    },
+    {
+      "to": "bob",
+      "packet": "4e58483101d27bf12c0f231a5ba1189caaf79f536e491a0ad45ef9877eb368d9dd9045b63cc55c129dbb5b1ce66be23af0e1bf09407a70a6ad1da37eac82ab1d03e3ae284a71bdf43912f9422a89a1003b9a347a9d",
+      "bytes": 85
+    },
+    {
+      "to": "alice",
+      "packet": "4e58483102d27bf12c0f231a5ba1189caaf79f536e491a0ad45ef9877eb368d9dd9045b63cc55c129dbb5b1ce66be23af0e1bf09407a70a6ad1da37eac82ab1d03e3ae284afc029be4a7c1800e2f98ff10f524c389a2b995cd2508072de603146154e5da5b",
+      "bytes": 101
+    },
+    {
+      "to": "bob",
+      "packet": "4e58483103d27bf12c0f231a5ba1189caaf79f536e491a0ad45ef9877eb368d9dd9045b63cc55c129dbb5b1ce66be23af0e1bf09407a70a6ad1da37eac82ab1d03e3ae284afc029be4a7c1800e2f98ff10f524c3892f41c883c6fef35bcf3a1d08433d5b39",
+      "bytes": 101
+    },
+    {
+      "to": "bob",
+      "packet": "4e58533100000000a00f9746d2ef5e339916b40cd3f1284868384e02aa596f2e0e1df3dc1e115544ee627d6f41fe4d5384640e68ed0cbbc30000000000000000000000764e584d3303010000000000000000000000000000000000440000004a810de413231b7004ac722459d2e9ee7d9b01274976fa10bac84f94a55eede9d5aeae51ee243cb771edf93efec1741fad09b8fcafd3ec124690ffce4bc8df7108bb2623f0190c5e14b2d812061b9dc7c9b1b1d46d60649cb0f2d2",
+      "bytes": 186
+    },
+    {
+      "to": "bob",
+      "packet": "4e58533100000000c55c129dbb5b1ce66be23af0e1bf0940d27bf12c0f231a5ba1189caaf79f536e491a0ad45ef9877eb368d9dd9045b63c0000000000000000000000774e584d3303010000000000000000000000000000000000440000004b72878682940b72e7db649edd3592560a8314abefdf53f2b9c02bf44a911b368345e0e935a922ee5d4d58436fe835c6ddb12e0dd196761b6e5dde3f32b0b18cbc797f4fd06c7569b1cd87b9bda06cc0e006014ece86e9ac48cf3bf3",
+      "bytes": 187
+    },
+    {
+      "to": "bob",
+      "packet": "4e58533100000000c55c129dbb5b1ce66be23af0e1bf0940d27bf12c0f231a5ba1189caaf79f536e491a0ad45ef9877eb368d9dd9045b63c0000000000000001000000394e584d3303010000000000000000000000000000000000440000000dba755d22306c1fb50c8387971212bba3df27eed6df13283625da045424",
+      "bytes": 125
+    },
+    {
+      "to": "bob",
+      "packet": "4e5848310146f127411827347f3acff2f1cfbd5984c6987d2b9fde9383bf397f1be579e6cae1af1b37d0654d0d0036376626bfbdbda3cca143d3bc278c29e86de5480a6c8e3bc4a606e1958f0b45995a71b814890f",
+      "bytes": 85
+    },
+    {
+      "to": "alice",
+      "packet": "4e5848310246f127411827347f3acff2f1cfbd5984c6987d2b9fde9383bf397f1be579e6cae1af1b37d0654d0d0036376626bfbdbda3cca143d3bc278c29e86de5480a6c8e9f91647663716acd004f38ca308f77637670582fccbc076817c14bf91a06ad25",
+      "bytes": 101
+    },
+    {
+      "to": "bob",
+      "packet": "4e5848310346f127411827347f3acff2f1cfbd5984c6987d2b9fde9383bf397f1be579e6cae1af1b37d0654d0d0036376626bfbdbda3cca143d3bc278c29e86de5480a6c8e9f91647663716acd004f38ca308f7763788cf88e9ce8c068033c5f5caa3a9be5",
+      "bytes": 101
+    },
+    {
+      "to": "bob",
+      "packet": "4e58533100000000c55c129dbb5b1ce66be23af0e1bf0940d27bf12c0f231a5ba1189caaf79f536e491a0ad45ef9877eb368d9dd9045b63c0000000000000001000000394e584d3303010000000000000000000000000000000000440000000dba755d22306c1fb50c8387971212bba3df27eed6df13283625da045424",
+      "bytes": 125
+    },
+    {
+      "to": "bob",
+      "packet": "4e58533100000000e1af1b37d0654d0d0036376626bfbdbd46f127411827347f3acff2f1cfbd5984c6987d2b9fde9383bf397f1be579e6ca0000000000000000000000804e584d33030100000000000000000000000000000000004400000054518d0e4bbda0ec3dcab052a1971d1da7763279cb593ccf917155166afcfaaba6a21c6faed4890b662113b4e3f889f3b84df2f2c7c461af342435ee21eeaeebc481c8c45a0c0e163e582e7bf2281862cac6e7c4601db8827f40eb0656ee426b2453202c11",
+      "bytes": 196
+    },
+    {
+      "to": "bob",
+      "packet": "4e58533100000000e1af1b37d0654d0d0036376626bfbdbd46f127411827347f3acff2f1cfbd5984c6987d2b9fde9383bf397f1be579e6ca00000000000000010000003c4e584d3303010000000000000000000000000000000000440000001036034622353f4f808ead74e943a90c5b76bcae4faad1308f4a298eda98864976",
+      "bytes": 128
+    },
+    {
+      "to": "alice",
+      "packet": "4e58533101000000e1af1b37d0654d0d0036376626bfbdbdc6987d2b9fde9383bf397f1be579e6ca46f127411827347f3acff2f1cfbd59840000000000000000000000364e584d3303010000000000000000000000000000000000440000000a1f7205332e6dc69e63ba2ab1c2371cfe8315c8acc06404399b1a",
+      "bytes": 122
+    },
+    {
+      "to": "alice",
+      "packet": "4e58533101000000e1af1b37d0654d0d0036376626bfbdbdc6987d2b9fde9383bf397f1be579e6ca46f127411827347f3acff2f1cfbd59840000000000000000000000364e584d3303010000000000000000000000000000000000440000000a1f7205332e6dc69e63ba2ab1c2371cfe8315c8acc06404399b1a",
+      "bytes": 122
+    },
+    {
+      "to": "alice",
+      "packet": "4e58533101000000e1af1b37d0654d0d0036376626bfbdbdc6987d2b9fde9383bf397f1be579e6ca46f127411827347f3acff2f1cfbd59840000000000000000000000364e584d3303010000000000000000000000000000000000440000000a1f7205332e6dc69e63ba2ab1c2371cfe8315c8acc06404399b1b",
+      "bytes": 122
+    },
+    {
+      "to": "bob",
+      "packet": "4e58533100000000e1af1b37d0654d0d0036376626bfbdbd46f127411827347f3acff2f1cfbd5984c6987d2b9fde9383bf397f1be579e6ca00000000000000040000003c4e584d33030100000000000000000000000000000000004400000010b2aa1aadc4ba6e12148c3c33dba9ac040d724ed48356a3b3ee28b17fe886d177",
+      "bytes": 128
+    },
+    {
+      "to": "bob",
+      "packet": "4e58533100000000e1af1b37d0654d0d0036376626bfbdbd46f127411827347f3acff2f1cfbd5984c6987d2b9fde9383bf397f1be579e6ca00000000000000020000003c4e584d3303010000000000000000000000000000000000440000001073c1dcff4071b12fa3325703ccc7f0012b7de9c6dc5a1594d3393291e16c1189",
+      "bytes": 128
+    },
+    {
+      "to": "bob",
+      "packet": "4e58533100000000e1af1b37d0654d0d0036376626bfbdbd46f127411827347f3acff2f1cfbd5984c6987d2b9fde9383bf397f1be579e6ca00000000000000030000003c4e584d33030100000000000000000000000000000000004400000010c2b5f750f7445aa76610abf8044a2db3cd17a3269dc761d040f67d1ab6c7454f",
+      "bytes": 128
+    },
+    {
+      "to": "bob",
+      "packet": "4e584831018a35fab4a73e878fa4cdab5a2fbd5bd5414fb4aa335f99624de79119131676f38a9dfad1f8d7be0f50ab6290521967e698d3a3f0263199634b595699a64f8d69a4b99f9fb3581690e93b99b43aa23a54",
+      "bytes": 85
+    },
+    {
+      "to": "alice",
+      "packet": "4e584831028a35fab4a73e878fa4cdab5a2fbd5bd5414fb4aa335f99624de79119131676f38a9dfad1f8d7be0f50ab6290521967e698d3a3f0263199634b595699a64f8d698c8d32b01d4b13182a0f32e1580360846bb21ed2432a9cf231ffaac16f643c90",
+      "bytes": 101
+    },
+    {
+      "to": "bob",
+      "packet": "4e584831038a35fab4a73e878fa4cdab5a2fbd5bd5414fb4aa335f99624de79119131676f38a9dfad1f8d7be0f50ab6290521967e698d3a3f0263199634b595699a64f8d698c8d32b01d4b13182a0f32e158036084bf4436236524cb14519aa0caf114dbc6",
+      "bytes": 101
+    },
+    {
+      "to": "bob",
+      "packet": "4e585331000000008a9dfad1f8d7be0f50ab6290521967e68a35fab4a73e878fa4cdab5a2fbd5bd5414fb4aa335f99624de79119131676f30000000000000000000000394e584d3303010000000000000000000000000000000000440000000d69f3a59814f071bd1eba645cefec739a795a835aa00088ee46bac7fa0c",
+      "bytes": 125
+    },
+    {
+      "to": "bob",
+      "packet": "4e58483101ef11b8fefc5eedce1cc528badd607ec9876e850a9e6182264709755dbf82505dbf75c24569aa5799724b7f30120d58615edf28ae7f6a1a31fd67f6576833a1ed0403cbe628e0337b72dbeca6a40a97f7",
+      "bytes": 85
+    },
+    {
+      "to": "alice",
+      "packet": "4e58483102ef11b8fefc5eedce1cc528badd607ec9876e850a9e6182264709755dbf82505dbf75c24569aa5799724b7f30120d58615edf28ae7f6a1a31fd67f6576833a1eda0e7b05a3674aaeb413267a8c0d8da2f86cabfb55f04c50c456eabc2d4a040cf",
+      "bytes": 101
+    },
+    {
+      "to": "bob",
+      "packet": "4e58483103ef11b8fefc5eedce1cc528badd607ec9876e850a9e6182264709755dbf82505dbf75c24569aa5799724b7f30120d58615edf28ae7f6a1a31fd67f6576833a1eda0e7b05a3674aaeb413267a8c0d8da2f5f0367035be64d22dc1b8b8d0bcab7a4",
+      "bytes": 101
+    },
+    {
+      "to": "bob",
+      "packet": "4e585331000000008a9dfad1f8d7be0f50ab6290521967e68a35fab4a73e878fa4cdab5a2fbd5bd5414fb4aa335f99624de79119131676f30000000000000000000000394e584d3303010000000000000000000000000000000000440000000d69f3a59814f071bd1eba645cefec739a795a835aa00088ee46bac7fa0c",
+      "bytes": 125
+    },
+    {
+      "to": "bob",
+      "packet": "4e58533100000000bf75c24569aa5799724b7f30120d5861ef11b8fefc5eedce1cc528badd607ec9876e850a9e6182264709755dbf82505d0000000000000000000000804e584d33030100000000000000000000000000000000004400000054f4f9ae0870572553a438188cc7813df165aa9427eb9c75f441a3fdc6d0a778e7ca45f91ae6f3600b0a30d08df53b1981466db41700934b0fe8c89cba01171f0cab41e1d147888f1684c768a61da7bee5693f3c1d31d9b0a74d04ea111b73ac5c071d63eb",
+      "bytes": 196
+    }
+  ]
+}

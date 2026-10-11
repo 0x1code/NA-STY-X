@@ -1,10 +1,25 @@
-# Security status — v0.3 research revision
+# Security status — NXS1 / v0.4 research revision
+
+NXS1 implements experimental paired-device E2EE with an out-of-band one-time random secret,
+transcript/peer confirmation, directional message-key chains and replay rejection. Metadata
+remains public. It is **not approved for real secrets**; see `SESSION_SPEC_V1.md`.
+
+Past keys leave logical active state, but forward secrecy depends on unproven one-way
+derivation and actual erasure. Current-chain compromise exposes future keys until fresh
+out-of-band pairing. No automatic PCS, public-key establishment, persistent secure key
+store/history or guaranteed constant time. Restart requires fresh pairing; never clone,
+fork or snapshot live chains. The trusted demo controller is distinct from its packet-only relay.
+
+## Standalone v0.3 messages
 
 The original cipher, subkey derivation and message tag have no independent cryptanalysis or security bounds. Do not use this revision to protect real secrets. See `CRYPTO_SPEC_V0_3.md` and `MESSAGE_SPEC_V0_3.md`.
 
 Message encryption and tag verification are implemented; this does not establish confidentiality or forgery resistance. The receiver authenticates before decrypting. Nonces are reserved in one shared persistent registry per key; missing/corrupt metadata fail closed. Never reuse a key after losing or rolling back this state. Windows power-loss durability of directory metadata is not established. Local storage tampering/rollback, network filesystems and multiple registries for the same key are outside the nonce guarantee.
 
-Table access depends on secrets, compiler-level constant time is unverified, and key memory is not guaranteed to be erased. No key exchange, replay protection, forward secrecy or full session protocol is implemented. Public examples use test keys, not real secrets. Functional tests and improved statistical metrics do not replace a cryptographic review.
+Table access depends on secrets, constant time is unverified, and key memory is not
+guaranteed to be erased. Standalone v0.3 lacks replay/session state; NXS1 adds it with the
+limitations above. Historical examples use public test keys; E2EE demo uses fresh OS
+randomness with non-secret texts. Functional tests do not replace cryptographic review.
 
 ## Historical v0.2 status
 

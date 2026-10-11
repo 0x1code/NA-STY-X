@@ -121,6 +121,39 @@ fn seal(keys: &Keys, nonce: &[u8; 12], plaintext: &[u8], context: &[u8]) -> Vec<
     out
 }
 
+/// Domain-separated experimental authenticator for the session research layer.
+/// This is not a reviewed MAC or a password derivation function.
+pub fn authentication_code(master: &[u8; 32], context: &[u8]) -> Result<[u8; 16], Error> {
+    if context.len() > MAX_CONTEXT {
+        return Err(Error::TooLarge);
+    }
+    let mut header = domain(b'H', 0, 0).to_vec();
+    header.extend_from_slice(&(context.len() as u32).to_be_bytes());
+    Ok(tag(&Keys::new(master), &header, context, &[]))
+}
+
+/// A key used for exactly one record, consumed by sealing. No Clone or Copy.
+/// The caller MUST supply a fresh derived key each time: recreating this object
+/// with a previous key repeats the fixed nonce. Session chains enforce that in memory.
+pub struct OneTimeSealer {
+    keys: Keys,
+}
+impl OneTimeSealer {
+    /// Accepts a fresh, never-used 32-byte message key, not a long-term key.
+    pub fn new(fresh_message_key: &[u8; 32]) -> Self {
+        Self {
+            keys: Keys::new(fresh_message_key),
+        }
+    }
+    /// Consumes this key even on a size error. No persistent nonce registry is used.
+    pub fn seal(self, plaintext: &[u8], context: &[u8]) -> Result<Vec<u8>, Error> {
+        if plaintext.len() > MAX_MESSAGE || context.len() > MAX_CONTEXT {
+            return Err(Error::TooLarge);
+        }
+        Ok(seal(&self.keys, &[0; 12], plaintext, context))
+    }
+}
+
 /// Sender backed by one shared persistent registry per master key.
 /// Never delete/roll back this registry or use another registry for the same key.
 /// Atomic create-new markers protect normal restarts/concurrent senders;

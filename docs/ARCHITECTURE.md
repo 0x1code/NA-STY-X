@@ -16,10 +16,24 @@ The block primitive and future messaging layer have separate specifications and 
 
 The direction was revised on 2026-10-11 to develop an original cipher and protocol without integrating ready-made encryption algorithms. `nastyx-core` v0.2 uses its own public S-box generator. No new cryptographic dependencies were added. Earlier proposals to wrap established AEAD and key-exchange libraries are not the current implementation plan.
 
-The protocol design is documented in `PROTOCOL_DESIGN.md`. It is a draft with explicit gaps, including key establishment and session state. The research message mode and tag are separately implemented in v0.3. It must not be presented as a secure messaging implementation. Historical v0.1 results are kept separately from active v0.2 vectors and measurements.
+`PROTOCOL_DESIGN.md` and `SESSION_SPEC_V1.md` describe paired-device volatile sessions.
+Public-key establishment and independent security evaluation remain absent. Historical
+results are kept separate; a working prototype does not establish production security.
 
 ## Current v0.3 implementation
 
 `nastyx-engine` implements the new cipher revision; `nastyx-message` depends only on it. `nastyx-core` remains the historical v0.2 implementation. Their vectors and algorithms are kept separate. Python independently implements v0.3 block and message transformations.
 
 The message API implements research encryption/integrity and a local nonce registry, not a complete session protocol. See `MESSAGE_SPEC_V0_3.md` for exact framing, key derivation, state assumptions and missing properties. Earlier statements about absent authentication refer to the historical primitive; the new tag is implemented but unreviewed.
+
+## NXS1 / 0.4.0-alpha
+
+`nastyx-session` depends only on `nastyx-message`: one-time pairing, ID/transcript binding,
+peer-code verification, directional chains, consumed message keys and bounded skipped keys.
+No serialization/key export: fresh pairing after restart. OneTimeSealer uses fixed-nonce
+NXM3 only for fresh message keys; long-term keys require Sender's persistent nonce registry.
+
+Independent `session_v1.py` matches Rust fixtures. `demos/e2ee_chat.py` launches two clients
+and an HTTP relay; trusted local pipes provision pairing and drive endpoints, while only
+canonical packets traverse HTTP. This demonstrates separation, not malware isolation,
+production key agreement or a deployed messenger.
