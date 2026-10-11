@@ -150,17 +150,10 @@ def vortex_trail(index):
 
 def main_mark():
     final_body = shape(GEOMETRY[0]['paths'][0])
-    sealed_body = copy.deepcopy(final_body)
-    # The opening stays sealed until the pen returns after writing and orbiting.
-    for index in range(3, 11):
-        sealed_body['v'][index] = mix([559, 396], [686, 434], (index-2)/9)
-        sealed_body['i'][index] = [0, 0]
-        sealed_body['o'][index] = [0, 0]
-    sealed_body['o'][2] = [0, 0]
-    sealed_body['i'][11] = [0, 0]
+    # Resolve the complete original silhouette before the internal dot appears.
     layer = vector_layer('Mark - growing N', [
-        {'ty': 'sh', 'nm': 'Body - incoming dot carves its permanent trail',
-         'ks': animated([(65, sealed_body), (402, sealed_body), (432, final_body)])}, fill(MINT)],
+        {'ty': 'sh', 'nm': 'Body - complete N silhouette',
+         'ks': fixed(final_body)}, fill(MINT)],
         anchor=(627.5, 543), ip=65,
         scale=animated([(0, [100, 100, 100]), (454, [100, 100, 100]),
                         (476, [112, 90, 100]), (494, [94, 106, 100]),
@@ -178,9 +171,6 @@ def main_mark():
             (75, capsule([511, 434], [511.01, 434.01], .01)),
             (82, capsule([511, 434], [564, 483], 66)),
             (110, capsule([511, 434], [746, 653], 70))])),
-        mask('Reveal - complete sealed bridge', 'a', animated([
-            (99, path([[560, 397], [560, 397], [560, 397], [560, 397]], True)),
-            (110, path([[535, 380], [705, 400], [765, 610], [570, 540]], True))])),
         mask('Counter - entry, carved trail and final home', 's', animated(
             [(0, circle(686, 454, 34))]+[(f, circle(*return_position(f), 34)) for f in range(402, 491)], True))]
     layer['masksProperties'][-1]['o'] = animated([(0, 0), (402, 0), (410, 100)])
@@ -193,13 +183,14 @@ def cubic(a, b, c, d, u):
 
 def return_position(frame):
     if frame < 318:
-        return cubic([845.5, 781.5], [930, 725], [975, 605], [927.5, 543], smooth((frame-304)/14))
-    if frame <= 386:
-        angle = -math.tau*1.05*(frame-318)/68
-        return [627.5+300*math.cos(angle), 543+255*math.sin(angle)]
-    orbit_end = [627.5+300*math.cos(-math.tau*1.05), 543+255*math.sin(-math.tau*1.05)]
+        return cubic([845.5, 781.5], [825, 742], [715, 725], [627.5, 740], smooth((frame-304)/14))
+    if frame <= 352:
+        angle = math.pi/2+math.pi*smooth((frame-318)/34)
+        return [627.5+300*math.cos(angle), 543+197*math.sin(angle)]
+    if frame <= 366:
+        return [627.5, 346]
     if frame < 402:
-        return cubic(orbit_end, [855, 402], [746, 413], [686, 454], smooth((frame-386)/16))
+        return cubic([627.5, 346], [700, 325], [768, 411], [686, 454], smooth((frame-366)/36))
     if frame < 420:
         return cubic([686, 454], [686, 494], [750, 519], [750, 578], smooth((frame-402)/18))
     if frame < 432:

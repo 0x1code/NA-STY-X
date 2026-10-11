@@ -33,3 +33,7 @@ Two circles rotate in opposite directions and smoothly build the main N. A bounc
 ## Revision — 2026-10-11
 
 Four-dot spiral tornado replaces approaching circles. Independent dot writes NAXI, orbits N, enters and carves the permanent inner hook. The opening stays sealed until entry. The circular counter then travels to its upper-left home. Duration: 562 frames at 60 fps.
+
+## Revision — complete silhouette and half orbit
+
+Draw the full original N silhouette before the circular dot enters. Remove the sealed bridge intermediate body. After writing, the dot follows a half orbit from below around the left side, stops at the top for 14 frames, then enters the N.
