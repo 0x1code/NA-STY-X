@@ -1,0 +1,8 @@
+[project]
+name = "nastyx-research"
+version = "0.1.0a0"
+requires-python = ">=3.10"
+description = "Reproducible research scripts for the experimental NA&STY-X cipher"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

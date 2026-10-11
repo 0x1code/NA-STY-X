@@ -1,0 +1,9 @@
+{
+  "format": "nastyx-block-vector-v1",
+  "warning": "Experimental research cipher only; not suitable for real data.",
+  "algorithm": "NA&STY-X Research Cipher v0.1",
+  "rounds": 16,
+  "key_hex": "000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f",
+  "plaintext_hex": "00112233445566778899aabbccddeeff",
+  "ciphertext_hex": "f7d36b9993d7af9ae115d2c7458b6118"
+}

@@ -1,0 +1,14 @@
+[package]
+name = "nastyx-core"
+description = "Experimental, non-production NA&STY-X research cipher"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+rust-version.workspace = true
+
+[lib]
+name = "nastyx_core"
+path = "src/lib.rs"
+
+[lints]
+workspace = true

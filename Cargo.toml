@@ -1,0 +1,15 @@
+[workspace]
+members = ["crates/nastyx-core", "crates/nastyx-cli"]
+resolver = "2"
+
+[workspace.package]
+version = "0.1.0-alpha"
+edition = "2021"
+license = "MIT"
+rust-version = "1.74"
+
+[workspace.lints.rust]
+unsafe_code = "forbid"
+
+[workspace.lints.clippy]
+all = "warn"
