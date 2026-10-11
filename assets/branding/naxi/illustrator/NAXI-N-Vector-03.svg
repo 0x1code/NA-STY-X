@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1254" height="1254" viewBox="0 0 1254 1254">
+  <title>NAXI — N Vector 03</title>
+  <desc>Two independent editable vector components. Transparent background.</desc>
+  <g id="Upper-diagonal-and-right-stem" fill="#57F4B4">
+    <path id="Upper-right-component" d="M 307 301 L 447 301 L 829 737 L 829 301 L 868 301 L 940 377 L 940 901 L 880 901 Z"/>
+  </g>
+  <g id="Lower-diagonal-and-left-stem" fill="#57F4B4">
+    <path id="Lower-left-component" d="M 314 388 L 330 388 L 874 953 L 763 953 L 425 605 L 425 953 L 390 953 L 314 876 Z"/>
+  </g>
+</svg>
