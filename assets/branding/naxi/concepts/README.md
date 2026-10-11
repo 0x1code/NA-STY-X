@@ -25,3 +25,11 @@
 ## Анимация надписи
 
 После рисования NAXI последняя I уменьшается по высоте. Зелёная рисующая точка остаётся над ней и образует маленькую i. На этом рисование заканчивается. Орбита и внедрение точки в большой знак исключены. Большой знак ожидает выбора новой формы.
+
+## 03 — Vector, refinement v2
+
+`03-vector-refined-v2.png` — доработанная концепция выбранного направления.
+
+Сохранены две диагональные ленты и просвет между ними. Левая стойка шире, начинается ниже и заканчивается ниже правой. Правая стойка тоньше и выше. Острые торцы заменены компактными скруглёнными окончаниями, внутренние соединения смягчены. Диагональные просветы выровнены для читаемости в размере иконки. Подпись варианта убрана.
+
+Design specification: refine the supplied split-diagonal N, preserve its readable architecture, introduce unequal stem proportions and optical channel spacing, taper diagonal ribbons, soften terminals and sculpt inside junctions. Flat mint on graphite, one centered mark without text or extra symbols. The PNG remains a concept pending vector construction.
