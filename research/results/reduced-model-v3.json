@@ -1,0 +1,3076 @@
+{
+  "format": "nastyx-toy-v3-analysis-v1",
+  "model": "16-bit block / 32-bit key / 8-bit words",
+  "warning": "Toy model only. Selected differences and masks are not exhaustive global maxima. No bounds for the full cipher.",
+  "domain_size": 65536,
+  "keys": [0, 1985229328],
+  "round_counts": [1, 2, 3, 4, 6, 8],
+  "input_differences": [1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048, 4096, 8192, 16384, 32768],
+  "output_masks": [1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048, 4096, 8192, 16384, 32768],
+  "input_mask_scope": "all 65535 nonzero masks for each selected output mask",
+  "plaintext_scope": "all 65536 inputs for each fixed key and round count",
+  "python": "3.12.10",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "source_sha256": "c690f7c781452039e921a097248942ebb9b45d923a7d44063666281570eb0a34",
+  "sbox_source_sha256": "90759ebdc0a2c479a3d42a7dc419820c08171acc1568de7ed992f7dd17724a26",
+  "hash_convention": "UTF-8 with universal newlines normalized to LF",
+  "cases": [
+    {
+      "bijective": true,
+      "differentials": [
+        {
+          "input_difference": 1,
+          "output_difference": 330,
+          "count": 2560,
+          "probability": 0.0390625,
+          "peak_multiplicity": 2
+        },
+        {
+          "input_difference": 2,
+          "output_difference": 512,
+          "count": 2048,
+          "probability": 0.03125,
+          "peak_multiplicity": 3
+        },
+        {
+          "input_difference": 4,
+          "output_difference": 1024,
+          "count": 3072,
+          "probability": 0.046875,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_difference": 8,
+          "output_difference": 2212,
+          "count": 2560,
+          "probability": 0.0390625,
+          "peak_multiplicity": 2
+        },
+        {
+          "input_difference": 16,
+          "output_difference": 4096,
+          "count": 2048,
+          "probability": 0.03125,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_difference": 32,
+          "output_difference": 8410,
+          "count": 2048,
+          "probability": 0.03125,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_difference": 64,
+          "output_difference": 16639,
+          "count": 2560,
+          "probability": 0.0390625,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_difference": 128,
+          "output_difference": 32822,
+          "count": 2560,
+          "probability": 0.0390625,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_difference": 256,
+          "output_difference": 1,
+          "count": 65536,
+          "probability": 1.0,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_difference": 512,
+          "output_difference": 2,
+          "count": 65536,
+          "probability": 1.0,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_difference": 1024,
+          "output_difference": 4,
+          "count": 65536,
+          "probability": 1.0,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_difference": 2048,
+          "output_difference": 8,
+          "count": 65536,
+          "probability": 1.0,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_difference": 4096,
+          "output_difference": 16,
+          "count": 65536,
+          "probability": 1.0,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_difference": 8192,
+          "output_difference": 32,
+          "count": 65536,
+          "probability": 1.0,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_difference": 16384,
+          "output_difference": 64,
+          "count": 65536,
+          "probability": 1.0,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_difference": 32768,
+          "output_difference": 128,
+          "count": 65536,
+          "probability": 1.0,
+          "peak_multiplicity": 1
+        }
+      ],
+      "linear": [
+        {
+          "input_mask": 479,
+          "output_mask": 1,
+          "signed_walsh": 14336,
+          "absolute_correlation": 0.21875,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_mask": 512,
+          "output_mask": 2,
+          "signed_walsh": -11264,
+          "absolute_correlation": 0.171875,
+          "peak_multiplicity": 3
+        },
+        {
+          "input_mask": 1187,
+          "output_mask": 4,
+          "signed_walsh": 12800,
+          "absolute_correlation": 0.1953125,
+          "peak_multiplicity": 2
+        },
+        {
+          "input_mask": 2057,
+          "output_mask": 8,
+          "signed_walsh": 11264,
+          "absolute_correlation": 0.171875,
+          "peak_multiplicity": 3
+        },
+        {
+          "input_mask": 4241,
+          "output_mask": 16,
+          "signed_walsh": 14848,
+          "absolute_correlation": 0.2265625,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_mask": 8377,
+          "output_mask": 32,
+          "signed_walsh": 11264,
+          "absolute_correlation": 0.171875,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_mask": 16431,
+          "output_mask": 64,
+          "signed_walsh": 12288,
+          "absolute_correlation": 0.1875,
+          "peak_multiplicity": 2
+        },
+        {
+          "input_mask": 32901,
+          "output_mask": 128,
+          "signed_walsh": 13824,
+          "absolute_correlation": 0.2109375,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_mask": 1,
+          "output_mask": 256,
+          "signed_walsh": 65536,
+          "absolute_correlation": 1.0,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_mask": 2,
+          "output_mask": 512,
+          "signed_walsh": 65536,
+          "absolute_correlation": 1.0,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_mask": 4,
+          "output_mask": 1024,
+          "signed_walsh": 65536,
+          "absolute_correlation": 1.0,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_mask": 8,
+          "output_mask": 2048,
+          "signed_walsh": 65536,
+          "absolute_correlation": 1.0,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_mask": 16,
+          "output_mask": 4096,
+          "signed_walsh": 65536,
+          "absolute_correlation": 1.0,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_mask": 32,
+          "output_mask": 8192,
+          "signed_walsh": 65536,
+          "absolute_correlation": 1.0,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_mask": 64,
+          "output_mask": 16384,
+          "signed_walsh": 65536,
+          "absolute_correlation": 1.0,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_mask": 128,
+          "output_mask": 32768,
+          "signed_walsh": 65536,
+          "absolute_correlation": 1.0,
+          "peak_multiplicity": 1
+        }
+      ],
+      "max_selected_differential_probability": 1.0,
+      "max_selected_absolute_linear_correlation": 1.0,
+      "key_hex": "00000000",
+      "rounds": 1
+    },
+    {
+      "bijective": true,
+      "differentials": [
+        {
+          "input_difference": 1,
+          "output_difference": 1,
+          "count": 1536,
+          "probability": 0.0234375,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_difference": 2,
+          "output_difference": 2,
+          "count": 2048,
+          "probability": 0.03125,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_difference": 4,
+          "output_difference": 4,
+          "count": 3072,
+          "probability": 0.046875,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_difference": 8,
+          "output_difference": 8,
+          "count": 1536,
+          "probability": 0.0234375,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_difference": 16,
+          "output_difference": 16,
+          "count": 2048,
+          "probability": 0.03125,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_difference": 32,
+          "output_difference": 32,
+          "count": 1536,
+          "probability": 0.0234375,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_difference": 64,
+          "output_difference": 64,
+          "count": 1536,
+          "probability": 0.0234375,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_difference": 128,
+          "output_difference": 128,
+          "count": 1536,
+          "probability": 0.0234375,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_difference": 256,
+          "output_difference": 330,
+          "count": 2560,
+          "probability": 0.0390625,
+          "peak_multiplicity": 2
+        },
+        {
+          "input_difference": 512,
+          "output_difference": 512,
+          "count": 2048,
+          "probability": 0.03125,
+          "peak_multiplicity": 3
+        },
+        {
+          "input_difference": 1024,
+          "output_difference": 1024,
+          "count": 3072,
+          "probability": 0.046875,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_difference": 2048,
+          "output_difference": 2212,
+          "count": 2560,
+          "probability": 0.0390625,
+          "peak_multiplicity": 2
+        },
+        {
+          "input_difference": 4096,
+          "output_difference": 4096,
+          "count": 2048,
+          "probability": 0.03125,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_difference": 8192,
+          "output_difference": 8410,
+          "count": 2048,
+          "probability": 0.03125,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_difference": 16384,
+          "output_difference": 16639,
+          "count": 2560,
+          "probability": 0.0390625,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_difference": 32768,
+          "output_difference": 32822,
+          "count": 2560,
+          "probability": 0.0390625,
+          "peak_multiplicity": 1
+        }
+      ],
+      "linear": [
+        {
+          "input_mask": 2305,
+          "output_mask": 1,
+          "signed_walsh": -3200,
+          "absolute_correlation": 0.048828125,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_mask": 2,
+          "output_mask": 2,
+          "signed_walsh": -11264,
+          "absolute_correlation": 0.171875,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_mask": 4,
+          "output_mask": 4,
+          "signed_walsh": 5632,
+          "absolute_correlation": 0.0859375,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_mask": 2312,
+          "output_mask": 8,
+          "signed_walsh": 4400,
+          "absolute_correlation": 0.067138671875,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_mask": 18448,
+          "output_mask": 16,
+          "signed_walsh": -3120,
+          "absolute_correlation": 0.047607421875,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_mask": 32,
+          "output_mask": 32,
+          "signed_walsh": 6144,
+          "absolute_correlation": 0.09375,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_mask": 64,
+          "output_mask": 64,
+          "signed_walsh": 11264,
+          "absolute_correlation": 0.171875,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_mask": 128,
+          "output_mask": 128,
+          "signed_walsh": -5632,
+          "absolute_correlation": 0.0859375,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_mask": 479,
+          "output_mask": 256,
+          "signed_walsh": 14336,
+          "absolute_correlation": 0.21875,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_mask": 512,
+          "output_mask": 512,
+          "signed_walsh": -11264,
+          "absolute_correlation": 0.171875,
+          "peak_multiplicity": 3
+        },
+        {
+          "input_mask": 1187,
+          "output_mask": 1024,
+          "signed_walsh": 12800,
+          "absolute_correlation": 0.1953125,
+          "peak_multiplicity": 2
+        },
+        {
+          "input_mask": 2057,
+          "output_mask": 2048,
+          "signed_walsh": 11264,
+          "absolute_correlation": 0.171875,
+          "peak_multiplicity": 3
+        },
+        {
+          "input_mask": 4241,
+          "output_mask": 4096,
+          "signed_walsh": 14848,
+          "absolute_correlation": 0.2265625,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_mask": 8377,
+          "output_mask": 8192,
+          "signed_walsh": 11264,
+          "absolute_correlation": 0.171875,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_mask": 16431,
+          "output_mask": 16384,
+          "signed_walsh": 12288,
+          "absolute_correlation": 0.1875,
+          "peak_multiplicity": 2
+        },
+        {
+          "input_mask": 32901,
+          "output_mask": 32768,
+          "signed_walsh": 13824,
+          "absolute_correlation": 0.2109375,
+          "peak_multiplicity": 1
+        }
+      ],
+      "max_selected_differential_probability": 0.046875,
+      "max_selected_absolute_linear_correlation": 0.2265625,
+      "key_hex": "00000000",
+      "rounds": 2
+    },
+    {
+      "bijective": true,
+      "differentials": [
+        {
+          "input_difference": 1,
+          "output_difference": 330,
+          "count": 136,
+          "probability": 0.0020751953125,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_difference": 2,
+          "output_difference": 569,
+          "count": 112,
+          "probability": 0.001708984375,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_difference": 4,
+          "output_difference": 1024,
+          "count": 176,
+          "probability": 0.002685546875,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_difference": 8,
+          "output_difference": 2048,
+          "count": 80,
+          "probability": 0.001220703125,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_difference": 16,
+          "output_difference": 4184,
+          "count": 100,
+          "probability": 0.00152587890625,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_difference": 32,
+          "output_difference": 8192,
+          "count": 116,
+          "probability": 0.00177001953125,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_difference": 64,
+          "output_difference": 16384,
+          "count": 88,
+          "probability": 0.0013427734375,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_difference": 128,
+          "output_difference": 32957,
+          "count": 84,
+          "probability": 0.00128173828125,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_difference": 256,
+          "output_difference": 1,
+          "count": 1536,
+          "probability": 0.0234375,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_difference": 512,
+          "output_difference": 2,
+          "count": 2048,
+          "probability": 0.03125,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_difference": 1024,
+          "output_difference": 4,
+          "count": 3072,
+          "probability": 0.046875,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_difference": 2048,
+          "output_difference": 8,
+          "count": 1536,
+          "probability": 0.0234375,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_difference": 4096,
+          "output_difference": 16,
+          "count": 2048,
+          "probability": 0.03125,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_difference": 8192,
+          "output_difference": 32,
+          "count": 1536,
+          "probability": 0.0234375,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_difference": 16384,
+          "output_difference": 64,
+          "count": 1536,
+          "probability": 0.0234375,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_difference": 32768,
+          "output_difference": 128,
+          "count": 1536,
+          "probability": 0.0234375,
+          "peak_multiplicity": 1
+        }
+      ],
+      "linear": [
+        {
+          "input_mask": 470,
+          "output_mask": 1,
+          "signed_walsh": -2720,
+          "absolute_correlation": 0.04150390625,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_mask": 512,
+          "output_mask": 2,
+          "signed_walsh": -3296,
+          "absolute_correlation": 0.05029296875,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_mask": 1179,
+          "output_mask": 4,
+          "signed_walsh": -2368,
+          "absolute_correlation": 0.0361328125,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_mask": 2129,
+          "output_mask": 8,
+          "signed_walsh": -2312,
+          "absolute_correlation": 0.0352783203125,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_mask": 4248,
+          "output_mask": 16,
+          "signed_walsh": -1616,
+          "absolute_correlation": 0.024658203125,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_mask": 8377,
+          "output_mask": 32,
+          "signed_walsh": -2224,
+          "absolute_correlation": 0.033935546875,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_mask": 16431,
+          "output_mask": 64,
+          "signed_walsh": 2528,
+          "absolute_correlation": 0.03857421875,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_mask": 32768,
+          "output_mask": 128,
+          "signed_walsh": 2264,
+          "absolute_correlation": 0.0345458984375,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_mask": 2305,
+          "output_mask": 256,
+          "signed_walsh": -3200,
+          "absolute_correlation": 0.048828125,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_mask": 2,
+          "output_mask": 512,
+          "signed_walsh": -11264,
+          "absolute_correlation": 0.171875,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_mask": 4,
+          "output_mask": 1024,
+          "signed_walsh": 5632,
+          "absolute_correlation": 0.0859375,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_mask": 2312,
+          "output_mask": 2048,
+          "signed_walsh": 4400,
+          "absolute_correlation": 0.067138671875,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_mask": 18448,
+          "output_mask": 4096,
+          "signed_walsh": -3120,
+          "absolute_correlation": 0.047607421875,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_mask": 32,
+          "output_mask": 8192,
+          "signed_walsh": 6144,
+          "absolute_correlation": 0.09375,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_mask": 64,
+          "output_mask": 16384,
+          "signed_walsh": 11264,
+          "absolute_correlation": 0.171875,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_mask": 128,
+          "output_mask": 32768,
+          "signed_walsh": -5632,
+          "absolute_correlation": 0.0859375,
+          "peak_multiplicity": 1
+        }
+      ],
+      "max_selected_differential_probability": 0.046875,
+      "max_selected_absolute_linear_correlation": 0.171875,
+      "key_hex": "00000000",
+      "rounds": 3
+    },
+    {
+      "bijective": true,
+      "differentials": [
+        {
+          "input_difference": 1,
+          "output_difference": 1,
+          "count": 48,
+          "probability": 0.000732421875,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_difference": 2,
+          "output_difference": 2,
+          "count": 104,
+          "probability": 0.0015869140625,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_difference": 4,
+          "output_difference": 4,
+          "count": 176,
+          "probability": 0.002685546875,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_difference": 8,
+          "output_difference": 8,
+          "count": 80,
+          "probability": 0.001220703125,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_difference": 16,
+          "output_difference": 16,
+          "count": 92,
+          "probability": 0.00140380859375,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_difference": 32,
+          "output_difference": 32,
+          "count": 116,
+          "probability": 0.00177001953125,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_difference": 64,
+          "output_difference": 64,
+          "count": 88,
+          "probability": 0.0013427734375,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_difference": 128,
+          "output_difference": 128,
+          "count": 68,
+          "probability": 0.00103759765625,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_difference": 256,
+          "output_difference": 258,
+          "count": 100,
+          "probability": 0.00152587890625,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_difference": 512,
+          "output_difference": 569,
+          "count": 94,
+          "probability": 0.001434326171875,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_difference": 1024,
+          "output_difference": 1174,
+          "count": 124,
+          "probability": 0.00189208984375,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_difference": 2048,
+          "output_difference": 2116,
+          "count": 68,
+          "probability": 0.00103759765625,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_difference": 4096,
+          "output_difference": 4128,
+          "count": 88,
+          "probability": 0.0013427734375,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_difference": 8192,
+          "output_difference": 8410,
+          "count": 92,
+          "probability": 0.00140380859375,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_difference": 16384,
+          "output_difference": 16534,
+          "count": 92,
+          "probability": 0.00140380859375,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_difference": 32768,
+          "output_difference": 32842,
+          "count": 68,
+          "probability": 0.00103759765625,
+          "peak_multiplicity": 1
+        }
+      ],
+      "linear": [
+        {
+          "input_mask": 13435,
+          "output_mask": 1,
+          "signed_walsh": -1116,
+          "absolute_correlation": 0.01702880859375,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_mask": 2,
+          "output_mask": 2,
+          "signed_walsh": -3096,
+          "absolute_correlation": 0.0472412109375,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_mask": 4,
+          "output_mask": 4,
+          "signed_walsh": 1056,
+          "absolute_correlation": 0.01611328125,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_mask": 8,
+          "output_mask": 8,
+          "signed_walsh": -2008,
+          "absolute_correlation": 0.0306396484375,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_mask": 39512,
+          "output_mask": 16,
+          "signed_walsh": 1216,
+          "absolute_correlation": 0.0185546875,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_mask": 32,
+          "output_mask": 32,
+          "signed_walsh": 2304,
+          "absolute_correlation": 0.03515625,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_mask": 64,
+          "output_mask": 64,
+          "signed_walsh": -3904,
+          "absolute_correlation": 0.0595703125,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_mask": 128,
+          "output_mask": 128,
+          "signed_walsh": -1824,
+          "absolute_correlation": 0.02783203125,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_mask": 470,
+          "output_mask": 256,
+          "signed_walsh": -2720,
+          "absolute_correlation": 0.04150390625,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_mask": 512,
+          "output_mask": 512,
+          "signed_walsh": -3296,
+          "absolute_correlation": 0.05029296875,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_mask": 1179,
+          "output_mask": 1024,
+          "signed_walsh": -2368,
+          "absolute_correlation": 0.0361328125,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_mask": 2129,
+          "output_mask": 2048,
+          "signed_walsh": -2312,
+          "absolute_correlation": 0.0352783203125,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_mask": 4248,
+          "output_mask": 4096,
+          "signed_walsh": -1616,
+          "absolute_correlation": 0.024658203125,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_mask": 8377,
+          "output_mask": 8192,
+          "signed_walsh": -2224,
+          "absolute_correlation": 0.033935546875,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_mask": 16431,
+          "output_mask": 16384,
+          "signed_walsh": 2528,
+          "absolute_correlation": 0.03857421875,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_mask": 32768,
+          "output_mask": 32768,
+          "signed_walsh": 2264,
+          "absolute_correlation": 0.0345458984375,
+          "peak_multiplicity": 1
+        }
+      ],
+      "max_selected_differential_probability": 0.002685546875,
+      "max_selected_absolute_linear_correlation": 0.0595703125,
+      "key_hex": "00000000",
+      "rounds": 4
+    },
+    {
+      "bijective": true,
+      "differentials": [
+        {
+          "input_difference": 1,
+          "output_difference": 19752,
+          "count": 12,
+          "probability": 0.00018310546875,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_difference": 2,
+          "output_difference": 62219,
+          "count": 12,
+          "probability": 0.00018310546875,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_difference": 4,
+          "output_difference": 4,
+          "count": 22,
+          "probability": 0.000335693359375,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_difference": 8,
+          "output_difference": 8,
+          "count": 12,
+          "probability": 0.00018310546875,
+          "peak_multiplicity": 3
+        },
+        {
+          "input_difference": 16,
+          "output_difference": 16,
+          "count": 12,
+          "probability": 0.00018310546875,
+          "peak_multiplicity": 2
+        },
+        {
+          "input_difference": 32,
+          "output_difference": 1255,
+          "count": 10,
+          "probability": 0.000152587890625,
+          "peak_multiplicity": 12
+        },
+        {
+          "input_difference": 64,
+          "output_difference": 4520,
+          "count": 12,
+          "probability": 0.00018310546875,
+          "peak_multiplicity": 2
+        },
+        {
+          "input_difference": 128,
+          "output_difference": 47985,
+          "count": 12,
+          "probability": 0.00018310546875,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_difference": 256,
+          "output_difference": 375,
+          "count": 14,
+          "probability": 0.000213623046875,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_difference": 512,
+          "output_difference": 4460,
+          "count": 10,
+          "probability": 0.000152587890625,
+          "peak_multiplicity": 14
+        },
+        {
+          "input_difference": 1024,
+          "output_difference": 1123,
+          "count": 14,
+          "probability": 0.000213623046875,
+          "peak_multiplicity": 2
+        },
+        {
+          "input_difference": 2048,
+          "output_difference": 2114,
+          "count": 10,
+          "probability": 0.000152587890625,
+          "peak_multiplicity": 19
+        },
+        {
+          "input_difference": 4096,
+          "output_difference": 2920,
+          "count": 10,
+          "probability": 0.000152587890625,
+          "peak_multiplicity": 13
+        },
+        {
+          "input_difference": 8192,
+          "output_difference": 8230,
+          "count": 12,
+          "probability": 0.00018310546875,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_difference": 16384,
+          "output_difference": 16573,
+          "count": 12,
+          "probability": 0.00018310546875,
+          "peak_multiplicity": 3
+        },
+        {
+          "input_difference": 32768,
+          "output_difference": 32798,
+          "count": 12,
+          "probability": 0.00018310546875,
+          "peak_multiplicity": 2
+        }
+      ],
+      "linear": [
+        {
+          "input_mask": 57199,
+          "output_mask": 1,
+          "signed_walsh": 1136,
+          "absolute_correlation": 0.017333984375,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_mask": 22933,
+          "output_mask": 2,
+          "signed_walsh": 1168,
+          "absolute_correlation": 0.017822265625,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_mask": 7252,
+          "output_mask": 4,
+          "signed_walsh": -1148,
+          "absolute_correlation": 0.01751708984375,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_mask": 44785,
+          "output_mask": 8,
+          "signed_walsh": -1100,
+          "absolute_correlation": 0.01678466796875,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_mask": 11779,
+          "output_mask": 16,
+          "signed_walsh": -1072,
+          "absolute_correlation": 0.016357421875,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_mask": 29101,
+          "output_mask": 32,
+          "signed_walsh": 1044,
+          "absolute_correlation": 0.01593017578125,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_mask": 41330,
+          "output_mask": 64,
+          "signed_walsh": 1360,
+          "absolute_correlation": 0.020751953125,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_mask": 23430,
+          "output_mask": 128,
+          "signed_walsh": -1248,
+          "absolute_correlation": 0.01904296875,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_mask": 64568,
+          "output_mask": 256,
+          "signed_walsh": 1108,
+          "absolute_correlation": 0.01690673828125,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_mask": 8150,
+          "output_mask": 512,
+          "signed_walsh": -1068,
+          "absolute_correlation": 0.01629638671875,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_mask": 20190,
+          "output_mask": 1024,
+          "signed_walsh": 1100,
+          "absolute_correlation": 0.01678466796875,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_mask": 25739,
+          "output_mask": 2048,
+          "signed_walsh": 1216,
+          "absolute_correlation": 0.0185546875,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_mask": 17583,
+          "output_mask": 4096,
+          "signed_walsh": -1080,
+          "absolute_correlation": 0.0164794921875,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_mask": 57805,
+          "output_mask": 8192,
+          "signed_walsh": -1232,
+          "absolute_correlation": 0.018798828125,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_mask": 483,
+          "output_mask": 16384,
+          "signed_walsh": -1104,
+          "absolute_correlation": 0.016845703125,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_mask": 26913,
+          "output_mask": 32768,
+          "signed_walsh": -1296,
+          "absolute_correlation": 0.019775390625,
+          "peak_multiplicity": 1
+        }
+      ],
+      "max_selected_differential_probability": 0.000335693359375,
+      "max_selected_absolute_linear_correlation": 0.020751953125,
+      "key_hex": "00000000",
+      "rounds": 6
+    },
+    {
+      "bijective": true,
+      "differentials": [
+        {
+          "input_difference": 1,
+          "output_difference": 9392,
+          "count": 10,
+          "probability": 0.000152587890625,
+          "peak_multiplicity": 13
+        },
+        {
+          "input_difference": 2,
+          "output_difference": 2154,
+          "count": 10,
+          "probability": 0.000152587890625,
+          "peak_multiplicity": 8
+        },
+        {
+          "input_difference": 4,
+          "output_difference": 4931,
+          "count": 10,
+          "probability": 0.000152587890625,
+          "peak_multiplicity": 10
+        },
+        {
+          "input_difference": 8,
+          "output_difference": 8042,
+          "count": 10,
+          "probability": 0.000152587890625,
+          "peak_multiplicity": 9
+        },
+        {
+          "input_difference": 16,
+          "output_difference": 5569,
+          "count": 12,
+          "probability": 0.00018310546875,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_difference": 32,
+          "output_difference": 2101,
+          "count": 10,
+          "probability": 0.000152587890625,
+          "peak_multiplicity": 8
+        },
+        {
+          "input_difference": 64,
+          "output_difference": 18290,
+          "count": 12,
+          "probability": 0.00018310546875,
+          "peak_multiplicity": 2
+        },
+        {
+          "input_difference": 128,
+          "output_difference": 1715,
+          "count": 10,
+          "probability": 0.000152587890625,
+          "peak_multiplicity": 13
+        },
+        {
+          "input_difference": 256,
+          "output_difference": 11460,
+          "count": 10,
+          "probability": 0.000152587890625,
+          "peak_multiplicity": 11
+        },
+        {
+          "input_difference": 512,
+          "output_difference": 11788,
+          "count": 10,
+          "probability": 0.000152587890625,
+          "peak_multiplicity": 7
+        },
+        {
+          "input_difference": 1024,
+          "output_difference": 41623,
+          "count": 12,
+          "probability": 0.00018310546875,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_difference": 2048,
+          "output_difference": 432,
+          "count": 10,
+          "probability": 0.000152587890625,
+          "peak_multiplicity": 6
+        },
+        {
+          "input_difference": 4096,
+          "output_difference": 4463,
+          "count": 10,
+          "probability": 0.000152587890625,
+          "peak_multiplicity": 11
+        },
+        {
+          "input_difference": 8192,
+          "output_difference": 42243,
+          "count": 12,
+          "probability": 0.00018310546875,
+          "peak_multiplicity": 2
+        },
+        {
+          "input_difference": 16384,
+          "output_difference": 308,
+          "count": 10,
+          "probability": 0.000152587890625,
+          "peak_multiplicity": 15
+        },
+        {
+          "input_difference": 32768,
+          "output_difference": 14815,
+          "count": 12,
+          "probability": 0.00018310546875,
+          "peak_multiplicity": 2
+        }
+      ],
+      "linear": [
+        {
+          "input_mask": 11994,
+          "output_mask": 1,
+          "signed_walsh": -1212,
+          "absolute_correlation": 0.01849365234375,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_mask": 5723,
+          "output_mask": 2,
+          "signed_walsh": -1140,
+          "absolute_correlation": 0.01739501953125,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_mask": 35387,
+          "output_mask": 4,
+          "signed_walsh": -1088,
+          "absolute_correlation": 0.0166015625,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_mask": 47411,
+          "output_mask": 8,
+          "signed_walsh": 1104,
+          "absolute_correlation": 0.016845703125,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_mask": 54344,
+          "output_mask": 16,
+          "signed_walsh": -1088,
+          "absolute_correlation": 0.0166015625,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_mask": 27875,
+          "output_mask": 32,
+          "signed_walsh": 1068,
+          "absolute_correlation": 0.01629638671875,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_mask": 19763,
+          "output_mask": 64,
+          "signed_walsh": -1068,
+          "absolute_correlation": 0.01629638671875,
+          "peak_multiplicity": 2
+        },
+        {
+          "input_mask": 6148,
+          "output_mask": 128,
+          "signed_walsh": 1304,
+          "absolute_correlation": 0.0198974609375,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_mask": 23833,
+          "output_mask": 256,
+          "signed_walsh": -1020,
+          "absolute_correlation": 0.01556396484375,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_mask": 22301,
+          "output_mask": 512,
+          "signed_walsh": -1124,
+          "absolute_correlation": 0.01715087890625,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_mask": 50706,
+          "output_mask": 1024,
+          "signed_walsh": 1304,
+          "absolute_correlation": 0.0198974609375,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_mask": 3521,
+          "output_mask": 2048,
+          "signed_walsh": 1200,
+          "absolute_correlation": 0.018310546875,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_mask": 36092,
+          "output_mask": 4096,
+          "signed_walsh": -1180,
+          "absolute_correlation": 0.01800537109375,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_mask": 41370,
+          "output_mask": 8192,
+          "signed_walsh": -1052,
+          "absolute_correlation": 0.01605224609375,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_mask": 61189,
+          "output_mask": 16384,
+          "signed_walsh": -1160,
+          "absolute_correlation": 0.0177001953125,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_mask": 8014,
+          "output_mask": 32768,
+          "signed_walsh": 1036,
+          "absolute_correlation": 0.01580810546875,
+          "peak_multiplicity": 2
+        }
+      ],
+      "max_selected_differential_probability": 0.00018310546875,
+      "max_selected_absolute_linear_correlation": 0.0198974609375,
+      "key_hex": "00000000",
+      "rounds": 8
+    },
+    {
+      "bijective": true,
+      "differentials": [
+        {
+          "input_difference": 1,
+          "output_difference": 330,
+          "count": 2560,
+          "probability": 0.0390625,
+          "peak_multiplicity": 2
+        },
+        {
+          "input_difference": 2,
+          "output_difference": 512,
+          "count": 2048,
+          "probability": 0.03125,
+          "peak_multiplicity": 3
+        },
+        {
+          "input_difference": 4,
+          "output_difference": 1024,
+          "count": 3072,
+          "probability": 0.046875,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_difference": 8,
+          "output_difference": 2212,
+          "count": 2560,
+          "probability": 0.0390625,
+          "peak_multiplicity": 2
+        },
+        {
+          "input_difference": 16,
+          "output_difference": 4096,
+          "count": 2048,
+          "probability": 0.03125,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_difference": 32,
+          "output_difference": 8410,
+          "count": 2048,
+          "probability": 0.03125,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_difference": 64,
+          "output_difference": 16639,
+          "count": 2560,
+          "probability": 0.0390625,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_difference": 128,
+          "output_difference": 32822,
+          "count": 2560,
+          "probability": 0.0390625,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_difference": 256,
+          "output_difference": 1,
+          "count": 65536,
+          "probability": 1.0,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_difference": 512,
+          "output_difference": 2,
+          "count": 65536,
+          "probability": 1.0,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_difference": 1024,
+          "output_difference": 4,
+          "count": 65536,
+          "probability": 1.0,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_difference": 2048,
+          "output_difference": 8,
+          "count": 65536,
+          "probability": 1.0,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_difference": 4096,
+          "output_difference": 16,
+          "count": 65536,
+          "probability": 1.0,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_difference": 8192,
+          "output_difference": 32,
+          "count": 65536,
+          "probability": 1.0,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_difference": 16384,
+          "output_difference": 64,
+          "count": 65536,
+          "probability": 1.0,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_difference": 32768,
+          "output_difference": 128,
+          "count": 65536,
+          "probability": 1.0,
+          "peak_multiplicity": 1
+        }
+      ],
+      "linear": [
+        {
+          "input_mask": 479,
+          "output_mask": 1,
+          "signed_walsh": 14336,
+          "absolute_correlation": 0.21875,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_mask": 512,
+          "output_mask": 2,
+          "signed_walsh": 11264,
+          "absolute_correlation": 0.171875,
+          "peak_multiplicity": 3
+        },
+        {
+          "input_mask": 1187,
+          "output_mask": 4,
+          "signed_walsh": 12800,
+          "absolute_correlation": 0.1953125,
+          "peak_multiplicity": 2
+        },
+        {
+          "input_mask": 2057,
+          "output_mask": 8,
+          "signed_walsh": 11264,
+          "absolute_correlation": 0.171875,
+          "peak_multiplicity": 3
+        },
+        {
+          "input_mask": 4241,
+          "output_mask": 16,
+          "signed_walsh": -14848,
+          "absolute_correlation": 0.2265625,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_mask": 8377,
+          "output_mask": 32,
+          "signed_walsh": 11264,
+          "absolute_correlation": 0.171875,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_mask": 16431,
+          "output_mask": 64,
+          "signed_walsh": -12288,
+          "absolute_correlation": 0.1875,
+          "peak_multiplicity": 2
+        },
+        {
+          "input_mask": 32901,
+          "output_mask": 128,
+          "signed_walsh": 13824,
+          "absolute_correlation": 0.2109375,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_mask": 1,
+          "output_mask": 256,
+          "signed_walsh": 65536,
+          "absolute_correlation": 1.0,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_mask": 2,
+          "output_mask": 512,
+          "signed_walsh": 65536,
+          "absolute_correlation": 1.0,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_mask": 4,
+          "output_mask": 1024,
+          "signed_walsh": 65536,
+          "absolute_correlation": 1.0,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_mask": 8,
+          "output_mask": 2048,
+          "signed_walsh": 65536,
+          "absolute_correlation": 1.0,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_mask": 16,
+          "output_mask": 4096,
+          "signed_walsh": 65536,
+          "absolute_correlation": 1.0,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_mask": 32,
+          "output_mask": 8192,
+          "signed_walsh": 65536,
+          "absolute_correlation": 1.0,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_mask": 64,
+          "output_mask": 16384,
+          "signed_walsh": 65536,
+          "absolute_correlation": 1.0,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_mask": 128,
+          "output_mask": 32768,
+          "signed_walsh": 65536,
+          "absolute_correlation": 1.0,
+          "peak_multiplicity": 1
+        }
+      ],
+      "max_selected_differential_probability": 1.0,
+      "max_selected_absolute_linear_correlation": 1.0,
+      "key_hex": "76543210",
+      "rounds": 1
+    },
+    {
+      "bijective": true,
+      "differentials": [
+        {
+          "input_difference": 1,
+          "output_difference": 1,
+          "count": 1536,
+          "probability": 0.0234375,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_difference": 2,
+          "output_difference": 2,
+          "count": 2048,
+          "probability": 0.03125,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_difference": 4,
+          "output_difference": 4,
+          "count": 3072,
+          "probability": 0.046875,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_difference": 8,
+          "output_difference": 8,
+          "count": 1536,
+          "probability": 0.0234375,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_difference": 16,
+          "output_difference": 16,
+          "count": 2048,
+          "probability": 0.03125,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_difference": 32,
+          "output_difference": 32,
+          "count": 1536,
+          "probability": 0.0234375,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_difference": 64,
+          "output_difference": 64,
+          "count": 1536,
+          "probability": 0.0234375,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_difference": 128,
+          "output_difference": 128,
+          "count": 1536,
+          "probability": 0.0234375,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_difference": 256,
+          "output_difference": 330,
+          "count": 2560,
+          "probability": 0.0390625,
+          "peak_multiplicity": 2
+        },
+        {
+          "input_difference": 512,
+          "output_difference": 512,
+          "count": 2048,
+          "probability": 0.03125,
+          "peak_multiplicity": 3
+        },
+        {
+          "input_difference": 1024,
+          "output_difference": 1024,
+          "count": 3072,
+          "probability": 0.046875,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_difference": 2048,
+          "output_difference": 2212,
+          "count": 2560,
+          "probability": 0.0390625,
+          "peak_multiplicity": 2
+        },
+        {
+          "input_difference": 4096,
+          "output_difference": 4096,
+          "count": 2048,
+          "probability": 0.03125,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_difference": 8192,
+          "output_difference": 8410,
+          "count": 2048,
+          "probability": 0.03125,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_difference": 16384,
+          "output_difference": 16639,
+          "count": 2560,
+          "probability": 0.0390625,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_difference": 32768,
+          "output_difference": 32822,
+          "count": 2560,
+          "probability": 0.0390625,
+          "peak_multiplicity": 1
+        }
+      ],
+      "linear": [
+        {
+          "input_mask": 2305,
+          "output_mask": 1,
+          "signed_walsh": -3200,
+          "absolute_correlation": 0.048828125,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_mask": 2,
+          "output_mask": 2,
+          "signed_walsh": -11264,
+          "absolute_correlation": 0.171875,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_mask": 4,
+          "output_mask": 4,
+          "signed_walsh": -5632,
+          "absolute_correlation": 0.0859375,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_mask": 2312,
+          "output_mask": 8,
+          "signed_walsh": 4400,
+          "absolute_correlation": 0.067138671875,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_mask": 18448,
+          "output_mask": 16,
+          "signed_walsh": -3120,
+          "absolute_correlation": 0.047607421875,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_mask": 32,
+          "output_mask": 32,
+          "signed_walsh": 6144,
+          "absolute_correlation": 0.09375,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_mask": 64,
+          "output_mask": 64,
+          "signed_walsh": 11264,
+          "absolute_correlation": 0.171875,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_mask": 128,
+          "output_mask": 128,
+          "signed_walsh": -5632,
+          "absolute_correlation": 0.0859375,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_mask": 479,
+          "output_mask": 256,
+          "signed_walsh": 14336,
+          "absolute_correlation": 0.21875,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_mask": 512,
+          "output_mask": 512,
+          "signed_walsh": 11264,
+          "absolute_correlation": 0.171875,
+          "peak_multiplicity": 3
+        },
+        {
+          "input_mask": 1187,
+          "output_mask": 1024,
+          "signed_walsh": 12800,
+          "absolute_correlation": 0.1953125,
+          "peak_multiplicity": 2
+        },
+        {
+          "input_mask": 2057,
+          "output_mask": 2048,
+          "signed_walsh": 11264,
+          "absolute_correlation": 0.171875,
+          "peak_multiplicity": 3
+        },
+        {
+          "input_mask": 4241,
+          "output_mask": 4096,
+          "signed_walsh": -14848,
+          "absolute_correlation": 0.2265625,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_mask": 8377,
+          "output_mask": 8192,
+          "signed_walsh": 11264,
+          "absolute_correlation": 0.171875,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_mask": 16431,
+          "output_mask": 16384,
+          "signed_walsh": -12288,
+          "absolute_correlation": 0.1875,
+          "peak_multiplicity": 2
+        },
+        {
+          "input_mask": 32901,
+          "output_mask": 32768,
+          "signed_walsh": 13824,
+          "absolute_correlation": 0.2109375,
+          "peak_multiplicity": 1
+        }
+      ],
+      "max_selected_differential_probability": 0.046875,
+      "max_selected_absolute_linear_correlation": 0.2265625,
+      "key_hex": "76543210",
+      "rounds": 2
+    },
+    {
+      "bijective": true,
+      "differentials": [
+        {
+          "input_difference": 1,
+          "output_difference": 493,
+          "count": 88,
+          "probability": 0.0013427734375,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_difference": 2,
+          "output_difference": 512,
+          "count": 96,
+          "probability": 0.00146484375,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_difference": 4,
+          "output_difference": 1024,
+          "count": 208,
+          "probability": 0.003173828125,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_difference": 8,
+          "output_difference": 2048,
+          "count": 144,
+          "probability": 0.002197265625,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_difference": 16,
+          "output_difference": 4150,
+          "count": 100,
+          "probability": 0.00152587890625,
+          "peak_multiplicity": 2
+        },
+        {
+          "input_difference": 32,
+          "output_difference": 8316,
+          "count": 80,
+          "probability": 0.001220703125,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_difference": 64,
+          "output_difference": 16423,
+          "count": 76,
+          "probability": 0.00115966796875,
+          "peak_multiplicity": 2
+        },
+        {
+          "input_difference": 128,
+          "output_difference": 32768,
+          "count": 96,
+          "probability": 0.00146484375,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_difference": 256,
+          "output_difference": 1,
+          "count": 1536,
+          "probability": 0.0234375,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_difference": 512,
+          "output_difference": 2,
+          "count": 2048,
+          "probability": 0.03125,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_difference": 1024,
+          "output_difference": 4,
+          "count": 3072,
+          "probability": 0.046875,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_difference": 2048,
+          "output_difference": 8,
+          "count": 1536,
+          "probability": 0.0234375,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_difference": 4096,
+          "output_difference": 16,
+          "count": 2048,
+          "probability": 0.03125,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_difference": 8192,
+          "output_difference": 32,
+          "count": 1536,
+          "probability": 0.0234375,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_difference": 16384,
+          "output_difference": 64,
+          "count": 1536,
+          "probability": 0.0234375,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_difference": 32768,
+          "output_difference": 128,
+          "count": 1536,
+          "probability": 0.0234375,
+          "peak_multiplicity": 1
+        }
+      ],
+      "linear": [
+        {
+          "input_mask": 352,
+          "output_mask": 1,
+          "signed_walsh": -2176,
+          "absolute_correlation": 0.033203125,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_mask": 512,
+          "output_mask": 2,
+          "signed_walsh": -3256,
+          "absolute_correlation": 0.0496826171875,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_mask": 1132,
+          "output_mask": 4,
+          "signed_walsh": 1828,
+          "absolute_correlation": 0.02789306640625,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_mask": 2225,
+          "output_mask": 8,
+          "signed_walsh": -1976,
+          "absolute_correlation": 0.0301513671875,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_mask": 4149,
+          "output_mask": 16,
+          "signed_walsh": -1784,
+          "absolute_correlation": 0.0272216796875,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_mask": 8229,
+          "output_mask": 32,
+          "signed_walsh": 2624,
+          "absolute_correlation": 0.0400390625,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_mask": 16492,
+          "output_mask": 64,
+          "signed_walsh": 3024,
+          "absolute_correlation": 0.046142578125,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_mask": 33010,
+          "output_mask": 128,
+          "signed_walsh": 1880,
+          "absolute_correlation": 0.0286865234375,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_mask": 2305,
+          "output_mask": 256,
+          "signed_walsh": -3200,
+          "absolute_correlation": 0.048828125,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_mask": 2,
+          "output_mask": 512,
+          "signed_walsh": -11264,
+          "absolute_correlation": 0.171875,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_mask": 4,
+          "output_mask": 1024,
+          "signed_walsh": -5632,
+          "absolute_correlation": 0.0859375,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_mask": 2312,
+          "output_mask": 2048,
+          "signed_walsh": 4400,
+          "absolute_correlation": 0.067138671875,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_mask": 18448,
+          "output_mask": 4096,
+          "signed_walsh": -3120,
+          "absolute_correlation": 0.047607421875,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_mask": 32,
+          "output_mask": 8192,
+          "signed_walsh": 6144,
+          "absolute_correlation": 0.09375,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_mask": 64,
+          "output_mask": 16384,
+          "signed_walsh": 11264,
+          "absolute_correlation": 0.171875,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_mask": 128,
+          "output_mask": 32768,
+          "signed_walsh": -5632,
+          "absolute_correlation": 0.0859375,
+          "peak_multiplicity": 1
+        }
+      ],
+      "max_selected_differential_probability": 0.046875,
+      "max_selected_absolute_linear_correlation": 0.171875,
+      "key_hex": "76543210",
+      "rounds": 3
+    },
+    {
+      "bijective": true,
+      "differentials": [
+        {
+          "input_difference": 1,
+          "output_difference": 1,
+          "count": 40,
+          "probability": 0.0006103515625,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_difference": 2,
+          "output_difference": 2,
+          "count": 96,
+          "probability": 0.00146484375,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_difference": 4,
+          "output_difference": 4,
+          "count": 208,
+          "probability": 0.003173828125,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_difference": 8,
+          "output_difference": 8,
+          "count": 144,
+          "probability": 0.002197265625,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_difference": 16,
+          "output_difference": 16,
+          "count": 60,
+          "probability": 0.00091552734375,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_difference": 32,
+          "output_difference": 32,
+          "count": 60,
+          "probability": 0.00091552734375,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_difference": 64,
+          "output_difference": 64,
+          "count": 60,
+          "probability": 0.00091552734375,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_difference": 128,
+          "output_difference": 128,
+          "count": 96,
+          "probability": 0.00146484375,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_difference": 256,
+          "output_difference": 256,
+          "count": 72,
+          "probability": 0.0010986328125,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_difference": 512,
+          "output_difference": 532,
+          "count": 92,
+          "probability": 0.00140380859375,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_difference": 1024,
+          "output_difference": 1024,
+          "count": 172,
+          "probability": 0.00262451171875,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_difference": 2048,
+          "output_difference": 2162,
+          "count": 84,
+          "probability": 0.00128173828125,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_difference": 4096,
+          "output_difference": 4265,
+          "count": 120,
+          "probability": 0.0018310546875,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_difference": 8192,
+          "output_difference": 8277,
+          "count": 104,
+          "probability": 0.0015869140625,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_difference": 16384,
+          "output_difference": 16525,
+          "count": 108,
+          "probability": 0.00164794921875,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_difference": 32768,
+          "output_difference": 32957,
+          "count": 68,
+          "probability": 0.00103759765625,
+          "peak_multiplicity": 1
+        }
+      ],
+      "linear": [
+        {
+          "input_mask": 8800,
+          "output_mask": 1,
+          "signed_walsh": 1160,
+          "absolute_correlation": 0.0177001953125,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_mask": 2,
+          "output_mask": 2,
+          "signed_walsh": 3824,
+          "absolute_correlation": 0.058349609375,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_mask": 47194,
+          "output_mask": 4,
+          "signed_walsh": -1124,
+          "absolute_correlation": 0.01715087890625,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_mask": 8,
+          "output_mask": 8,
+          "signed_walsh": 1936,
+          "absolute_correlation": 0.029541015625,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_mask": 47711,
+          "output_mask": 16,
+          "signed_walsh": -1180,
+          "absolute_correlation": 0.01800537109375,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_mask": 62028,
+          "output_mask": 32,
+          "signed_walsh": -1144,
+          "absolute_correlation": 0.0174560546875,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_mask": 64,
+          "output_mask": 64,
+          "signed_walsh": -2944,
+          "absolute_correlation": 0.044921875,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_mask": 52461,
+          "output_mask": 128,
+          "signed_walsh": -1152,
+          "absolute_correlation": 0.017578125,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_mask": 352,
+          "output_mask": 256,
+          "signed_walsh": -2176,
+          "absolute_correlation": 0.033203125,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_mask": 512,
+          "output_mask": 512,
+          "signed_walsh": -3256,
+          "absolute_correlation": 0.0496826171875,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_mask": 1132,
+          "output_mask": 1024,
+          "signed_walsh": 1828,
+          "absolute_correlation": 0.02789306640625,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_mask": 2225,
+          "output_mask": 2048,
+          "signed_walsh": -1976,
+          "absolute_correlation": 0.0301513671875,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_mask": 4149,
+          "output_mask": 4096,
+          "signed_walsh": -1784,
+          "absolute_correlation": 0.0272216796875,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_mask": 8229,
+          "output_mask": 8192,
+          "signed_walsh": 2624,
+          "absolute_correlation": 0.0400390625,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_mask": 16492,
+          "output_mask": 16384,
+          "signed_walsh": 3024,
+          "absolute_correlation": 0.046142578125,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_mask": 33010,
+          "output_mask": 32768,
+          "signed_walsh": 1880,
+          "absolute_correlation": 0.0286865234375,
+          "peak_multiplicity": 1
+        }
+      ],
+      "max_selected_differential_probability": 0.003173828125,
+      "max_selected_absolute_linear_correlation": 0.058349609375,
+      "key_hex": "76543210",
+      "rounds": 4
+    },
+    {
+      "bijective": true,
+      "differentials": [
+        {
+          "input_difference": 1,
+          "output_difference": 31093,
+          "count": 12,
+          "probability": 0.00018310546875,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_difference": 2,
+          "output_difference": 4163,
+          "count": 12,
+          "probability": 0.00018310546875,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_difference": 4,
+          "output_difference": 4,
+          "count": 14,
+          "probability": 0.000213623046875,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_difference": 8,
+          "output_difference": 4914,
+          "count": 10,
+          "probability": 0.000152587890625,
+          "peak_multiplicity": 10
+        },
+        {
+          "input_difference": 16,
+          "output_difference": 31957,
+          "count": 12,
+          "probability": 0.00018310546875,
+          "peak_multiplicity": 3
+        },
+        {
+          "input_difference": 32,
+          "output_difference": 46522,
+          "count": 12,
+          "probability": 0.00018310546875,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_difference": 64,
+          "output_difference": 20035,
+          "count": 12,
+          "probability": 0.00018310546875,
+          "peak_multiplicity": 2
+        },
+        {
+          "input_difference": 128,
+          "output_difference": 2027,
+          "count": 10,
+          "probability": 0.000152587890625,
+          "peak_multiplicity": 10
+        },
+        {
+          "input_difference": 256,
+          "output_difference": 498,
+          "count": 10,
+          "probability": 0.000152587890625,
+          "peak_multiplicity": 16
+        },
+        {
+          "input_difference": 512,
+          "output_difference": 9622,
+          "count": 12,
+          "probability": 0.00018310546875,
+          "peak_multiplicity": 3
+        },
+        {
+          "input_difference": 1024,
+          "output_difference": 1098,
+          "count": 14,
+          "probability": 0.000213623046875,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_difference": 2048,
+          "output_difference": 48311,
+          "count": 14,
+          "probability": 0.000213623046875,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_difference": 4096,
+          "output_difference": 41462,
+          "count": 12,
+          "probability": 0.00018310546875,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_difference": 8192,
+          "output_difference": 2449,
+          "count": 12,
+          "probability": 0.00018310546875,
+          "peak_multiplicity": 2
+        },
+        {
+          "input_difference": 16384,
+          "output_difference": 4928,
+          "count": 12,
+          "probability": 0.00018310546875,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_difference": 32768,
+          "output_difference": 56926,
+          "count": 12,
+          "probability": 0.00018310546875,
+          "peak_multiplicity": 1
+        }
+      ],
+      "linear": [
+        {
+          "input_mask": 36272,
+          "output_mask": 1,
+          "signed_walsh": 1052,
+          "absolute_correlation": 0.01605224609375,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_mask": 6050,
+          "output_mask": 2,
+          "signed_walsh": -1072,
+          "absolute_correlation": 0.016357421875,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_mask": 54170,
+          "output_mask": 4,
+          "signed_walsh": -1120,
+          "absolute_correlation": 0.01708984375,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_mask": 9234,
+          "output_mask": 8,
+          "signed_walsh": -1140,
+          "absolute_correlation": 0.01739501953125,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_mask": 24393,
+          "output_mask": 16,
+          "signed_walsh": 1144,
+          "absolute_correlation": 0.0174560546875,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_mask": 48270,
+          "output_mask": 32,
+          "signed_walsh": -1064,
+          "absolute_correlation": 0.0162353515625,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_mask": 9756,
+          "output_mask": 64,
+          "signed_walsh": -1252,
+          "absolute_correlation": 0.01910400390625,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_mask": 15107,
+          "output_mask": 128,
+          "signed_walsh": 1276,
+          "absolute_correlation": 0.01947021484375,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_mask": 39315,
+          "output_mask": 256,
+          "signed_walsh": 1260,
+          "absolute_correlation": 0.01922607421875,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_mask": 37005,
+          "output_mask": 512,
+          "signed_walsh": -1112,
+          "absolute_correlation": 0.0169677734375,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_mask": 19456,
+          "output_mask": 1024,
+          "signed_walsh": 1116,
+          "absolute_correlation": 0.01702880859375,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_mask": 57758,
+          "output_mask": 2048,
+          "signed_walsh": -1408,
+          "absolute_correlation": 0.021484375,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_mask": 18356,
+          "output_mask": 4096,
+          "signed_walsh": -1128,
+          "absolute_correlation": 0.0172119140625,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_mask": 9710,
+          "output_mask": 8192,
+          "signed_walsh": 1076,
+          "absolute_correlation": 0.01641845703125,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_mask": 11568,
+          "output_mask": 16384,
+          "signed_walsh": -1192,
+          "absolute_correlation": 0.0181884765625,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_mask": 39897,
+          "output_mask": 32768,
+          "signed_walsh": -1236,
+          "absolute_correlation": 0.01885986328125,
+          "peak_multiplicity": 1
+        }
+      ],
+      "max_selected_differential_probability": 0.000213623046875,
+      "max_selected_absolute_linear_correlation": 0.021484375,
+      "key_hex": "76543210",
+      "rounds": 6
+    },
+    {
+      "bijective": true,
+      "differentials": [
+        {
+          "input_difference": 1,
+          "output_difference": 5420,
+          "count": 10,
+          "probability": 0.000152587890625,
+          "peak_multiplicity": 12
+        },
+        {
+          "input_difference": 2,
+          "output_difference": 6355,
+          "count": 12,
+          "probability": 0.00018310546875,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_difference": 4,
+          "output_difference": 16305,
+          "count": 12,
+          "probability": 0.00018310546875,
+          "peak_multiplicity": 3
+        },
+        {
+          "input_difference": 8,
+          "output_difference": 8264,
+          "count": 12,
+          "probability": 0.00018310546875,
+          "peak_multiplicity": 2
+        },
+        {
+          "input_difference": 16,
+          "output_difference": 32956,
+          "count": 12,
+          "probability": 0.00018310546875,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_difference": 32,
+          "output_difference": 23989,
+          "count": 12,
+          "probability": 0.00018310546875,
+          "peak_multiplicity": 3
+        },
+        {
+          "input_difference": 64,
+          "output_difference": 53478,
+          "count": 12,
+          "probability": 0.00018310546875,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_difference": 128,
+          "output_difference": 11937,
+          "count": 10,
+          "probability": 0.000152587890625,
+          "peak_multiplicity": 12
+        },
+        {
+          "input_difference": 256,
+          "output_difference": 19008,
+          "count": 12,
+          "probability": 0.00018310546875,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_difference": 512,
+          "output_difference": 21956,
+          "count": 12,
+          "probability": 0.00018310546875,
+          "peak_multiplicity": 2
+        },
+        {
+          "input_difference": 1024,
+          "output_difference": 5387,
+          "count": 10,
+          "probability": 0.000152587890625,
+          "peak_multiplicity": 10
+        },
+        {
+          "input_difference": 2048,
+          "output_difference": 3658,
+          "count": 12,
+          "probability": 0.00018310546875,
+          "peak_multiplicity": 3
+        },
+        {
+          "input_difference": 4096,
+          "output_difference": 2075,
+          "count": 10,
+          "probability": 0.000152587890625,
+          "peak_multiplicity": 8
+        },
+        {
+          "input_difference": 8192,
+          "output_difference": 7789,
+          "count": 12,
+          "probability": 0.00018310546875,
+          "peak_multiplicity": 2
+        },
+        {
+          "input_difference": 16384,
+          "output_difference": 49979,
+          "count": 12,
+          "probability": 0.00018310546875,
+          "peak_multiplicity": 3
+        },
+        {
+          "input_difference": 32768,
+          "output_difference": 6813,
+          "count": 12,
+          "probability": 0.00018310546875,
+          "peak_multiplicity": 1
+        }
+      ],
+      "linear": [
+        {
+          "input_mask": 60313,
+          "output_mask": 1,
+          "signed_walsh": -1136,
+          "absolute_correlation": 0.017333984375,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_mask": 45924,
+          "output_mask": 2,
+          "signed_walsh": -1132,
+          "absolute_correlation": 0.01727294921875,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_mask": 5640,
+          "output_mask": 4,
+          "signed_walsh": 1032,
+          "absolute_correlation": 0.0157470703125,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_mask": 46026,
+          "output_mask": 8,
+          "signed_walsh": -1064,
+          "absolute_correlation": 0.0162353515625,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_mask": 4935,
+          "output_mask": 16,
+          "signed_walsh": -1084,
+          "absolute_correlation": 0.01654052734375,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_mask": 52185,
+          "output_mask": 32,
+          "signed_walsh": 1140,
+          "absolute_correlation": 0.01739501953125,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_mask": 61161,
+          "output_mask": 64,
+          "signed_walsh": 1116,
+          "absolute_correlation": 0.01702880859375,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_mask": 58875,
+          "output_mask": 128,
+          "signed_walsh": -1144,
+          "absolute_correlation": 0.0174560546875,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_mask": 22819,
+          "output_mask": 256,
+          "signed_walsh": 1288,
+          "absolute_correlation": 0.0196533203125,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_mask": 39000,
+          "output_mask": 512,
+          "signed_walsh": 1376,
+          "absolute_correlation": 0.02099609375,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_mask": 27906,
+          "output_mask": 1024,
+          "signed_walsh": 1156,
+          "absolute_correlation": 0.01763916015625,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_mask": 24179,
+          "output_mask": 2048,
+          "signed_walsh": -1152,
+          "absolute_correlation": 0.017578125,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_mask": 25953,
+          "output_mask": 4096,
+          "signed_walsh": 1048,
+          "absolute_correlation": 0.0159912109375,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_mask": 1042,
+          "output_mask": 8192,
+          "signed_walsh": -1120,
+          "absolute_correlation": 0.01708984375,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_mask": 43258,
+          "output_mask": 16384,
+          "signed_walsh": -1100,
+          "absolute_correlation": 0.01678466796875,
+          "peak_multiplicity": 1
+        },
+        {
+          "input_mask": 63317,
+          "output_mask": 32768,
+          "signed_walsh": -1100,
+          "absolute_correlation": 0.01678466796875,
+          "peak_multiplicity": 1
+        }
+      ],
+      "max_selected_differential_probability": 0.00018310546875,
+      "max_selected_absolute_linear_correlation": 0.02099609375,
+      "key_hex": "76543210",
+      "rounds": 8
+    }
+  ],
+  "random_permutation_reference": {
+    "seed": 20261011,
+    "rng": "Python random.Random; public experiment only",
+    "warning": "One illustrative random permutation, not an ideal-cipher security threshold.",
+    "bijective": true,
+    "differentials": [
+      {
+        "input_difference": 1,
+        "output_difference": 42431,
+        "count": 12,
+        "probability": 0.00018310546875,
+        "peak_multiplicity": 1
+      },
+      {
+        "input_difference": 2,
+        "output_difference": 42069,
+        "count": 12,
+        "probability": 0.00018310546875,
+        "peak_multiplicity": 1
+      },
+      {
+        "input_difference": 4,
+        "output_difference": 39903,
+        "count": 12,
+        "probability": 0.00018310546875,
+        "peak_multiplicity": 1
+      },
+      {
+        "input_difference": 8,
+        "output_difference": 22415,
+        "count": 12,
+        "probability": 0.00018310546875,
+        "peak_multiplicity": 2
+      },
+      {
+        "input_difference": 16,
+        "output_difference": 15480,
+        "count": 12,
+        "probability": 0.00018310546875,
+        "peak_multiplicity": 2
+      },
+      {
+        "input_difference": 32,
+        "output_difference": 18776,
+        "count": 12,
+        "probability": 0.00018310546875,
+        "peak_multiplicity": 1
+      },
+      {
+        "input_difference": 64,
+        "output_difference": 65198,
+        "count": 12,
+        "probability": 0.00018310546875,
+        "peak_multiplicity": 1
+      },
+      {
+        "input_difference": 128,
+        "output_difference": 1073,
+        "count": 10,
+        "probability": 0.000152587890625,
+        "peak_multiplicity": 6
+      },
+      {
+        "input_difference": 256,
+        "output_difference": 5957,
+        "count": 10,
+        "probability": 0.000152587890625,
+        "peak_multiplicity": 10
+      },
+      {
+        "input_difference": 512,
+        "output_difference": 1852,
+        "count": 10,
+        "probability": 0.000152587890625,
+        "peak_multiplicity": 10
+      },
+      {
+        "input_difference": 1024,
+        "output_difference": 12314,
+        "count": 12,
+        "probability": 0.00018310546875,
+        "peak_multiplicity": 1
+      },
+      {
+        "input_difference": 2048,
+        "output_difference": 33173,
+        "count": 14,
+        "probability": 0.000213623046875,
+        "peak_multiplicity": 1
+      },
+      {
+        "input_difference": 4096,
+        "output_difference": 3012,
+        "count": 10,
+        "probability": 0.000152587890625,
+        "peak_multiplicity": 8
+      },
+      {
+        "input_difference": 8192,
+        "output_difference": 23449,
+        "count": 12,
+        "probability": 0.00018310546875,
+        "peak_multiplicity": 2
+      },
+      {
+        "input_difference": 16384,
+        "output_difference": 39538,
+        "count": 12,
+        "probability": 0.00018310546875,
+        "peak_multiplicity": 2
+      },
+      {
+        "input_difference": 32768,
+        "output_difference": 20382,
+        "count": 12,
+        "probability": 0.00018310546875,
+        "peak_multiplicity": 1
+      }
+    ],
+    "linear": [
+      {
+        "input_mask": 1762,
+        "output_mask": 1,
+        "signed_walsh": -1148,
+        "absolute_correlation": 0.01751708984375,
+        "peak_multiplicity": 1
+      },
+      {
+        "input_mask": 16816,
+        "output_mask": 2,
+        "signed_walsh": -1072,
+        "absolute_correlation": 0.016357421875,
+        "peak_multiplicity": 1
+      },
+      {
+        "input_mask": 29505,
+        "output_mask": 4,
+        "signed_walsh": -1072,
+        "absolute_correlation": 0.016357421875,
+        "peak_multiplicity": 1
+      },
+      {
+        "input_mask": 55221,
+        "output_mask": 8,
+        "signed_walsh": 1036,
+        "absolute_correlation": 0.01580810546875,
+        "peak_multiplicity": 1
+      },
+      {
+        "input_mask": 6439,
+        "output_mask": 16,
+        "signed_walsh": 1180,
+        "absolute_correlation": 0.01800537109375,
+        "peak_multiplicity": 1
+      },
+      {
+        "input_mask": 36292,
+        "output_mask": 32,
+        "signed_walsh": 1140,
+        "absolute_correlation": 0.01739501953125,
+        "peak_multiplicity": 1
+      },
+      {
+        "input_mask": 61778,
+        "output_mask": 64,
+        "signed_walsh": 1104,
+        "absolute_correlation": 0.016845703125,
+        "peak_multiplicity": 1
+      },
+      {
+        "input_mask": 11089,
+        "output_mask": 128,
+        "signed_walsh": -1208,
+        "absolute_correlation": 0.0184326171875,
+        "peak_multiplicity": 1
+      },
+      {
+        "input_mask": 63711,
+        "output_mask": 256,
+        "signed_walsh": 1132,
+        "absolute_correlation": 0.01727294921875,
+        "peak_multiplicity": 1
+      },
+      {
+        "input_mask": 63887,
+        "output_mask": 512,
+        "signed_walsh": 1112,
+        "absolute_correlation": 0.0169677734375,
+        "peak_multiplicity": 1
+      },
+      {
+        "input_mask": 3237,
+        "output_mask": 1024,
+        "signed_walsh": 1096,
+        "absolute_correlation": 0.0167236328125,
+        "peak_multiplicity": 1
+      },
+      {
+        "input_mask": 14650,
+        "output_mask": 2048,
+        "signed_walsh": -1044,
+        "absolute_correlation": 0.01593017578125,
+        "peak_multiplicity": 1
+      },
+      {
+        "input_mask": 55533,
+        "output_mask": 4096,
+        "signed_walsh": -1080,
+        "absolute_correlation": 0.0164794921875,
+        "peak_multiplicity": 1
+      },
+      {
+        "input_mask": 50092,
+        "output_mask": 8192,
+        "signed_walsh": -1052,
+        "absolute_correlation": 0.01605224609375,
+        "peak_multiplicity": 1
+      },
+      {
+        "input_mask": 18602,
+        "output_mask": 16384,
+        "signed_walsh": 1024,
+        "absolute_correlation": 0.015625,
+        "peak_multiplicity": 1
+      },
+      {
+        "input_mask": 48754,
+        "output_mask": 32768,
+        "signed_walsh": -1092,
+        "absolute_correlation": 0.01666259765625,
+        "peak_multiplicity": 1
+      }
+    ],
+    "max_selected_differential_probability": 0.000213623046875,
+    "max_selected_absolute_linear_correlation": 0.0184326171875
+  },
+  "elapsed_seconds": 35.876130099999955
+}

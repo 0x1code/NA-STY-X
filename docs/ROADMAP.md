@@ -31,3 +31,7 @@ The direction was revised on 2026-10-11 to use the original NA&STY-X constructio
 ## Current v0.2 milestone
 
 AES substitution was removed from the active cipher. A public 12-round nibble-Feistel generator and exhaustive screening of 256 candidates produce the selected table. Candidate 18 has DU 10 and minimum component nonlinearity 96: weaker than the prior S-box. Its initial screening target was not met. Research continues; full-network attack bounds and independent cryptanalysis remain missing.
+
+## v0.3 — выполненный инженерный этап
+
+Добавлены улучшенная собственная таблица (DU 8, NL 102), три ARX-преобразования, нелинейное расписание, реальные полноразмерные выборочные проверки, новый точный toy-анализ и измерение скорости. Реализованы сообщения произвольной длины с экспериментальным тегом, разделением ключей и persistent nonce-реестром; отсутствие состояния больше не приводит к автоматическому сбросу. Это завершает текущую исследовательскую реализацию этапов ядра и сообщений, но не закрывает все криптоаналитические вопросы или пригодность для реальных секретов. Сессионный протокол остаётся следующим этапом.

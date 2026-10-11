@@ -1,0 +1,13 @@
+[package]
+name = "nastyx-message"
+version = "0.3.0-alpha"
+edition.workspace = true
+license.workspace = true
+rust-version.workspace = true
+description = "Experimental NA&STY-X message encryption and integrity research"
+
+[dependencies]
+nastyx-engine = { path = "../nastyx-engine" }
+
+[lints]
+workspace = true

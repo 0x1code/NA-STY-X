@@ -1,5 +1,5 @@
 [workspace]
-members = ["crates/nastyx-core", "crates/nastyx-cli"]
+members = ["crates/nastyx-core", "crates/nastyx-cli", "crates/nastyx-engine", "crates/nastyx-message"]
 resolver = "2"
 
 [workspace.package]

@@ -1,0 +1,35 @@
+{
+  "format": "nastyx-serial-benchmark-v1",
+  "date": "2026-10-12",
+  "cpu": "AMD Ryzen 7 7435H",
+  "os": "Windows",
+  "rust": "1.99.0",
+  "target": "x86_64-pc-windows-gnu",
+  "profile": "Cargo release defaults",
+  "cipher": "NA&STY-X v0.3, 24 rounds",
+  "cipher_state_bytes": 200,
+  "scope": "serial dependent blocks; excludes message MAC, allocation and persistent nonce I/O",
+  "repetitions": [
+    {
+      "setups": 1000,
+      "setup_seconds": 0.00036,
+      "blocks": 100000,
+      "encrypt_seconds": 0.019286,
+      "decrypt_seconds": 0.019277
+    },
+    {
+      "setups": 1000,
+      "setup_seconds": 0.000358,
+      "blocks": 100000,
+      "encrypt_seconds": 0.019317,
+      "decrypt_seconds": 0.017161
+    },
+    {
+      "setups": 1000,
+      "setup_seconds": 0.00034,
+      "blocks": 100000,
+      "encrypt_seconds": 0.018052,
+      "decrypt_seconds": 0.017861
+    }
+  ]
+}

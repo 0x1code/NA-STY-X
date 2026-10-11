@@ -1,5 +1,15 @@
-# Benchmark status
+# Локальные измерения v0.3
 
-No encryption throughput or AES-256/ChaCha20 comparison is published in this iteration. The elapsed time in the laboratory JSON measures the entire Python analysis, including table generation and correlations; it is not a cipher throughput benchmark.
+Команда: `cargo run --release -p nastyx-engine --example bench`.
 
-A future comparison must record CPU, OS, compiler and optimization flags, implementation versions, input size, key setup versus steady-state encryption, warm-up, repetition count and measurement spread. Raw block permutations and authenticated stream interfaces provide different functionality; report their costs with those distinctions explicit. Statistical appearance and speed do not establish security.
+Среда: AMD Ryzen 7 7435H, Windows, Rust 1.99.0, target x86_64-pc-windows-gnu, стандартный профиль Cargo release. Собственное ядро v0.3, 24 раунда. Публичные тестовые входы, `black_box`, последовательная зависимость блоков, три повтора после создания первого экземпляра. Подробного контроля частоты CPU, фоновой нагрузки и прогрева нет: это предварительная микропроба, не устойчивый сравнительный benchmark.
+
+| Повтор | 1000 установок ключа, с | 100 000 шифрований, с | 100 000 расшифрований, с |
+|---:|---:|---:|---:|
+| 0 | 0.000360 | 0.019286 | 0.019277 |
+| 1 | 0.000358 | 0.019317 | 0.017161 |
+| 2 | 0.000340 | 0.018052 | 0.017861 |
+
+Сырые значения: `research/results/bench-v3.json`. Размер структуры ядра — 200 байтов; это не пиковое потребление памяти процесса. Время тега, выделения памяти, реестра nonce и файловой синхронизации не включено. На полной записи производительность будет иной. Сравнение с чужими алгоритмами не выполнялось; скорость не является оценкой стойкости.
+
+Для последующих измерений нужны более длительные серии, документированный прогрев, распространение результатов, точные параметры компиляции и отдельные расходы шифрования, тега, подготовки ключей и хранилища. Время Python-лаборатории также не является скоростью шифра.

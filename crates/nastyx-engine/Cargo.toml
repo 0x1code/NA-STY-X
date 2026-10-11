@@ -1,0 +1,10 @@
+[package]
+name = "nastyx-engine"
+version = "0.3.0-alpha"
+edition.workspace = true
+license.workspace = true
+rust-version.workspace = true
+description = "Original NA&STY-X v0.3 research cipher; not approved for real secrets"
+
+[lints]
+workspace = true

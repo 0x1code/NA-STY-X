@@ -12,3 +12,14 @@ dependencies = [
 [[package]]
 name = "nastyx-core"
 version = "0.2.0-alpha"
+
+[[package]]
+name = "nastyx-engine"
+version = "0.3.0-alpha"
+
+[[package]]
+name = "nastyx-message"
+version = "0.3.0-alpha"
+dependencies = [
+ "nastyx-engine",
+]

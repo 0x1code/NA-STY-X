@@ -1,3 +1,13 @@
+# Security status — v0.3 research revision
+
+The original cipher, subkey derivation and message tag have no independent cryptanalysis or security bounds. Do not use this revision to protect real secrets. See `CRYPTO_SPEC_V0_3.md` and `MESSAGE_SPEC_V0_3.md`.
+
+Message encryption and tag verification are implemented; this does not establish confidentiality or forgery resistance. The receiver authenticates before decrypting. Nonces are reserved in one shared persistent registry per key; missing/corrupt metadata fail closed. Never reuse a key after losing or rolling back this state. Windows power-loss durability of directory metadata is not established. Local storage tampering/rollback, network filesystems and multiple registries for the same key are outside the nonce guarantee.
+
+Table access depends on secrets, compiler-level constant time is unverified, and key memory is not guaranteed to be erased. No key exchange, replay protection, forward secrecy or full session protocol is implemented. Public examples use test keys, not real secrets. Functional tests and improved statistical metrics do not replace a cryptographic review.
+
+## Historical v0.2 status
+
 # Security status
 
 NA&STY-X v0.2.0-alpha is experimental research software. **Do not use the cipher or CLI to protect real secrets.** It has not had independent cryptanalysis, implementation audit, formal verification, or side-channel review.
