@@ -41,3 +41,7 @@ Draw the full original N silhouette before the circular dot enters. Remove the s
 ## Revision — five N concepts and lowercase i ending
 
 Explore five alternative N styles for approval. Keep the old mark only as a temporary placeholder. After writing, uppercase I shortens and the green pen dot settles above it to form lowercase i. Stop drawing there. No orbit, entry or moving counter. Intro: 370 frames at 60 fps. Idle starts with the same NAXi lockup.
+
+## Revision — original mark, appearance only
+
+Return to the first original N with its upper circular counter. Smooth appearance of the complete mark, followed by wordmark drawing and uppercase I shortening into lowercase i with the green stylus dot above. Stop there. No vortex, orbital motion, moving internal counter or breathing loop. Intro: 305 frames at 60 fps.

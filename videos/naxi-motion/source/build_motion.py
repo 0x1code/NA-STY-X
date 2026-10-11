@@ -109,65 +109,32 @@ def mix(a, b, u):
     return [x+(y-x)*u for x, y in zip(a, b)]
 
 
-def orbit_position(frame, index=0):
-    u = min(1, frame/78)
-    angle = index*math.pi/2 + math.tau*2.1*u
-    radius = (100+index*40)*(1-.30*u)
-    position = [627.5+radius*math.cos(angle),
-                543+(1.5-index)*74+35*math.sin(angle)]
-    if frame >= 52:
-        targets = [[507, 654], [746, 653], [511, 434], [745, 434]]
-        position = mix(position, targets[index], smooth((frame-52)/26))
-    return [*position, 0]
-
-
-def orb(index=0):
-    positions = [(f, orbit_position(min(f, 78), index)) for f in range(0, 95)]
-    return vector_layer('Vortex - spiral '+str(index+1),
-                        [{'ty': 'el', 'nm': 'Circle', 'p': fixed([0, 0]), 's': fixed([68, 68])}, fill(MINT)],
-                        ip=0, op=95, position=animated(positions, True),
-                        opacity=animated([(0, 100), (78, 100), (94, 0)]),
-                        scale=animated([(0, [8, 8, 100]), (9, [70, 70, 100]),
-                                        (16, [55, 55, 100]), (52, [65, 65, 100]),
-                                        (78, [174, 174, 100])]))
-
-
-def vortex_trail(index):
-    points = [orbit_position(f, index)[:2] for f in range(79)]
-    lengths = [0]
-    for a, b in zip(points, points[1:]):
-        lengths.append(lengths[-1]+math.dist(a, b))
-    percent = [100*x/lengths[-1] for x in lengths]
-    return vector_layer('Vortex - curved tail '+str(index+1), [
-        {'ty': 'sh', 'nm': 'Spiral flight', 'ks': fixed(path(points))},
-        {'ty': 'st', 'nm': 'Mint motion tail', 'c': fixed(color(MINT)), 'o': fixed(28),
-         'w': fixed(4), 'lc': 2, 'lj': 2, 'ml': 4},
-        {'ty': 'tm', 'nm': 'Short trailing arc',
-         's': animated([(f, percent[max(0, f-9)]) for f in range(79)], True),
-         'e': animated(list(enumerate(percent)), True), 'o': fixed(0), 'm': 1}],
-        ip=0, op=83, opacity=animated([(0, 100), (60, 100), (82, 0)]))
-
-
 def main_mark():
-    final_body = shape(GEOMETRY[0]['paths'][0])
-    # Resolve the complete original silhouette before the internal dot appears.
-    layer = vector_layer('Mark - growing N', [
-        {'ty': 'sh', 'nm': 'Body - complete N silhouette',
-         'ks': fixed(final_body)}, fill(MINT)],
-        anchor=(627.5, 543), ip=65)
-    layer['hasMask'] = True
-    layer['masksProperties'] = [
-        mask('Reveal - left round cap grows downward', 'a', animated([
-            (65, capsule([511, 434], [511, 434.01], 66)),
-            (96, capsule([511, 434], [507, 654], 66))])),
-        mask('Reveal - right round cap grows upward', 'a', animated([
-            (65, capsule([746, 653], [746, 652.99], 66)),
-            (96, capsule([746, 653], [745, 434], 66))])),
-        mask('Reveal - diagonal joins the caps', 'a', animated([
-            (75, capsule([511, 434], [511.01, 434.01], .01)),
-            (82, capsule([511, 434], [564, 483], 66)),
-            (110, capsule([511, 434], [746, 653], 70))]))]
-    return layer
+    return artwork(GEOMETRY[0], ip=65,
+        opacity=animated([(65, 0), (95, 100)]),
+        scale=animated([(65, [92, 92, 100]), (110, [100, 100, 100])]))
+
+
+def retime_intro(data, offset):
+    def keys(node):
+        if isinstance(node, dict):
+            if 't' in node and 's' in node:
+                node['t'] = max(0, node['t']-offset)
+            for value in node.values():
+                keys(value)
+        elif isinstance(node, list):
+            for value in node:
+                keys(value)
+    keys(data)
+    data['op'] -= offset
+    for layer in data['layers']:
+        layer['ip'] = max(0, layer['ip']-offset)
+        layer['op'] -= offset
+    data['markers'] = [{'tm': 0, 'cm': 'Original N appears', 'dr': 45},
+                       {'tm': 52, 'cm': 'Dot writes NAXI', 'dr': 187},
+                       {'tm': 239, 'cm': 'I becomes lowercase i', 'dr': 30},
+                       {'tm': 269, 'cm': 'Final NAXi hold', 'dr': 36}]
+    return data
 
 
 def cubic(a, b, c, d, u):
@@ -298,16 +265,11 @@ def with_background(data):
 def build():
     for folder in ('assets', 'after-effects', 'qa', 'renders'):
         (ROOT/folder).mkdir(exist_ok=True)
-    intro = document([writer(), *writing_layers(), main_mark(),
-                      *[orb(i) for i in range(4)], *[vortex_trail(i) for i in range(4)]])
+    intro = retime_intro(document([writer(), *writing_layers(), main_mark()]), 65)
     idle_layers = [artwork(element, op=144) for element in GEOMETRY]
-    idle_layers[0]['shapes'][0]['it'].pop(1)
     idle_layers[-1]['shapes'][0]['it'][0]['ks'] = fixed(lowercase_i_shape())
     idle_layers.insert(0, vector_layer('Wordmark - green i dot', [
         {'ty': 'el', 'nm': 'Dot', 'p': fixed([845.5, 787]), 's': fixed([24, 24])}, fill(MINT)], op=144))
-    idle_layers[1]['ks']['s'] = animated([(0, [100, 100, 100]), (36, [102, 98.5, 100]),
-                                        (72, [100, 100, 100]), (108, [98.5, 102, 100]),
-                                        (144, [100, 100, 100])])
     idle = document(idle_layers, 144, 'NAXI - Idle loop')
     for name, data in [('naxi-intro.json', intro), ('naxi-intro-dark.json', with_background(intro)),
                        ('naxi-idle.json', idle), ('naxi-idle-dark.json', with_background(idle))]:

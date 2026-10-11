@@ -1,6 +1,6 @@
 {
   "category": "logo-reveal",
-  "duration_s": 6.166666666666667,
+  "duration_s": 5.083333333333333,
   "fps": 60,
   "canvas": {
     "w": 1254,
@@ -12,32 +12,27 @@
     "#57F4B4",
     "#F8F7F5"
   ],
-  "revision": "Five N design concepts await approval. Wordmark finishes as NAXi: I shortens and pen remains as its green dot, without orbital flight.",
+  "revision": "Original first N appears smoothly; pen draws NAXI; I shortens and green dot forms lowercase i; stop.",
   "scenes": [
     {
-      "id": "tornado",
+      "id": "original-N-appearance",
       "start": 0.0,
-      "end": 1.3
-    },
-    {
-      "id": "form-N-placeholder",
-      "start": 1.0833333333333333,
-      "end": 1.8333333333333333
+      "end": 0.75
     },
     {
       "id": "dot-writes",
-      "start": 1.95,
-      "end": 5.066666666666666
+      "start": 0.8666666666666667,
+      "end": 3.9833333333333334
     },
     {
-      "id": "I-becomes-lowercase-i",
-      "start": 5.066666666666666,
-      "end": 5.566666666666666
+      "id": "lowercase-i",
+      "start": 3.9833333333333334,
+      "end": 4.483333333333333
     },
     {
-      "id": "hold-NAXi",
-      "start": 5.566666666666666,
-      "end": 6.166666666666667
+      "id": "hold",
+      "start": 4.483333333333333,
+      "end": 5.083333333333333
     }
   ],
   "constraints": [
