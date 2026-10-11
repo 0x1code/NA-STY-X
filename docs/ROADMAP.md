@@ -9,6 +9,8 @@
 
 Implemented: labelled round variants, shared fixtures, exact S-box DDT/Walsh/nonlinearity, descriptive block/key avalanche and SAC/BIC estimates, per-round diffusion, and a small repeated-byte key-schedule probe. Methodology and raw results are published. Full-network attack analysis remains open.
 
+Added: a fully specified 16-bit toy model with exact fixed-key differentials for selected input differences and linear correlations for selected output masks, exhaustive plaintext coverage, witnesses and a random permutation reference. This is distinct from reduced-round analysis of the full-width cipher; see `REDUCED_MODEL.md`.
+
 1. Freeze the specification and add independent vector generation/cross-checking before interpreting measurements.
 2. Add S-box metrics: differential distribution table, maximum differential probability, linear approximation table, and component nonlinearity.
 3. Measure block and key avalanche, SAC, and bit-independence over stated sample sizes and fixed seeds; publish scripts and raw result metadata.

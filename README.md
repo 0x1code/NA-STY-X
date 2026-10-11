@@ -25,6 +25,7 @@ The AES S-box was replaced by a separately generated NA&STY-X table. Rust and Py
 - 185 shared vectors checked independently by Rust and Python.
 - Exact S-box differential and Walsh tables, component nonlinearity, block/key avalanche, SAC counts, conditional bit-pair correlations, and round dependency measurements.
 - Public raw results and methodology in [`docs/CRYPTOANALYSIS_V0_2.md`](docs/CRYPTOANALYSIS_V0_2.md). These measurements are not security proofs.
+- Exact fixed-key analysis of a separately specified 16-bit toy model: all plaintexts, selected differences/output masks, correlation witnesses, and a random permutation reference. See [`docs/REDUCED_MODEL.md`](docs/REDUCED_MODEL.md); these are not bounds for the full cipher.
 
 ## Run the Python checks
 
@@ -35,6 +36,7 @@ py -3 -m unittest discover -s tests -v
 py -3 research/avalanche.py --samples 4 --seed 20261011
 py -3 research/generate_vectors.py --check
 py -3 research/lab.py --samples 32 --seed 20261011 --output research/results/v0.2-phase2-smoke.json
+py -3 research/reduced_model.py --output research/results/reduced-model-v1.json
 ```
 
 ## Run the Rust checks and demo
