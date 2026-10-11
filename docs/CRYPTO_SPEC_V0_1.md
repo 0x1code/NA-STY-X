@@ -7,6 +7,7 @@
 - Block: 128 bits, encoded as 16 bytes.
 - Master key: 256 bits, encoded as 32 bytes.
 - Rounds: 16.
+- Explicit research variants: 8, 12, 20 and 24 rounds, using the same key-expansion recurrence truncated or continued to the requested round count. They are separate labelled experiments; 16 remains the default and its original vector is unchanged.
 - Split: `L0` is the first 8 block bytes and `R0` the final 8; both decode as unsigned big-endian 64-bit integers.
 - Output: final `L16 || R16`, each encoded big-endian.
 - Round key: one 64-bit word per round.
@@ -82,3 +83,11 @@ ciphertext  = f7d36b9993d7af9ae115d2c7458b6118
 ```
 
 The JSON vector file is [`../tests/vectors/v0.1.json`](../tests/vectors/v0.1.json).
+
+## Research variants
+
+For a selected round count `r` in `{8,12,16,20,24}`, replace `16` by `r` in the iteration limits and output `Lr || Rr`. The key schedule computes `ki` for `i=0..r-1`, using exactly the recurrence above. Keys for a smaller variant are a prefix of the larger variant's schedule; variants are not domain-separated cryptosystems and must not be used concurrently as secure services.
+
+Rust selects the variant explicitly with `Nastyx::with_rounds(key, RoundCount::R24)`; Python uses `encrypt_block(key, block, rounds=24)`. Unsupported counts are unrepresentable in the Rust enum and rejected in Python. Shared JSON/TSV fixtures contain 185 cases across all five supported counts.
+
+The S-box definition follows [NIST FIPS 197](https://csrc.nist.gov/pubs/fips/197/final). This reference documents a component, not the security of NA&STY-X.

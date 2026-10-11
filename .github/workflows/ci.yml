@@ -6,10 +6,20 @@ on:
 
 jobs:
   rust:
-    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+    runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v4
       - uses: dtolnay/rust-toolchain@stable
+      - run: cargo test --workspace --locked
+
+  msrv:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@1.74.0
       - run: cargo test --workspace --locked
 
   python:
@@ -20,3 +30,5 @@ jobs:
         with:
           python-version: "3.12"
       - run: python -m unittest discover -s tests -v
+      - run: python research/generate_vectors.py --check
+      - run: python research/lab.py --samples 2 --seed 20261011 --output lab-smoke.json

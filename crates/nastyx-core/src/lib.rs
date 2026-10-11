@@ -12,6 +12,26 @@ pub const BLOCK_SIZE: usize = 16;
 pub const KEY_SIZE: usize = 32;
 /// Number of Feistel rounds in the v0.1 reference construction.
 pub const ROUNDS: usize = 16;
+/// Largest round count supported by the research variants.
+pub const MAX_ROUNDS: usize = 24;
+
+/// Explicit experimental variants. No variant has an established security bound.
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+#[repr(usize)]
+pub enum RoundCount {
+    R8 = 8,
+    R12 = 12,
+    R16 = 16,
+    R20 = 20,
+    R24 = 24,
+}
+
+impl RoundCount {
+    /// Returns the number of Feistel rounds.
+    pub const fn count(self) -> usize {
+        self as usize
+    }
+}
 
 const BYTE_PERMUTATION: [usize; 8] = [2, 5, 0, 7, 4, 1, 6, 3];
 const GOLDEN_RATIO: u64 = 0x9E37_79B9_7F4A_7C15;
@@ -19,7 +39,8 @@ const GOLDEN_RATIO: u64 = 0x9E37_79B9_7F4A_7C15;
 /// A keyed experimental block permutation. Not suitable for production.
 #[derive(Clone)]
 pub struct Nastyx {
-    round_keys: [u64; ROUNDS],
+    round_keys: [u64; MAX_ROUNDS],
+    rounds: RoundCount,
 }
 
 impl Nastyx {
@@ -27,14 +48,27 @@ impl Nastyx {
     ///
     /// This API is experimental and makes no security guarantee.
     pub fn new(key: &[u8; KEY_SIZE]) -> Self {
-        Self { round_keys: expand_key(key) }
+        Self::with_rounds(key, RoundCount::R16)
+    }
+
+    /// Constructs an explicit research variant; the default remains 16 rounds.
+    pub fn with_rounds(key: &[u8; KEY_SIZE], rounds: RoundCount) -> Self {
+        Self {
+            round_keys: expand_key(key),
+            rounds,
+        }
+    }
+
+    /// Returns the configured research round count.
+    pub fn rounds(&self) -> RoundCount {
+        self.rounds
     }
 
     /// Encrypts one 16-byte block. This is a research primitive, not an AEAD.
     pub fn encrypt_block(&self, block: &[u8; BLOCK_SIZE]) -> [u8; BLOCK_SIZE] {
         let mut left = u64::from_be_bytes(block[..8].try_into().expect("fixed slice"));
         let mut right = u64::from_be_bytes(block[8..].try_into().expect("fixed slice"));
-        for &round_key in &self.round_keys {
+        for &round_key in &self.round_keys[..self.rounds.count()] {
             let next = left ^ round_function(right, round_key);
             left = right;
             right = next;
@@ -46,7 +80,7 @@ impl Nastyx {
     pub fn decrypt_block(&self, block: &[u8; BLOCK_SIZE]) -> [u8; BLOCK_SIZE] {
         let mut left = u64::from_be_bytes(block[..8].try_into().expect("fixed slice"));
         let mut right = u64::from_be_bytes(block[8..].try_into().expect("fixed slice"));
-        for &round_key in self.round_keys.iter().rev() {
+        for &round_key in self.round_keys[..self.rounds.count()].iter().rev() {
             let previous_right = left;
             let previous_left = right ^ round_function(left, round_key);
             left = previous_left;
@@ -63,21 +97,18 @@ fn join_halves(left: u64, right: u64) -> [u8; BLOCK_SIZE] {
     output
 }
 
-fn expand_key(key: &[u8; KEY_SIZE]) -> [u64; ROUNDS] {
+fn expand_key(key: &[u8; KEY_SIZE]) -> [u64; MAX_ROUNDS] {
     let mut state = [0_u64; 4];
     for (i, word) in state.iter_mut().enumerate() {
         let start = i * 8;
         *word = u64::from_be_bytes(key[start..start + 8].try_into().expect("fixed slice"));
     }
-    let mut round_keys = [0_u64; ROUNDS];
+    let mut round_keys = [0_u64; MAX_ROUNDS];
     for (i, output) in round_keys.iter_mut().enumerate() {
         let constant = GOLDEN_RATIO.wrapping_mul((i as u64) + 1);
         let [s0, s1, s2, s3] = state;
-        let round_key = s0
-            .wrapping_add(s1.rotate_left(13))
-            .wrapping_add(constant)
-            ^ s2.rotate_left(29)
-            ^ s3;
+        let round_key =
+            s0.wrapping_add(s1.rotate_left(13)).wrapping_add(constant) ^ s2.rotate_left(29) ^ s3;
         *output = round_key;
         state = [s1, s2, s3, round_key.wrapping_add(s0.rotate_left(7))];
     }
@@ -162,7 +193,9 @@ mod tests {
 
     #[test]
     fn encrypts_reference_vector() {
-        let key = decode_hex::<KEY_SIZE>("000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f");
+        let key = decode_hex::<KEY_SIZE>(
+            "000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f",
+        );
         let block = decode_hex::<BLOCK_SIZE>("00112233445566778899aabbccddeeff");
         let expected = decode_hex::<BLOCK_SIZE>("f7d36b9993d7af9ae115d2c7458b6118");
         let cipher = Nastyx::new(&key);

@@ -1,11 +1,13 @@
 # Roadmap
 
-## Phase 1 — Foundation (current)
+## Phase 1 — Foundation (implemented)
 
 - Workspace, experimental Rust block cipher, Python reference, vector, basic reversibility checks, small avalanche probe, CLI demonstration, and security documentation.
-- Remaining environment check: Rust compilation requires a Rust/Cargo toolchain.
+- Rust compiled and tested locally on Windows GNU; Python and Rust agree on 185 shared vectors. See `ITERATION_2026_10_11.md` for the recorded checks.
 
-## Phase 2 — Cryptoanalysis
+## Phase 2 — Cryptoanalysis (started)
+
+Implemented: labelled round variants, shared fixtures, exact S-box DDT/Walsh/nonlinearity, descriptive block/key avalanche and SAC/BIC estimates, per-round diffusion, and a small repeated-byte key-schedule probe. Methodology and raw results are published. Full-network attack analysis remains open.
 
 1. Freeze the specification and add independent vector generation/cross-checking before interpreting measurements.
 2. Add S-box metrics: differential distribution table, maximum differential probability, linear approximation table, and component nonlinearity.

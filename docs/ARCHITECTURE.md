@@ -6,6 +6,12 @@
 
 The cipher and future secure messaging work have separate namespaces, crates, specifications, and threat models. The experimental cipher is not a default or fallback for any secure protocol component.
 
+## Phase 2 laboratory
+
+`Nastyx::with_rounds` selects one of five explicit research variants through `RoundCount`; `Nastyx::new` retains the 16-round default. The Python reference uses an explicit `rounds` argument. This is a raw block API; bindings and safe application-level encryption are not implemented.
+
+`research/generate_vectors.py` produces public JSON and TSV fixtures. Rust integration tests consume TSV and check encryption and decryption independently. `research/lab.py` uses only the Python standard library to compute exact S-box tables and descriptive experiments. It records sample size, seed, bit order, runtime, platform, Python version and the normalized source hash. Raw measurements live in `research/results/`. A fixed seed makes public experiments repeatable; it must never be used for generating application secrets.
+
 ## Proposed Secure separation
 
 Future crates may include `nastyx-secure` for wrappers around reviewed primitives, and `nastyx-protocol` for message framing and session state. Candidate primitives include X25519, HKDF-SHA-256, and an established AEAD such as ChaCha20-Poly1305, selected from maintained RustCrypto ecosystem crates after reviewing current APIs and platform support. No dependency or protocol choice is implied by Phase 1. A ratchet and post-quantum hybrid are future design work, not implemented behavior.
