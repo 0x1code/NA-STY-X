@@ -1,0 +1,117 @@
+{
+  "format": "nastyx-hardened-build-v1",
+  "date": "2026-10-12",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "toolchain": "stable-x86_64-pc-windows-gnu",
+  "cargo_version": "cargo 1.99.0 (5f94df478 2026-08-27)",
+  "profile": "default release, no target-cpu override",
+  "sources_sha256_utf8_lf": {
+    "Cargo.toml": "0b044d5ca4b4f9e1dbc73f2116b51e8a5d896d14fb3c015c647c07906a24a885",
+    "Cargo.lock": "c73530ea1ec930f065620ac98e7e756782dae9b33466eb8b0d4b928269f3ef36",
+    "research/record_hardened_build.py": "9e03c795ad53caef523bb102560f7a00f8586a51f56dcad83f49401f380a9b44",
+    "research/generate_sbox_circuit.py": "5f8674edeee21d6a48d3bcf1da494bad09f52e693ca6efcbdcff61f08896f4dc",
+    "crates/nastyx-engine/Cargo.toml": "e2b15b2edbed8815db9d0d2d866b286dcfe42afd51339c40e5b1b462b938fcf4",
+    "crates/nastyx-engine/src/lib.rs": "9cf84fe1a46dc6d65ac72395d668aa490482e4c09dc9ed9678390ed38792ff36",
+    "crates/nastyx-message/Cargo.toml": "8203c9194d0a5bac6e10cad9d9f562630a16aecb00a2cd044213efe48d5cb333",
+    "crates/nastyx-message/src/lib.rs": "c75dce5bc7829db5c80f02c31265630c464d1ee58f1018c7d38480e436469bcc",
+    "crates/nastyx-session/Cargo.toml": "41e6ae2d91e4c5f960681f54d24316c36e9ce6335a5245c6c9280e26221b67ff",
+    "crates/nastyx-session/src/lib.rs": "3090a31c31a74cedd592a21dc0b7ab6808e59f823bc49742086f5f92df50c783",
+    "crates/nastyx-engine/src/boolean_substitution.rs": "76c5c8def94812a6429eac61af9b6a5ec03356cfacc81d59e4a9f74a6e7261ed",
+    "crates/nastyx-engine/examples/bench.rs": "6b9a2e61e8c8c2f7158017929f0adcd7439bf3cd1bd2a38dfd438e89c2260209",
+    "crates/nastyx-engine/examples/compare_sboxes.rs": "2834feb158dedc287ed8505e9a96a62291fea58e68347ce04004c11ce5e39e81",
+    "crates/nastyx-engine/examples/memory_probe.rs": "0315b85ff92aa3addf88a3c9cdba3914420face3289be0568663639992dc6dcb",
+    "research/snapshots/boolean-v1/crates/nastyx-engine/src/boolean_substitution.rs": "e984e7637c3868dfcca75c09ef0b8b9b3e92d0361dbd323d5136d1b8a3414f57"
+  },
+  "benchmarks": {
+    "bench": {
+      "stdout": "cipher_state_bytes=200\nrepetition=0 setups=1000 setup_seconds=0.002399 blocks=100000 encrypt_seconds=0.132373 decrypt_seconds=0.130571\nrepetition=1 setups=1000 setup_seconds=0.002568 blocks=100000 encrypt_seconds=0.134331 decrypt_seconds=0.132766\nrepetition=2 setups=1000 setup_seconds=0.002556 blocks=100000 encrypt_seconds=0.129605 decrypt_seconds=0.134296\n",
+      "repetitions": [
+        {
+          "repetition": 0,
+          "setups": 1000,
+          "setup_seconds": 0.002399,
+          "blocks": 100000,
+          "encrypt_seconds": 0.132373,
+          "decrypt_seconds": 0.130571
+        },
+        {
+          "repetition": 1,
+          "setups": 1000,
+          "setup_seconds": 0.002568,
+          "blocks": 100000,
+          "encrypt_seconds": 0.134331,
+          "decrypt_seconds": 0.132766
+        },
+        {
+          "repetition": 2,
+          "setups": 1000,
+          "setup_seconds": 0.002556,
+          "blocks": 100000,
+          "encrypt_seconds": 0.129605,
+          "decrypt_seconds": 0.134296
+        }
+      ]
+    },
+    "compare_sboxes": {
+      "stdout": "repetition=0 calls=1000000 previous_seconds=0.366106 current_seconds=0.050016\nrepetition=1 calls=1000000 previous_seconds=0.376462 current_seconds=0.050218\nrepetition=2 calls=1000000 previous_seconds=0.368868 current_seconds=0.051510\nrepetition=3 calls=1000000 previous_seconds=0.367177 current_seconds=0.050544\nrepetition=4 calls=1000000 previous_seconds=0.368060 current_seconds=0.050343\nrepetition=5 calls=1000000 previous_seconds=0.367539 current_seconds=0.049671\n",
+      "repetitions": [
+        {
+          "repetition": 0,
+          "calls": 1000000,
+          "previous_seconds": 0.366106,
+          "current_seconds": 0.050016
+        },
+        {
+          "repetition": 1,
+          "calls": 1000000,
+          "previous_seconds": 0.376462,
+          "current_seconds": 0.050218
+        },
+        {
+          "repetition": 2,
+          "calls": 1000000,
+          "previous_seconds": 0.368868,
+          "current_seconds": 0.05151
+        },
+        {
+          "repetition": 3,
+          "calls": 1000000,
+          "previous_seconds": 0.367177,
+          "current_seconds": 0.050544
+        },
+        {
+          "repetition": 4,
+          "calls": 1000000,
+          "previous_seconds": 0.36806,
+          "current_seconds": 0.050343
+        },
+        {
+          "repetition": 5,
+          "calls": 1000000,
+          "previous_seconds": 0.367539,
+          "current_seconds": 0.049671
+        }
+      ]
+    }
+  },
+  "assembly": {
+    "round": {
+      "path": "research/results/hardened-round-x86_64-gnu.s",
+      "sha256_utf8_lf": "0f39abf25bdbbca743c5a8a50d5e6084f53f7f8bf0238e02989066b77addf89d",
+      "branch_or_call_lines": []
+    },
+    "tag": {
+      "path": "research/results/hardened-tag-x86_64-gnu.s",
+      "sha256_utf8_lf": "3bff31ce87b9089a90014005536a7265e1777d28d326ad25a4f093b6b9adba8b",
+      "branch_or_call_lines": []
+    },
+    "erase": {
+      "path": "research/results/hardened-erase-x86_64-gnu.s",
+      "sha256_utf8_lf": "fb2de802c1f3ce93f77297ec53925a39e242a68270f1b3a33e90c5f9949a85ab",
+      "branch_or_call_lines": [
+        "je\t.LBB6_2"
+      ]
+    }
+  },
+  "scope": "Public serial probes, alternating microbenchmark order. Frequency/load not controlled. One target, one compiler; no timing certification or guarantee of erasing all copies."
+}

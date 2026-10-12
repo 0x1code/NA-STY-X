@@ -5,6 +5,7 @@ use nastyx_engine::Nastyx;
 use std::fs::{self, OpenOptions};
 use std::io::{self, Write};
 use std::path::{Path, PathBuf};
+use zeroize::Zeroizing;
 
 /// Maximum plaintext size accepted by this research interface.
 pub const MAX_MESSAGE: usize = 1_048_576;
@@ -55,7 +56,7 @@ impl Keys {
     fn new(master: &[u8; 32]) -> Self {
         let root = Nastyx::new(master);
         let derive = |role| {
-            let mut key = [0; 32];
+            let mut key = Zeroizing::new([0; 32]);
             key[..16].copy_from_slice(&root.encrypt_block(&domain(b'K', role, 0)));
             key[16..].copy_from_slice(&root.encrypt_block(&domain(b'K', role, 1)));
             Nastyx::new(&key)
@@ -79,29 +80,39 @@ fn crypt(keys: &Keys, nonce: &[u8], input: &[u8]) -> Vec<u8> {
         let mut counter = [0; 16];
         counter[..12].copy_from_slice(nonce);
         counter[12..].copy_from_slice(&(index as u32).to_be_bytes());
-        let stream = keys.encryption.encrypt_block(&counter);
-        out.extend(chunk.iter().zip(stream).map(|(a, b)| a ^ b));
+        let stream = Zeroizing::new(keys.encryption.encrypt_block(&counter));
+        out.extend(chunk.iter().zip(stream.iter()).map(|(a, b)| a ^ b));
     }
     out
 }
 
 fn tag(keys: &Keys, header: &[u8], context: &[u8], ciphertext: &[u8]) -> [u8; 16] {
-    let mut state = keys.authentication.encrypt_block(&domain(b'M', 0, 0));
+    let mut state = Zeroizing::new(keys.authentication.encrypt_block(&domain(b'M', 0, 0)));
     let mut block = [0; 16];
     let mut used = 0;
     for &value in header.iter().chain(context).chain(ciphertext) {
         block[used] = value;
         used += 1;
         if used == 16 {
-            state = keys.authentication.encrypt_block(&xor(state, &block));
+            *state = keys.authentication.encrypt_block(&xor(*state, &block));
             block = [0; 16];
             used = 0;
         }
     }
     block[used] = 0x80;
-    state = keys.authentication.encrypt_block(&xor(state, &block));
+    *state = keys.authentication.encrypt_block(&xor(*state, &block));
     keys.finalization
-        .encrypt_block(&xor(state, &domain(b'F', 0, 0)))
+        .encrypt_block(&xor(*state, &domain(b'F', 0, 0)))
+}
+
+/// Fixed-size, full-tag comparison without source-level early exits.
+/// The generated machine code still needs review on every supported target.
+#[inline(never)]
+pub fn tags_equal(a: &[u8; 16], b: &[u8; 16]) -> bool {
+    a.iter()
+        .zip(b)
+        .fold(0_u8, |difference, (x, y)| difference | (x ^ y))
+        == 0
 }
 
 fn seal(keys: &Keys, nonce: &[u8; 12], plaintext: &[u8], context: &[u8]) -> Vec<u8> {
@@ -284,11 +295,10 @@ impl Receiver {
         }
         let ciphertext = &record[HEADER..HEADER + size];
         let expected = tag(&self.keys, header, context, ciphertext);
-        let mut difference = 0_u8;
-        for (a, b) in expected.iter().zip(&record[HEADER + size..]) {
-            difference |= a ^ b;
-        }
-        if difference != 0 {
+        let supplied = record[HEADER + size..]
+            .try_into()
+            .expect("validated tag length");
+        if !tags_equal(&expected, supplied) {
             return Err(Error::Rejected);
         }
         Ok(crypt(&self.keys, &header[8..20], ciphertext))
@@ -298,6 +308,17 @@ impl Receiver {
 #[cfg(test)]
 mod tests {
     use super::*;
+    #[test]
+    fn tag_comparison_checks_every_bit() {
+        let expected = [0xa5; 16];
+        assert!(tags_equal(&expected, &expected));
+        for bit in 0..128 {
+            let mut altered = expected;
+            altered[bit / 8] ^= 1 << (bit % 8);
+            assert!(!tags_equal(&expected, &altered));
+            assert!(!tags_equal(&altered, &expected));
+        }
+    }
     fn hex(text: &str) -> Vec<u8> {
         text.as_bytes()
             .chunks(2)

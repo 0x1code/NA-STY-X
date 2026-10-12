@@ -44,11 +44,16 @@ Use for research/integration experiments with non-secret data.
 
 Specifications: [cipher v0.3](docs/CRYPTO_SPEC_V0_3.md), [message format v0.3](docs/MESSAGE_SPEC_V0_3.md), [iteration report](docs/ITERATION_V0_3.md).
 
-Current Rust substitution uses Boolean ANF of the same original S-box, removing
-secret-indexed S-box loads from this source path. Outputs and wire formats are unchanged;
-this implementation is slower and is not a constant-time certification. Exact round-key
-symmetry, bounded master-key search and MAC/KDF probes are published in
-[construction analysis](docs/CONSTRUCTION_ANALYSIS.md).
+Current Rust substitution uses a factored Boolean ANF of the same original S-box,
+without secret-indexed S-box loads. Outputs and wire formats are unchanged.
+The latest iteration adds 143,752 related-master probes, full-width reduced-round
+experiments, MAC/KDF controls, faster Boolean evaluation and owned-key memory erasure.
+The only external utility dependency, pinned `zeroize`, supplies memory clearing;
+encryption, authentication and derivation remain original project code.
+See the [seven-direction research report](docs/ITERATION_RESEARCH_1_7.md) and
+the earlier [construction analysis](docs/CONSTRUCTION_ANALYSIS.md).
+The new key-establishment candidate was rejected; public-key establishment,
+automatic PCS and independent external cryptanalysis remain open.
 
 ## Run
 
@@ -60,6 +65,8 @@ py -3 research/generate_v3_vectors.py --check
 py -3 research/generate_session_vectors.py --check
 py -3 research/generate_sbox_circuit.py --check
 py -3 research/construction_analysis.py
+py -3 research/advanced_analysis.py
+py -3 research/bundle_review.py
 py -3 demos/e2ee_chat.py
 py -3 research/full_width_v3.py
 py -3 research/reduced_model_v3.py --output research/results/reduced-model-v3.json

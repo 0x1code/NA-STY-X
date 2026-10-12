@@ -15,7 +15,8 @@ class ConstructionAnalysisTests(unittest.TestCase):
     def test_boolean_build_evidence_source_and_assembly_hashes(self):
         report = json.loads((ROOT / 'research/results/sbox-boolean-build-v1.json').read_text(encoding='utf8'))
         for name, digest in report['sources_sha256_utf8_lf'].items():
-            self.assertEqual(hashlib.sha256((ROOT / name).read_text(encoding='utf8').encode()).hexdigest(), digest)
+            source = ROOT / 'research/snapshots/boolean-v1' / name
+            self.assertEqual(hashlib.sha256(source.read_text(encoding='utf8').encode()).hexdigest(), digest)
         asm = (ROOT / report['assembly_fragment']).read_text(encoding='utf8')
         self.assertEqual(hashlib.sha256(asm.encode()).hexdigest(), report['assembly_sha256_utf8_lf'])
         self.assertEqual(len(report['repetitions']), 3)

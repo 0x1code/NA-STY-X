@@ -2,6 +2,10 @@
 members = ["crates/nastyx-core", "crates/nastyx-cli", "crates/nastyx-engine", "crates/nastyx-message", "crates/nastyx-session"]
 resolver = "2"
 
+[workspace.dependencies]
+# Memory erasure only; no encryption, authentication or key agreement from dependencies.
+zeroize = { version = "=1.8.2", default-features = false }
+
 [workspace.package]
 version = "0.2.0-alpha"
 edition = "2021"

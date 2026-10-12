@@ -22,13 +22,13 @@ results are kept separate; a working prototype does not establish production sec
 
 ## Current v0.3 implementation
 
-`nastyx-engine` implements the new cipher revision; `nastyx-message` depends only on it. `nastyx-core` remains the historical v0.2 implementation. Their vectors and algorithms are kept separate. Python independently implements v0.3 block and message transformations.
+`nastyx-engine` implements the new cipher revision; `nastyx-message` builds on it. The active engine/message/session crates also use pinned `zeroize` solely for memory clearing. `nastyx-core` remains the historical v0.2 implementation. Their vectors and algorithms are kept separate. Python independently implements v0.3 block and message transformations.
 
 The message API implements research encryption/integrity and a local nonce registry, not a complete session protocol. See `MESSAGE_SPEC_V0_3.md` for exact framing, key derivation, state assumptions and missing properties. Earlier statements about absent authentication refer to the historical primitive; the new tag is implemented but unreviewed.
 
 ## NXS1 / 0.4.0-alpha
 
-`nastyx-session` depends only on `nastyx-message`: one-time pairing, ID/transcript binding,
+`nastyx-session` builds on `nastyx-message`: one-time pairing, ID/transcript binding,
 peer-code verification, directional chains, consumed message keys and bounded skipped keys.
 No serialization/key export: fresh pairing after restart. OneTimeSealer uses fixed-nonce
 NXM3 only for fresh message keys; long-term keys require Sender's persistent nonce registry.

@@ -5,6 +5,7 @@
 //! a fixed 128-bit block and 256-bit master-key permutation for experiments.
 
 mod boolean_substitution;
+use zeroize::Zeroizing;
 #[cfg(test)]
 mod substitution;
 #[cfg(test)]
@@ -46,7 +47,7 @@ const GOLDEN_RATIO: u64 = 0x9E37_79B9_7F4A_7C15;
 /// A keyed experimental block permutation. Not suitable for production.
 #[derive(Clone)]
 pub struct Nastyx {
-    round_keys: [u64; MAX_ROUNDS],
+    round_keys: Zeroizing<[u64; MAX_ROUNDS]>,
     rounds: RoundCount,
 }
 
@@ -104,22 +105,22 @@ fn join_halves(left: u64, right: u64) -> [u8; BLOCK_SIZE] {
     output
 }
 
-fn expand_key(key: &[u8; KEY_SIZE]) -> [u64; MAX_ROUNDS] {
-    let mut state = [0_u64; 4];
+fn expand_key(key: &[u8; KEY_SIZE]) -> Zeroizing<[u64; MAX_ROUNDS]> {
+    let mut state = Zeroizing::new([0_u64; 4]);
     for (i, word) in state.iter_mut().enumerate() {
         let start = i * 8;
         *word = u64::from_be_bytes(key[start..start + 8].try_into().expect("fixed slice"));
     }
-    let mut round_keys = [0_u64; MAX_ROUNDS];
+    let mut round_keys = Zeroizing::new([0_u64; MAX_ROUNDS]);
     for (i, output) in round_keys.iter_mut().enumerate() {
         let constant = GOLDEN_RATIO.wrapping_mul((i as u64) + 1);
-        let [s0, s1, s2, s3] = state;
+        let [s0, s1, s2, s3] = *state;
         let round_key = round_function(
             round_function(s0 ^ s1.rotate_left(13), s2 ^ constant) ^ s3,
             constant,
         );
         *output = round_key;
-        state = [
+        *state = [
             s1 ^ s0.rotate_left(7),
             s2.wrapping_add(round_key.rotate_left(11)),
             s3 ^ s1.rotate_left(29),
@@ -182,13 +183,25 @@ mod tests {
         }
     }
     #[test]
+    fn boolean_substitution_mixed_lanes_match_reference() {
+        let mut state = 2026101207_u64;
+        for _ in 0..4096 {
+            state = state.wrapping_mul(6364136223846793005).wrapping_add(1);
+            let expected = state.to_le_bytes().map(|byte| SBOX[byte as usize]);
+            assert_eq!(
+                boolean_substitution::substitute_word(state).to_le_bytes(),
+                expected
+            );
+        }
+    }
+    #[test]
     fn every_master_key_bit_affects_schedule() {
         let key = [0_u8; 32];
         let baseline = expand_key(&key);
         for bit in 0..256 {
             let mut changed = key;
             changed[bit / 8] ^= 1 << (bit % 8);
-            assert_ne!(baseline, expand_key(&changed));
+            assert_ne!(*baseline, *expand_key(&changed));
         }
     }
     #[test]

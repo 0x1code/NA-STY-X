@@ -1,0 +1,891 @@
+{
+  "format": "nastyx-advanced-analysis-v1",
+  "seed": 2026101207,
+  "python": "3.12.10",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "smoke": false,
+  "parameters": {
+    "bases": 4,
+    "samples": 2048,
+    "random_pairs": 512,
+    "hill_steps": 2048,
+    "cases": 32,
+    "dictionary_bits": 12
+  },
+  "sources_sha256_utf8_lf": {
+    "research/advanced_analysis.py": "d875833c9df9b7d7be49bbc0b913adc7cc3604c495347f04e2181f6999381d1b",
+    "research/reference_cipher/engine_v3.py": "90759ebdc0a2c479a3d42a7dc419820c08171acc1568de7ed992f7dd17724a26",
+    "research/reference_cipher/message_v3.py": "f62207787c0f5c9782920327a995b6293a6778320f34666fdf1f0a2bc9ee57ca",
+    "research/reference_cipher/session_v1.py": "fdfe520840683637f7a2e812c56fe99e0f0e10640bad66b7d17826fa31531dea"
+  },
+  "related_masters": {
+    "base_masters": 4,
+    "pairs_by_family": {
+      "all_two_bit_xors": 130560,
+      "repeated_byte": 20,
+      "word_bit_runs": 1008,
+      "repeated_word_bits": 1792,
+      "random_weight_3": 256,
+      "random_weight_4": 256,
+      "random_weight_8": 256,
+      "random_weight_16": 256,
+      "random_weight_32": 256,
+      "random_weight_64": 256,
+      "random_weight_128": 256,
+      "random_weight_255": 256,
+      "first_round_key_preserving": 128,
+      "hill_climb": 8196
+    },
+    "pairs_total": 143752,
+    "equivalent_schedules": 0,
+    "nonzero_period_three_schedules": 0,
+    "closest_observed": {
+      "master": "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff",
+      "related_master": "ffdfffffffffffffffffffffffffffffffff7fffffffffffffffffffffffffff",
+      "family": "all_two_bit_xors",
+      "mismatching_bits_rounds_3_to_24": 625,
+      "round_key_xor": [
+        "d248401ded6d8b8a",
+        "e679b09d3627a1c0",
+        "9219e8124153f74b",
+        "e603a7f614e5a8f8",
+        "6b10a173507b6a81",
+        "2c34e4489d01c55c",
+        "615b2c8c987f8dc1",
+        "c88dc41984cea860",
+        "c6b6659cdf1006c2",
+        "7ae9cfda5674137c",
+        "266723e5f66f3804",
+        "2077f4f2ef128728",
+        "1acabdbb5ae773f1",
+        "301b278c6a0d99ad",
+        "90297cb5b36f3610",
+        "e7a95eb1e48a86d2",
+        "caedbea7a1f94f43",
+        "60c4b09c4e3bea3a",
+        "68074864af4b4bce",
+        "ef6c70457b70bda4",
+        "7a45dc86c81e77f3",
+        "d480048f7bd13373",
+        "5b7786356e9289d1",
+        "4b7950c3828b0bc1"
+      ]
+    },
+    "first_round_preserving_controls": [
+      {
+        "master": "0000000000000000000000000000000000000000000000000000000000000000",
+        "related_master": "d91dfee8afed0620cf6cbdb813ab8f9cda8002af1b0ad758e1dc640fd35a004a",
+        "shared_round_1_key": "805b91d384adef92"
+      },
+      {
+        "master": "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff",
+        "related_master": "e9a0f769f144bab959c7750697ece5c83fbae6fc942e3738ee33bf55375cbc13",
+        "shared_round_1_key": "4fe27446b85be21c"
+      },
+      {
+        "master": "000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f",
+        "related_master": "8450d3b04f5560d504b66676da7e6dff8e7cc3103a90edd2410184ebb0e85f98",
+        "shared_round_1_key": "e3ee6532b5db89b3"
+      },
+      {
+        "master": "77726fc5161df4d568add921d5e9642979e2f57394171413b749e1407dcbec84",
+        "related_master": "c9b976338547d8c58bfb17dac42e40b9ff934ef4b6ecc7bb8a2d3c3fc68d2cb6",
+        "shared_round_1_key": "4f5e0176bc36a2cb"
+      }
+    ],
+    "scope": "Selected baselines; exhaustive weight-two deltas only when enabled; bounded structured/random/local search. No exclusion of other relations."
+  },
+  "full_width_reduced_rounds": {
+    "master": "d304ddee40c9ab535498ccb986ef9353cce4e58c4709dd32a19e9b468f31d1b4",
+    "width_bits": 128,
+    "differential": [
+      {
+        "input_xor": "00000000000000000000000000000001",
+        "samples": 2048,
+        "rounds": [
+          {
+            "rounds": 1,
+            "max_observed_full_output_count": 1,
+            "max_observed_joint_trail_count": 1,
+            "most_frequent_output": "0000000000000001aeb6aa22287dec6b"
+          },
+          {
+            "rounds": 2,
+            "max_observed_full_output_count": 1,
+            "max_observed_joint_trail_count": 1,
+            "most_frequent_output": "aeb6aa22287dec6b3f529412925f1c5a"
+          },
+          {
+            "rounds": 3,
+            "max_observed_full_output_count": 1,
+            "max_observed_joint_trail_count": 1,
+            "most_frequent_output": "3f529412925f1c5a95493d451bf6f675"
+          },
+          {
+            "rounds": 4,
+            "max_observed_full_output_count": 1,
+            "max_observed_joint_trail_count": 1,
+            "most_frequent_output": "95493d451bf6f67539233b9ebbd24d7f"
+          },
+          {
+            "rounds": 5,
+            "max_observed_full_output_count": 1,
+            "max_observed_joint_trail_count": 1,
+            "most_frequent_output": "39233b9ebbd24d7f19d7d41175de74c5"
+          },
+          {
+            "rounds": 6,
+            "max_observed_full_output_count": 1,
+            "max_observed_joint_trail_count": 1,
+            "most_frequent_output": "19d7d41175de74c55ad99347843a2db9"
+          },
+          {
+            "rounds": 7,
+            "max_observed_full_output_count": 1,
+            "max_observed_joint_trail_count": 1,
+            "most_frequent_output": "5ad99347843a2db9c017e5bc1ddcb725"
+          },
+          {
+            "rounds": 8,
+            "max_observed_full_output_count": 1,
+            "max_observed_joint_trail_count": 1,
+            "most_frequent_output": "c017e5bc1ddcb72509552ee707937613"
+          }
+        ],
+        "witness": {
+          "plaintext": "a478f56962df44e196cc30d73a81e94a",
+          "xor_path": [
+            "0000000000000001aeb6aa22287dec6b",
+            "aeb6aa22287dec6b3f529412925f1c5a",
+            "3f529412925f1c5a95493d451bf6f675",
+            "95493d451bf6f67539233b9ebbd24d7f",
+            "39233b9ebbd24d7f19d7d41175de74c5",
+            "19d7d41175de74c55ad99347843a2db9",
+            "5ad99347843a2db9c017e5bc1ddcb725",
+            "c017e5bc1ddcb72509552ee707937613"
+          ]
+        }
+      },
+      {
+        "input_xor": "00000000000000000000000000000080",
+        "samples": 2048,
+        "rounds": [
+          {
+            "rounds": 1,
+            "max_observed_full_output_count": 1,
+            "max_observed_joint_trail_count": 1,
+            "most_frequent_output": "00000000000000802aa76fd2e1e1bd97"
+          },
+          {
+            "rounds": 2,
+            "max_observed_full_output_count": 1,
+            "max_observed_joint_trail_count": 1,
+            "most_frequent_output": "2aa76fd2e1e1bd97fd76ce09f3ed019a"
+          },
+          {
+            "rounds": 3,
+            "max_observed_full_output_count": 1,
+            "max_observed_joint_trail_count": 1,
+            "most_frequent_output": "fd76ce09f3ed019a50e693801b7e72aa"
+          },
+          {
+            "rounds": 4,
+            "max_observed_full_output_count": 1,
+            "max_observed_joint_trail_count": 1,
+            "most_frequent_output": "50e693801b7e72aa4a797348cf8141eb"
+          },
+          {
+            "rounds": 5,
+            "max_observed_full_output_count": 1,
+            "max_observed_joint_trail_count": 1,
+            "most_frequent_output": "4a797348cf8141eb78863ddf682ea76f"
+          },
+          {
+            "rounds": 6,
+            "max_observed_full_output_count": 1,
+            "max_observed_joint_trail_count": 1,
+            "most_frequent_output": "78863ddf682ea76ffac3e86b9111ad9a"
+          },
+          {
+            "rounds": 7,
+            "max_observed_full_output_count": 1,
+            "max_observed_joint_trail_count": 1,
+            "most_frequent_output": "fac3e86b9111ad9a3a44679b86c84ee9"
+          },
+          {
+            "rounds": 8,
+            "max_observed_full_output_count": 1,
+            "max_observed_joint_trail_count": 1,
+            "most_frequent_output": "3a44679b86c84ee97d98bf9438c4c9af"
+          }
+        ],
+        "witness": {
+          "plaintext": "5b6d708a1b462b0a455dd5e537f1f713",
+          "xor_path": [
+            "00000000000000802aa76fd2e1e1bd97",
+            "2aa76fd2e1e1bd97fd76ce09f3ed019a",
+            "fd76ce09f3ed019a50e693801b7e72aa",
+            "50e693801b7e72aa4a797348cf8141eb",
+            "4a797348cf8141eb78863ddf682ea76f",
+            "78863ddf682ea76ffac3e86b9111ad9a",
+            "fac3e86b9111ad9a3a44679b86c84ee9",
+            "3a44679b86c84ee97d98bf9438c4c9af"
+          ]
+        }
+      },
+      {
+        "input_xor": "00000000000000000000000080000000",
+        "samples": 2048,
+        "rounds": [
+          {
+            "rounds": 1,
+            "max_observed_full_output_count": 1,
+            "max_observed_joint_trail_count": 1,
+            "most_frequent_output": "000000008000000041b357d55f56d905"
+          },
+          {
+            "rounds": 2,
+            "max_observed_full_output_count": 1,
+            "max_observed_joint_trail_count": 1,
+            "most_frequent_output": "41b357d55f56d905993857898d016a79"
+          },
+          {
+            "rounds": 3,
+            "max_observed_full_output_count": 1,
+            "max_observed_joint_trail_count": 1,
+            "most_frequent_output": "993857898d016a79b7816cc10511e0c6"
+          },
+          {
+            "rounds": 4,
+            "max_observed_full_output_count": 1,
+            "max_observed_joint_trail_count": 1,
+            "most_frequent_output": "b7816cc10511e0c632d0030ce85b8beb"
+          },
+          {
+            "rounds": 5,
+            "max_observed_full_output_count": 1,
+            "max_observed_joint_trail_count": 1,
+            "most_frequent_output": "32d0030ce85b8bebecc606d56ecd955b"
+          },
+          {
+            "rounds": 6,
+            "max_observed_full_output_count": 1,
+            "max_observed_joint_trail_count": 1,
+            "most_frequent_output": "ecc606d56ecd955b69efe8170aa98fa5"
+          },
+          {
+            "rounds": 7,
+            "max_observed_full_output_count": 1,
+            "max_observed_joint_trail_count": 1,
+            "most_frequent_output": "69efe8170aa98fa5ae2ab39453dca66c"
+          },
+          {
+            "rounds": 8,
+            "max_observed_full_output_count": 1,
+            "max_observed_joint_trail_count": 1,
+            "most_frequent_output": "ae2ab39453dca66cceb6647f692f0675"
+          }
+        ],
+        "witness": {
+          "plaintext": "d5108612e4f2b44ed6e17569931fbf05",
+          "xor_path": [
+            "000000008000000041b357d55f56d905",
+            "41b357d55f56d905993857898d016a79",
+            "993857898d016a79b7816cc10511e0c6",
+            "b7816cc10511e0c632d0030ce85b8beb",
+            "32d0030ce85b8bebecc606d56ecd955b",
+            "ecc606d56ecd955b69efe8170aa98fa5",
+            "69efe8170aa98fa5ae2ab39453dca66c",
+            "ae2ab39453dca66cceb6647f692f0675"
+          ]
+        }
+      },
+      {
+        "input_xor": "00000000000000008000000000000000",
+        "samples": 2048,
+        "rounds": [
+          {
+            "rounds": 1,
+            "max_observed_full_output_count": 1,
+            "max_observed_joint_trail_count": 1,
+            "most_frequent_output": "80000000000000008a7f4c2274238109"
+          },
+          {
+            "rounds": 2,
+            "max_observed_full_output_count": 1,
+            "max_observed_joint_trail_count": 1,
+            "most_frequent_output": "8a7f4c22742381096449c581ae0dc0e1"
+          },
+          {
+            "rounds": 3,
+            "max_observed_full_output_count": 1,
+            "max_observed_joint_trail_count": 1,
+            "most_frequent_output": "6449c581ae0dc0e1dedd25b59d3592a5"
+          },
+          {
+            "rounds": 4,
+            "max_observed_full_output_count": 1,
+            "max_observed_joint_trail_count": 1,
+            "most_frequent_output": "dedd25b59d3592a518653bd39780c5a4"
+          },
+          {
+            "rounds": 5,
+            "max_observed_full_output_count": 1,
+            "max_observed_joint_trail_count": 1,
+            "most_frequent_output": "18653bd39780c5a4846611cf5c04bca2"
+          },
+          {
+            "rounds": 6,
+            "max_observed_full_output_count": 1,
+            "max_observed_joint_trail_count": 1,
+            "most_frequent_output": "846611cf5c04bca28790ece67e66cf5b"
+          },
+          {
+            "rounds": 7,
+            "max_observed_full_output_count": 1,
+            "max_observed_joint_trail_count": 1,
+            "most_frequent_output": "8790ece67e66cf5bda6c5575714090f9"
+          },
+          {
+            "rounds": 8,
+            "max_observed_full_output_count": 1,
+            "max_observed_joint_trail_count": 1,
+            "most_frequent_output": "da6c5575714090f963b05b5856299342"
+          }
+        ],
+        "witness": {
+          "plaintext": "5c3307e7aedbcc97d745f2948775446a",
+          "xor_path": [
+            "80000000000000008a7f4c2274238109",
+            "8a7f4c22742381096449c581ae0dc0e1",
+            "6449c581ae0dc0e1dedd25b59d3592a5",
+            "dedd25b59d3592a518653bd39780c5a4",
+            "18653bd39780c5a4846611cf5c04bca2",
+            "846611cf5c04bca28790ece67e66cf5b",
+            "8790ece67e66cf5bda6c5575714090f9",
+            "da6c5575714090f963b05b5856299342"
+          ]
+        }
+      },
+      {
+        "input_xor": "00000000000000010000000000000000",
+        "samples": 2048,
+        "rounds": [
+          {
+            "rounds": 1,
+            "max_observed_full_output_count": 2048,
+            "max_observed_joint_trail_count": 2048,
+            "most_frequent_output": "00000000000000000000000000000001"
+          },
+          {
+            "rounds": 2,
+            "max_observed_full_output_count": 1,
+            "max_observed_joint_trail_count": 1,
+            "most_frequent_output": "0000000000000001bbe3eb667316417c"
+          },
+          {
+            "rounds": 3,
+            "max_observed_full_output_count": 1,
+            "max_observed_joint_trail_count": 1,
+            "most_frequent_output": "bbe3eb667316417cf3be8012eb2d1e55"
+          },
+          {
+            "rounds": 4,
+            "max_observed_full_output_count": 1,
+            "max_observed_joint_trail_count": 1,
+            "most_frequent_output": "f3be8012eb2d1e55a85c023e2870ffeb"
+          },
+          {
+            "rounds": 5,
+            "max_observed_full_output_count": 1,
+            "max_observed_joint_trail_count": 1,
+            "most_frequent_output": "a85c023e2870ffeb338b50d6bba6ac0c"
+          },
+          {
+            "rounds": 6,
+            "max_observed_full_output_count": 1,
+            "max_observed_joint_trail_count": 1,
+            "most_frequent_output": "338b50d6bba6ac0cd3995be551ecdcd2"
+          },
+          {
+            "rounds": 7,
+            "max_observed_full_output_count": 1,
+            "max_observed_joint_trail_count": 1,
+            "most_frequent_output": "d3995be551ecdcd212cd9cff71491e97"
+          },
+          {
+            "rounds": 8,
+            "max_observed_full_output_count": 1,
+            "max_observed_joint_trail_count": 1,
+            "most_frequent_output": "12cd9cff71491e9782996dea19bcdf4c"
+          }
+        ],
+        "witness": {
+          "plaintext": "7254aa2bed5f3fe2e07fa3194304fb5f",
+          "xor_path": [
+            "00000000000000000000000000000001",
+            "0000000000000001bbe3eb667316417c",
+            "bbe3eb667316417cf3be8012eb2d1e55",
+            "f3be8012eb2d1e55a85c023e2870ffeb",
+            "a85c023e2870ffeb338b50d6bba6ac0c",
+            "338b50d6bba6ac0cd3995be551ecdcd2",
+            "d3995be551ecdcd212cd9cff71491e97",
+            "12cd9cff71491e9782996dea19bcdf4c"
+          ]
+        }
+      },
+      {
+        "input_xor": "00000000800000000000000000000000",
+        "samples": 2048,
+        "rounds": [
+          {
+            "rounds": 1,
+            "max_observed_full_output_count": 2048,
+            "max_observed_joint_trail_count": 2048,
+            "most_frequent_output": "00000000000000000000000080000000"
+          },
+          {
+            "rounds": 2,
+            "max_observed_full_output_count": 1,
+            "max_observed_joint_trail_count": 1,
+            "most_frequent_output": "0000000080000000279e05fa510267d8"
+          },
+          {
+            "rounds": 3,
+            "max_observed_full_output_count": 1,
+            "max_observed_joint_trail_count": 1,
+            "most_frequent_output": "279e05fa510267d82a2940a386ca5656"
+          },
+          {
+            "rounds": 4,
+            "max_observed_full_output_count": 1,
+            "max_observed_joint_trail_count": 1,
+            "most_frequent_output": "2a2940a386ca56562c768729722fbdaf"
+          },
+          {
+            "rounds": 5,
+            "max_observed_full_output_count": 1,
+            "max_observed_joint_trail_count": 1,
+            "most_frequent_output": "2c768729722fbdaf6df3019be2b11020"
+          },
+          {
+            "rounds": 6,
+            "max_observed_full_output_count": 1,
+            "max_observed_joint_trail_count": 1,
+            "most_frequent_output": "6df3019be2b11020731b945dff517ad0"
+          },
+          {
+            "rounds": 7,
+            "max_observed_full_output_count": 1,
+            "max_observed_joint_trail_count": 1,
+            "most_frequent_output": "731b945dff517ad070c12093c740758c"
+          },
+          {
+            "rounds": 8,
+            "max_observed_full_output_count": 1,
+            "max_observed_joint_trail_count": 1,
+            "most_frequent_output": "70c12093c740758cadcac18472a0b916"
+          }
+        ],
+        "witness": {
+          "plaintext": "7811d51ff41e440ff7df4b851729d69f",
+          "xor_path": [
+            "00000000000000000000000080000000",
+            "0000000080000000279e05fa510267d8",
+            "279e05fa510267d82a2940a386ca5656",
+            "2a2940a386ca56562c768729722fbdaf",
+            "2c768729722fbdaf6df3019be2b11020",
+            "6df3019be2b11020731b945dff517ad0",
+            "731b945dff517ad070c12093c740758c",
+            "70c12093c740758cadcac18472a0b916"
+          ]
+        }
+      },
+      {
+        "input_xor": "80000000000000000000000000000000",
+        "samples": 2048,
+        "rounds": [
+          {
+            "rounds": 1,
+            "max_observed_full_output_count": 2048,
+            "max_observed_joint_trail_count": 2048,
+            "most_frequent_output": "00000000000000008000000000000000"
+          },
+          {
+            "rounds": 2,
+            "max_observed_full_output_count": 1,
+            "max_observed_joint_trail_count": 1,
+            "most_frequent_output": "8000000000000000346fedd0c8ed4f7a"
+          },
+          {
+            "rounds": 3,
+            "max_observed_full_output_count": 1,
+            "max_observed_joint_trail_count": 1,
+            "most_frequent_output": "346fedd0c8ed4f7abbd18567932e7a21"
+          },
+          {
+            "rounds": 4,
+            "max_observed_full_output_count": 1,
+            "max_observed_joint_trail_count": 1,
+            "most_frequent_output": "bbd18567932e7a218099060dd6c31f1f"
+          },
+          {
+            "rounds": 5,
+            "max_observed_full_output_count": 1,
+            "max_observed_joint_trail_count": 1,
+            "most_frequent_output": "8099060dd6c31f1fbda4db767e2a92e6"
+          },
+          {
+            "rounds": 6,
+            "max_observed_full_output_count": 1,
+            "max_observed_joint_trail_count": 1,
+            "most_frequent_output": "bda4db767e2a92e614151796e88e81df"
+          },
+          {
+            "rounds": 7,
+            "max_observed_full_output_count": 1,
+            "max_observed_joint_trail_count": 1,
+            "most_frequent_output": "14151796e88e81df4eee474b29318579"
+          },
+          {
+            "rounds": 8,
+            "max_observed_full_output_count": 1,
+            "max_observed_joint_trail_count": 1,
+            "most_frequent_output": "4eee474b29318579363e8e06494ac58e"
+          }
+        ],
+        "witness": {
+          "plaintext": "39d2f64741577c68b8120014d5b6c340",
+          "xor_path": [
+            "00000000000000008000000000000000",
+            "8000000000000000346fedd0c8ed4f7a",
+            "346fedd0c8ed4f7abbd18567932e7a21",
+            "bbd18567932e7a218099060dd6c31f1f",
+            "8099060dd6c31f1fbda4db767e2a92e6",
+            "bda4db767e2a92e614151796e88e81df",
+            "14151796e88e81df4eee474b29318579",
+            "4eee474b29318579363e8e06494ac58e"
+          ]
+        }
+      },
+      {
+        "input_xor": "0000000000000000ffffffffffffffff",
+        "samples": 2048,
+        "rounds": [
+          {
+            "rounds": 1,
+            "max_observed_full_output_count": 1,
+            "max_observed_joint_trail_count": 1,
+            "most_frequent_output": "ffffffffffffffffc19c7feab399fe81"
+          },
+          {
+            "rounds": 2,
+            "max_observed_full_output_count": 1,
+            "max_observed_joint_trail_count": 1,
+            "most_frequent_output": "c19c7feab399fe81a52875c141b553b8"
+          },
+          {
+            "rounds": 3,
+            "max_observed_full_output_count": 1,
+            "max_observed_joint_trail_count": 1,
+            "most_frequent_output": "a52875c141b553b874b4b6c0534fd273"
+          },
+          {
+            "rounds": 4,
+            "max_observed_full_output_count": 1,
+            "max_observed_joint_trail_count": 1,
+            "most_frequent_output": "74b4b6c0534fd273795b04ff1bd5d2f0"
+          },
+          {
+            "rounds": 5,
+            "max_observed_full_output_count": 1,
+            "max_observed_joint_trail_count": 1,
+            "most_frequent_output": "795b04ff1bd5d2f0577c3aa572b7a6ce"
+          },
+          {
+            "rounds": 6,
+            "max_observed_full_output_count": 1,
+            "max_observed_joint_trail_count": 1,
+            "most_frequent_output": "577c3aa572b7a6ce68bf14a275be42dc"
+          },
+          {
+            "rounds": 7,
+            "max_observed_full_output_count": 1,
+            "max_observed_joint_trail_count": 1,
+            "most_frequent_output": "68bf14a275be42dcd7794b1d9c493af7"
+          },
+          {
+            "rounds": 8,
+            "max_observed_full_output_count": 1,
+            "max_observed_joint_trail_count": 1,
+            "most_frequent_output": "d7794b1d9c493af7a684ae0c3f2ec2aa"
+          }
+        ],
+        "witness": {
+          "plaintext": "8390b6dd8dc6bc8933f278154ff5ed76",
+          "xor_path": [
+            "ffffffffffffffffc19c7feab399fe81",
+            "c19c7feab399fe81a52875c141b553b8",
+            "a52875c141b553b874b4b6c0534fd273",
+            "74b4b6c0534fd273795b04ff1bd5d2f0",
+            "795b04ff1bd5d2f0577c3aa572b7a6ce",
+            "577c3aa572b7a6ce68bf14a275be42dc",
+            "68bf14a275be42dcd7794b1d9c493af7",
+            "d7794b1d9c493af7a684ae0c3f2ec2aa"
+          ]
+        }
+      },
+      {
+        "input_xor": "ffffffffffffffff0000000000000000",
+        "samples": 2048,
+        "rounds": [
+          {
+            "rounds": 1,
+            "max_observed_full_output_count": 2048,
+            "max_observed_joint_trail_count": 2048,
+            "most_frequent_output": "0000000000000000ffffffffffffffff"
+          },
+          {
+            "rounds": 2,
+            "max_observed_full_output_count": 1,
+            "max_observed_joint_trail_count": 1,
+            "most_frequent_output": "ffffffffffffffff597eeac39fcf2217"
+          },
+          {
+            "rounds": 3,
+            "max_observed_full_output_count": 1,
+            "max_observed_joint_trail_count": 1,
+            "most_frequent_output": "597eeac39fcf2217525aaacc041b3d8a"
+          },
+          {
+            "rounds": 4,
+            "max_observed_full_output_count": 1,
+            "max_observed_joint_trail_count": 1,
+            "most_frequent_output": "525aaacc041b3d8ae2826220716924ce"
+          },
+          {
+            "rounds": 5,
+            "max_observed_full_output_count": 1,
+            "max_observed_joint_trail_count": 1,
+            "most_frequent_output": "e2826220716924ce5d901c455beb8010"
+          },
+          {
+            "rounds": 6,
+            "max_observed_full_output_count": 1,
+            "max_observed_joint_trail_count": 1,
+            "most_frequent_output": "5d901c455beb801038f9c3fdd9cd5d17"
+          },
+          {
+            "rounds": 7,
+            "max_observed_full_output_count": 1,
+            "max_observed_joint_trail_count": 1,
+            "most_frequent_output": "38f9c3fdd9cd5d17910982bbdcea3b05"
+          },
+          {
+            "rounds": 8,
+            "max_observed_full_output_count": 1,
+            "max_observed_joint_trail_count": 1,
+            "most_frequent_output": "910982bbdcea3b05eeb2dff7243f1daa"
+          }
+        ],
+        "witness": {
+          "plaintext": "f5f181abc5053ac729930d79242fd096",
+          "xor_path": [
+            "0000000000000000ffffffffffffffff",
+            "ffffffffffffffff597eeac39fcf2217",
+            "597eeac39fcf2217525aaacc041b3d8a",
+            "525aaacc041b3d8ae2826220716924ce",
+            "e2826220716924ce5d901c455beb8010",
+            "5d901c455beb801038f9c3fdd9cd5d17",
+            "38f9c3fdd9cd5d17910982bbdcea3b05",
+            "910982bbdcea3b05eeb2dff7243f1daa"
+          ]
+        }
+      },
+      {
+        "input_xor": "ffffffffffffffffffffffffffffffff",
+        "samples": 2048,
+        "rounds": [
+          {
+            "rounds": 1,
+            "max_observed_full_output_count": 1,
+            "max_observed_joint_trail_count": 1,
+            "most_frequent_output": "ffffffffffffffffeb7a486726fdab5f"
+          },
+          {
+            "rounds": 2,
+            "max_observed_full_output_count": 1,
+            "max_observed_joint_trail_count": 1,
+            "most_frequent_output": "eb7a486726fdab5f4a751cdc1b04ef40"
+          },
+          {
+            "rounds": 3,
+            "max_observed_full_output_count": 1,
+            "max_observed_joint_trail_count": 1,
+            "most_frequent_output": "4a751cdc1b04ef40fd119041d9b9b89e"
+          },
+          {
+            "rounds": 4,
+            "max_observed_full_output_count": 1,
+            "max_observed_joint_trail_count": 1,
+            "most_frequent_output": "fd119041d9b9b89ecd02e47d8afdda0f"
+          },
+          {
+            "rounds": 5,
+            "max_observed_full_output_count": 1,
+            "max_observed_joint_trail_count": 1,
+            "most_frequent_output": "cd02e47d8afdda0fb3b8db2080385a34"
+          },
+          {
+            "rounds": 6,
+            "max_observed_full_output_count": 1,
+            "max_observed_joint_trail_count": 1,
+            "most_frequent_output": "b3b8db2080385a3438eb5bff001e66cd"
+          },
+          {
+            "rounds": 7,
+            "max_observed_full_output_count": 1,
+            "max_observed_joint_trail_count": 1,
+            "most_frequent_output": "38eb5bff001e66cdb858eff00dac131b"
+          },
+          {
+            "rounds": 8,
+            "max_observed_full_output_count": 1,
+            "max_observed_joint_trail_count": 1,
+            "most_frequent_output": "b858eff00dac131b91f312a33306dac3"
+          }
+        ],
+        "witness": {
+          "plaintext": "d781a5bd8942a0508a450fe649f0ad3b",
+          "xor_path": [
+            "ffffffffffffffffeb7a486726fdab5f",
+            "eb7a486726fdab5f4a751cdc1b04ef40",
+            "4a751cdc1b04ef40fd119041d9b9b89e",
+            "fd119041d9b9b89ecd02e47d8afdda0f",
+            "cd02e47d8afdda0fb3b8db2080385a34",
+            "b3b8db2080385a3438eb5bff001e66cd",
+            "38eb5bff001e66cdb858eff00dac131b",
+            "b858eff00dac131b91f312a33306dac3"
+          ]
+        }
+      }
+    ],
+    "linear_masks_tested": 128,
+    "linear_selected": [
+      {
+        "rounds": 1,
+        "input_mask": "00000000000000000000000000000001",
+        "output_mask": "00000000000000010000000000000000",
+        "discovery_signed_sum": 2048,
+        "holdout_signed_sum": 2048,
+        "denominator_each": 2048
+      },
+      {
+        "rounds": 2,
+        "input_mask": "00000000000200000000000000000000",
+        "output_mask": "00000000000000200000000000000000",
+        "discovery_signed_sum": -146,
+        "holdout_signed_sum": 52,
+        "denominator_each": 2048
+      },
+      {
+        "rounds": 3,
+        "input_mask": "00000000200000000000000000000000",
+        "output_mask": "02000000000000000000000000000000",
+        "discovery_signed_sum": -130,
+        "holdout_signed_sum": 10,
+        "denominator_each": 2048
+      },
+      {
+        "rounds": 4,
+        "input_mask": "4bc851caf2df33df986f0a85f9f537ff",
+        "output_mask": "af78611115035df2bc291bccc1e0e500",
+        "discovery_signed_sum": -104,
+        "holdout_signed_sum": 34,
+        "denominator_each": 2048
+      },
+      {
+        "rounds": 5,
+        "input_mask": "425373cb131ae4f38e0690baca3c85c5",
+        "output_mask": "46dbdf02350c4b7763d2b5c56d5eb3e3",
+        "discovery_signed_sum": -136,
+        "holdout_signed_sum": -48,
+        "denominator_each": 2048
+      },
+      {
+        "rounds": 6,
+        "input_mask": "00000000000000000000000000000020",
+        "output_mask": "00000000000000000000000040000000",
+        "discovery_signed_sum": 112,
+        "holdout_signed_sum": -8,
+        "denominator_each": 2048
+      },
+      {
+        "rounds": 7,
+        "input_mask": "00000000200000000000000000000000",
+        "output_mask": "02000000000000000000000000000000",
+        "discovery_signed_sum": 132,
+        "holdout_signed_sum": -8,
+        "denominator_each": 2048
+      },
+      {
+        "rounds": 8,
+        "input_mask": "9e2b313380b1dd6fc93ab72138f78480",
+        "output_mask": "29b328038c90d103283dc67d1de8b4e7",
+        "discovery_signed_sum": 148,
+        "holdout_signed_sum": 16,
+        "denominator_each": 2048
+      }
+    ],
+    "exact_controls": [
+      "For one round: input difference (d,0) -> output (0,d) for every block/key.",
+      "For one round: parity(mask & input_R) = parity(mask & output_L)."
+    ],
+    "scope": "1..8 rounds of the full-width v0.3 function, fixed master. Observed joint paths and holdout mask correlations, NOT optimal trails, exhaustive probabilities, p-values or 24-round bounds."
+  },
+  "mac_kdf": {
+    "cases": 32,
+    "tag_bit_forgery_attempts": 4096,
+    "accepted_forgeries": 0,
+    "relations": {
+      "pairs": 96,
+      "equal_subkeys": 0,
+      "period_three_schedules": 0,
+      "message_equals_next": 0,
+      "halves_equal": 0,
+      "context_extension_collisions": 0
+    },
+    "positive_controls": {
+      "message_layer_replay_accepted": 32,
+      "same_key_nonce_plaintext_xor_leaked": 32,
+      "past_key_dictionary": {
+        "entropy_bits": 12,
+        "guesses": 1232,
+        "public_weak_chain": "00000000000000000000000000000000000000000000000000000000000004cf",
+        "recovered_past_plaintext": "past message control"
+      }
+    },
+    "scope": "Bounded key-role checks and valid-frame forgeries, plus expected misuse failures. No PRF proof, high-entropy past-key recovery, or MAC security bound."
+  },
+  "key_establishment": {
+    "candidate": "NXP0 lab only: three-pass E_a, E_b, D_a, D_b using the original cipher",
+    "agreement_trials": 32,
+    "agreements": 0,
+    "counterexample": {
+      "alice_lab_key": "d659d15d936ad659fd1e65564fa7393e6cd9a6292b78aae687fb5505a70ce0f3",
+      "bob_lab_key": "f48cf228c8f9d1688754ee1b5e93e16b40a85141b733a28de4d07739db1a155a",
+      "proposed": "c99ddc848511cd3acd5e435c703fc5e2",
+      "first": "ebbac84fbe76ebd2917a76bc7e3fc6d1",
+      "second": "bba0061fddb0307caa948673f11bf5b9",
+      "third": "163c08d4bcbe2d3f83de43512bd0498d",
+      "bob_result": "e1433914a020be3888f2efeb4f199df4"
+    },
+    "decision": "REJECTED: block encryptions do not generally commute; correctness fails before secrecy analysis.",
+    "refresh_control": {
+      "fresh_entropy_recovered_from_compromised_channel": true,
+      "new_root_predicted": true
+    },
+    "deployment": "No candidate added to NXS1. First contact without a shared secret and automatic PCS remain unsolved."
+  },
+  "elapsed_seconds": 32.481537300001946
+}

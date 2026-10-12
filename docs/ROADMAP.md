@@ -1,5 +1,15 @@
 # Roadmap
 
+## Последняя итерация — направления 1–7
+
+Подробный статус: [ITERATION_RESEARCH_1_7.md](ITERATION_RESEARCH_1_7.md).
+Расширены related-master и full-width reduced-round исследования, проверены
+MAC/KDF-контроли, ускорена собственная булева S-box, добавлены очистка хранилищ
+ключей и проверка одной ASM-сборки. Совместимость ядра и NXS1 сохранена.
+Кандидат установления ключей NXP0 отклонён; согласование без внешнего секрета
+и автоматическая PCS не реализованы. Пакет внешней экспертизы подготовлен локально,
+но эксперт и его заключение отсутствуют. Стойкость для реальных данных не установлена.
+
 ## Phase 1 — Foundation (implemented)
 
 - Workspace, experimental Rust block cipher, Python reference, vector, basic reversibility checks, small avalanche probe, CLI demonstration, and security documentation.

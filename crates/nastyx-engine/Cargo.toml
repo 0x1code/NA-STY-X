@@ -6,5 +6,8 @@ license.workspace = true
 rust-version.workspace = true
 description = "Original NA&STY-X v0.3 research cipher; not approved for real secrets"
 
+[dependencies]
+zeroize.workspace = true
+
 [lints]
 workspace = true

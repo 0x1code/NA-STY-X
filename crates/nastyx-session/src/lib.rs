@@ -2,7 +2,9 @@
 //! Requires a random one-time pairing secret delivered outside the relay.
 //! No public-key agreement, automatic compromise recovery, durable key storage,
 //! guaranteed erasure, side-channel protection, or independently proven security.
-use nastyx_message::{authentication_code, OneTimeSealer, Receiver};
+use nastyx_message::{authentication_code, tags_equal, OneTimeSealer, Receiver};
+use zeroize::{Zeroize, Zeroizing};
+type Secret = Zeroizing<[u8; 32]>;
 use std::collections::BTreeMap;
 
 pub const MAX_PLAINTEXT: usize = 65_536;
@@ -29,13 +31,6 @@ impl std::fmt::Display for Error {
 }
 impl std::error::Error for Error {}
 
-fn equal(a: &[u8], b: &[u8]) -> bool {
-    if a.len() != b.len() {
-        return false;
-    }
-    a.iter().zip(b).fold(0_u8, |d, (a, b)| d | (a ^ b)) == 0
-}
-
 fn code(key: &[u8; 32], label: u8, context: &[u8]) -> [u8; 16] {
     let mut input = b"NXS1".to_vec();
     input.push(label);
@@ -43,15 +38,15 @@ fn code(key: &[u8; 32], label: u8, context: &[u8]) -> [u8; 16] {
     authentication_code(key, &input).expect("bounded internal context")
 }
 
-fn expand(key: &[u8; 32], label: u8, context: &[u8]) -> [u8; 32] {
+fn expand(key: &[u8; 32], label: u8, context: &[u8]) -> Secret {
     let mut input = vec![0];
     input.extend_from_slice(context);
-    let a = code(key, label, &input);
+    let a = Zeroizing::new(code(key, label, &input));
     input[0] = 1;
-    let b = code(key, label, &input);
-    let mut out = [0; 32];
-    out[..16].copy_from_slice(&a);
-    out[16..].copy_from_slice(&b);
+    let b = Zeroizing::new(code(key, label, &input));
+    let mut out = Zeroizing::new([0; 32]);
+    out[..16].copy_from_slice(&*a);
+    out[16..].copy_from_slice(&*b);
     out
 }
 
@@ -66,20 +61,26 @@ fn handshake(kind: u8, body: &[u8], key: &[u8; 32]) -> Vec<u8> {
 fn verify_handshake(packet: &[u8], kind: u8, size: usize, key: &[u8; 32]) -> bool {
     packet.len() == size
         && packet[..5] == [b'N', b'X', b'H', b'1', kind]
-        && equal(&code(key, kind, &packet[..size - 16]), &packet[size - 16..])
+        && tags_equal(
+            &code(key, kind, &packet[..size - 16]),
+            packet[size - 16..]
+                .try_into()
+                .expect("validated tag length"),
+        )
 }
 
 /// One-time pairing data. Both IDs and the secret must be verified out of band.
 /// Obtain secret/challenges/session IDs from the OS CSPRNG, never a password.
 /// Creating another Pairing with the same secret defeats the one-time contract.
 pub struct Pairing {
-    secret: [u8; 32],
+    secret: Secret,
     initiator: [u8; 16],
     responder: [u8; 16],
 }
 impl Pairing {
     pub fn new(secret: [u8; 32], initiator: [u8; 16], responder: [u8; 16]) -> Result<Self, Error> {
-        if initiator == responder || secret == [0; 32] {
+        let secret = Zeroizing::new(secret);
+        if initiator == responder || *secret == [0; 32] {
             return Err(Error::Rejected);
         }
         Ok(Self {
@@ -120,7 +121,7 @@ impl Pairing {
 
 impl Drop for Pairing {
     fn drop(&mut self) {
-        self.secret.fill(0); // best effort only; compiler/memory copies are not covered.
+        self.secret.zeroize(); // Owned storage only; historical copies/registers are not covered.
     }
 }
 pub struct Initiator {
@@ -137,12 +138,12 @@ impl Initiator {
         let mut root = expand(&self.pairing.secret, 10, transcript);
         let confirm = handshake(3, transcript, &root);
         let session = UnverifiedSession::new(&root, transcript, 0);
-        root.fill(0);
+        root.zeroize();
         Ok((session, confirm))
     }
 }
 pub struct Responder {
-    root: [u8; 32],
+    root: Secret,
     transcript: Vec<u8>,
 }
 impl Responder {
@@ -155,7 +156,7 @@ impl Responder {
 }
 impl Drop for Responder {
     fn drop(&mut self) {
-        self.root.fill(0);
+        self.root.zeroize();
     }
 }
 
@@ -190,7 +191,7 @@ impl UnverifiedSession {
     /// The supplied code must come from the peer via a trusted separate channel,
     /// not from the relay or this object's own code automatically.
     pub fn verify_peer(self, externally_compared_code: &[u8; 16]) -> Result<Session, Error> {
-        if !equal(&self.verification, externally_compared_code) {
+        if !tags_equal(&self.verification, externally_compared_code) {
             return Err(Error::Rejected);
         }
         Ok(self.session)
@@ -204,14 +205,14 @@ pub struct Session {
     local: [u8; 16],
     peer: [u8; 16],
     direction: u8,
-    sending: [u8; 32],
-    receiving: [u8; 32],
+    sending: Secret,
+    receiving: Secret,
     sent: u64,
     received: u64,
-    skipped: BTreeMap<u64, [u8; 32]>,
+    skipped: BTreeMap<u64, Secret>,
     closed: bool,
 }
-fn step(chain: &[u8; 32], direction: u8, sequence: u64) -> ([u8; 32], [u8; 32]) {
+fn step(chain: &[u8; 32], direction: u8, sequence: u64) -> (Secret, Secret) {
     let mut context = vec![direction];
     context.extend_from_slice(&sequence.to_be_bytes());
     (expand(chain, 30, &context), expand(chain, 31, &context))
@@ -239,7 +240,7 @@ impl Session {
         header.extend_from_slice(&((plaintext.len() + 44) as u32).to_be_bytes());
         let (mut key, next) = step(&self.sending, self.direction, self.sent);
         let result = OneTimeSealer::new(&key).seal(plaintext, &header);
-        key.fill(0);
+        key.zeroize();
         let record = result.map_err(|_| Error::Size)?;
         self.sending = next;
         self.sent += 1; // Commit before returning any ciphertext to the application.
@@ -275,9 +276,11 @@ impl Session {
             let result = Receiver::new(key)
                 .open(&packet[HEADER..], &packet[..HEADER])
                 .map_err(|_| Error::Rejected)?;
-            if let Some(mut key) = self.skipped.remove(&sequence) {
-                key.fill(0);
+            // Clear the occupied map slot before removal can move its value.
+            if let Some(key) = self.skipped.get_mut(&sequence) {
+                key.zeroize();
             }
+            self.skipped.remove(&sequence);
             return Ok(result);
         }
         let gap = sequence - self.received;
@@ -285,7 +288,7 @@ impl Session {
             return Err(Error::Rejected);
         }
         // Derive on temporary state. No replay/chain mutation before authenticating.
-        let mut chain = self.receiving;
+        let mut chain = Zeroizing::new(*self.receiving);
         let mut pending = BTreeMap::new();
         for index in self.received..sequence {
             let (key, next) = step(&chain, 1 - self.direction, index);
@@ -296,8 +299,8 @@ impl Session {
         let result = Receiver::new(&key)
             .open(&packet[HEADER..], &packet[..HEADER])
             .map_err(|_| Error::Rejected);
-        key.fill(0);
-        chain.fill(0);
+        key.zeroize();
+        chain.zeroize();
         match result {
             Ok(plaintext) => {
                 self.skipped.append(&mut pending);
@@ -307,7 +310,7 @@ impl Session {
             }
             Err(error) => {
                 for key in pending.values_mut() {
-                    key.fill(0);
+                    key.zeroize();
                 }
                 Err(error)
             }
@@ -316,14 +319,14 @@ impl Session {
     /// Explicitly discard keys of lost messages; they can never be received later.
     pub fn discard_skipped(&mut self) {
         for key in self.skipped.values_mut() {
-            key.fill(0);
+            key.zeroize();
         }
         self.skipped.clear();
     }
     pub fn close(&mut self) {
         self.closed = true;
-        self.sending.fill(0);
-        self.receiving.fill(0);
+        self.sending.zeroize();
+        self.receiving.zeroize();
         self.discard_skipped();
     }
 }
@@ -416,12 +419,12 @@ mod tests {
         let (mut a, mut b) = pair(3);
         let p0 = a.seal(b"zero").unwrap();
         let p1 = a.seal(b"one").unwrap();
-        let before = b.receiving;
+        let before = *b.receiving;
         for index in 0..p1.len() {
             let mut changed = p1.clone();
             changed[index] ^= 1;
             assert!(b.open(&changed).is_err());
-            assert_eq!(b.receiving, before);
+            assert_eq!(*b.receiving, before);
             assert_eq!(b.received, 0);
             assert!(b.skipped.is_empty());
         }
@@ -472,7 +475,7 @@ mod tests {
         let old = a.seal(b"old").unwrap();
         let (mut fresh_a, mut fresh_b) = pair(9);
         assert!(fresh_b.open(&old).is_err());
-        assert_ne!(a.sending, fresh_a.sending);
+        assert_ne!(*a.sending, *fresh_a.sending);
         b.close();
         assert_eq!(b.open(&old).unwrap_err(), Error::Closed);
         a.close();
@@ -499,11 +502,11 @@ mod tests {
     #[test]
     fn current_state_cannot_directly_decrypt_old_packet() {
         let (mut a, mut b) = pair(3);
-        let initial_chain = a.sending;
+        let initial_chain = *a.sending;
         let old = a.seal(b"old").unwrap();
         b.open(&old).unwrap();
-        assert_ne!(a.sending, initial_chain);
-        assert_ne!(b.receiving, initial_chain);
+        assert_ne!(*a.sending, initial_chain);
+        assert_ne!(*b.receiving, initial_chain);
         let (current_message_key, _) = step(&a.sending, 0, 1);
         assert!(Receiver::new(&current_message_key)
             .open(&old[HEADER..], &old[..HEADER])
@@ -522,14 +525,14 @@ mod tests {
         let bytes = vec![19; MAX_PLAINTEXT];
         assert_eq!(b.open(&a.seal(&bytes).unwrap()).unwrap(), bytes);
         b.close();
-        assert_eq!(b.receiving, [0; 32]);
-        assert_eq!(b.sending, [0; 32]);
+        assert_eq!(*b.receiving, [0; 32]);
+        assert_eq!(*b.sending, [0; 32]);
     }
     #[test]
     fn bounded_parser_fuzz_never_panics_or_mutates_state() {
         let (mut a, mut b) = pair(3);
         let valid = a.seal(b"parser fuzz").unwrap();
-        let before = b.receiving;
+        let before = *b.receiving;
         let mut public_seed = 20261012_u64;
         for index in 0..10_000 {
             let mut packet = if index % 2 == 0 {
@@ -550,7 +553,7 @@ mod tests {
                 packet[offset] ^= 1 << (index % 8);
             }
             assert!(b.open(&packet).is_err());
-            assert_eq!(b.receiving, before);
+            assert_eq!(*b.receiving, before);
             assert_eq!(b.received, 0);
             assert!(b.skipped.is_empty());
         }

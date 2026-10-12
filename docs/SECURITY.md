@@ -16,10 +16,11 @@ The original cipher, subkey derivation and message tag have no independent crypt
 
 Message encryption and tag verification are implemented; this does not establish confidentiality or forgery resistance. The receiver authenticates before decrypting. Nonces are reserved in one shared persistent registry per key; missing/corrupt metadata fail closed. Never reuse a key after losing or rolling back this state. Windows power-loss durability of directory metadata is not established. Local storage tampering/rollback, network filesystems and multiple registries for the same key are outside the nonce guarantee.
 
-Current Rust v0.3 evaluates its S-box through Boolean ANF without secret-indexed loads;
-Python/legacy implementations still use table lookups. A reviewed x86-64 GNU assembly
-fragment is recorded, but general constant-time behavior is unverified. Key memory is not
-guaranteed to be erased. Standalone v0.3 lacks replay/session state; NXS1 adds it with the
+Current Rust v0.3 evaluates its S-box through factored Boolean ANF without secret-indexed
+loads; Python/legacy implementations still use table lookups. Round/tag/erasure x86-64
+GNU fragments are recorded, but general constant-time behavior is unverified. Owned key
+storage uses pinned zeroize 1.8.2; prior moves/copies, registers, swap, abort and dumps
+remain outside that clearing mechanism. Standalone v0.3 lacks replay/session state; NXS1 adds it with the
 limitations above. Historical examples use public test keys; E2EE demo uses fresh OS
 randomness with non-secret texts. Functional tests do not replace cryptographic review.
 
@@ -27,6 +28,10 @@ Exact related-round-key symmetry and bounded master-key/MAC/KDF probes are docum
 in `CONSTRUCTION_ANALYSIS.md`. No exploitable master-key relation was found in the stated
 one-bit sample; general relations remain open. Symmetric chain compromise predicts future
 keys, as demonstrated, so no automatic PCS claim is made.
+
+The expanded search, full-width reduced-round probes, low-entropy past-key recovery
+control and rejected key-establishment candidate are recorded in `ITERATION_RESEARCH_1_7.md`.
+Passing tests and a prepared external-review archive do not mean an external audit occurred.
 
 ## Historical v0.2 status
 
